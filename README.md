@@ -1,4 +1,5 @@
 # blog_design Version 1.0
+[详细文档](https://shimo.im/doc/quKkJaZK5DsqpbJk)
 
 #### 2016.4.3
 
@@ -6,10 +7,8 @@
 
 long style: 
 
-<!-- ![Long Style](README_files/Long Style.png) -->
 <img src="README_files/Long Style.png" alt="Long Style.png" height="80">
 
 short style: 
 
-<!-- ![Short Style](README_files/Short Style.png) -->
 <img src="README_files/Short Style.png" alt="Short Style.png" height="80">
