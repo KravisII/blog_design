@@ -122,31 +122,12 @@
 </body>
 <!-- middle 表示纵向的中间，center 表示横向的中间 -->
 <script>
-	var ghMenuIcon = document.querySelector(".js-gh-menu-icon");
-	ghMenuIcon.onclick = function () {
-		if (hasClass(ghMenuIcon, "gh-menu-icon--opened")) {
-			removeClass(ghMenuIcon, "gh-menu-icon--opened");
-		} else {
-			addClass(ghMenuIcon, "gh-menu-icon--opened");
-		}
+	var _ghMenuIcon = document.querySelector(".js-gh-menu-icon");
+	_ghMenuIcon.onclick = function () {
+		_ghMenuIcon.classList.toggle("gh-menu-icon--opened");
 	};
-	// 遵循 BEM，也就是 “Block-Element-Modifier”，是一种用于 HTML 和 CSS 类名的命名约定。 `.listing-card--featured` 是一个修饰符（modifier），表示这个块与 .listing-card有着不同的状态或者变化。from [Airbnb CSS / Sass 指南](http://zhuanlan.zhihu.com/p/20707030?refer=FrontendMagazine)
+	/* 遵循 BEM，也就是 “Block-Element-Modifier”，是一种用于 HTML 和 CSS 类名的命名约定。 `.listing-card--featured` 是一个修饰符（modifier），表示这个块与 .listing-card有着不同的状态或者变化。from [Airbnb CSS / Sass 指南](http://zhuanlan.zhihu.com/p/20707030?refer=FrontendMagazine) */
 
-function hasClass(obj, cls) {
-	return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-}
-
-function addClass(obj, cls) {
-	if (!this.hasClass(obj, cls)) {
-		obj.className += " " + cls;
-	}
-}
-
-function removeClass(obj, cls) {
-	if (hasClass(obj, cls)) {
-		var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-		obj.className = obj.className.replace(reg, ' ');
-	}
-}
+	/* 使用 [Element.classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) 对 class 进行操作。 */
 </script>
 </html>
