@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gh-menu-icon</title>
+	<style>
+
+	.gh-menu-icon-top,
+	.gh-menu-icon-middle,
+	.gh-menu-icon-bottom,
+	.gh-menu-icon {
+		height: 48px;
+		width: 48px;
+		display: block;
+		position: absolute;
+		
+	}
+	/* 第一层 90度旋转 */
+	.gh-menu-icon {
+		background: rgb(149, 157, 152);
+		cursor: pointer;
+		transform: rotate(0);
+		transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	}
+
+	/* 第二层 45度旋转 */
+	.gh-menu-icon-top,
+	.gh-menu-icon-middle,
+	.gh-menu-icon-bottom {
+		top: 0;
+		transform: rotate(0);
+		transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	}
+
+	/* 第三层 Y轴合并 */
+	.gh-menu-icon-top-inner,
+	.gh-menu-icon-middle-inner,
+	.gh-menu-icon-bottom-inner {
+		display: block;
+		position: absolute;
+		width: 17px;
+		height: 1px;
+		background: white;
+		left: 16px;
+	}
+
+	.gh-menu-icon-top-inner,
+	.gh-menu-icon-bottom-inner {
+		transition: transform 0.25s 0.2s;
+	}
+
+	.gh-menu-icon-top-inner {
+		transform: translateY(-6px);
+		top: 23px;
+	}
+
+	.gh-menu-icon-middle-inner {
+		transform: translateY(0px) scaleX(1);
+		transition: transform 0.25s;
+		top: 50%;
+	}
+
+	.gh-menu-icon-bottom-inner {
+		transform: translateY(6px);
+		bottom: 23px;
+	}
+
+	/* OPENED */
+
+	/* 第一层 90度旋转 */
+	.gh-menu-icon.opened {
+		transform: rotate(90deg);
+	}
+
+	/* 第二层 45度旋转 */
+	.opened .gh-menu-icon-top,
+	.opened .gh-menu-icon-middle,
+	.opened .gh-menu-icon-bottom {
+		transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	}
+
+	.opened .gh-menu-icon-top {
+		transform: rotate(45deg);
+	}
+
+	.opened .gh-menu-icon-bottom {
+		transform: rotate(-45deg);
+	}
+
+	/* 第三层 Y轴合并 */
+	.opened .gh-menu-icon-top-inner,
+	.opened .gh-menu-icon-middle-inner,
+	.opened .gh-menu-icon-bottom-inner {
+		transform: translateY(0);
+		transition: transform 0.2s;
+	}
+
+	 .opened .gh-menu-icon-middle-inner{
+		transform: scaleX(0);
+	}
+
+	</style>
+</head>
+<body>
+	<div class="gh-menu-icon">
+		<span class="gh-menu-icon-top">
+			<span class="gh-menu-icon-top-inner"></span>
+		</span>
+		<span class="gh-menu-icon-middle">
+			<span class="gh-menu-icon-middle-inner"></span>
+		</span>
+		<span class="gh-menu-icon-bottom">
+			<span class="gh-menu-icon-bottom-inner"></span>
+		</span>
+	</div>
+</body>
+<!-- middle 表示纵向的中间，center 表示横向的中间 -->
+<script>
+	var ghMenuIcon = document.querySelector(".gh-menu-icon");
+	ghMenuIcon.onclick = function () {
+		if (hasClass(ghMenuIcon, "opened")) {
+			removeClass(ghMenuIcon, "opened");
+		} else {
+			addClass(ghMenuIcon, "opened");
+		}
+	};
+
+function hasClass(obj, cls) {
+	return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+}
+
+function addClass(obj, cls) {
+	if (!this.hasClass(obj, cls)) {
+		obj.className += " " + cls;
+	}
+}
+
+function removeClass(obj, cls) {
+	if (hasClass(obj, cls)) {
+		var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+		obj.className = obj.className.replace(reg, ' ');
+	}
+}
+</script>
+</html>
