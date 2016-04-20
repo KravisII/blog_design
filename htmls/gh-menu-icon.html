@@ -4,23 +4,31 @@
 	<meta charset="UTF-8">
 	<title>gh-menu-icon</title>
 	<style>
+	.gh-menu-icon,
+	.gh-menu-icon-top,
+	.gh-menu-icon-middle,
+	.gh-menu-icon-bottom,
+	.gh-menu-icon-top-inner,
+	.gh-menu-icon-middle-inner,
+	.gh-menu-icon-bottom-inner {
+		display: block;
+		position: absolute;
+	}
 
 	.gh-menu-icon-top,
 	.gh-menu-icon-middle,
 	.gh-menu-icon-bottom,
 	.gh-menu-icon {
-		height: 48px;
 		width: 48px;
-		display: block;
-		position: absolute;
-		
+		height: 48px;
 	}
+
 	/* 第一层 90度旋转 */
 	.gh-menu-icon {
 		background: rgb(149, 157, 152);
-		cursor: pointer;
 		transform: rotate(0);
 		transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+		cursor: pointer;
 	}
 
 	/* 第二层 45度旋转 */
@@ -36,12 +44,10 @@
 	.gh-menu-icon-top-inner,
 	.gh-menu-icon-middle-inner,
 	.gh-menu-icon-bottom-inner {
-		display: block;
-		position: absolute;
+		left: 16px;
 		width: 17px;
 		height: 1px;
 		background: white;
-		left: 16px;
 	}
 
 	.gh-menu-icon-top-inner,
@@ -50,19 +56,19 @@
 	}
 
 	.gh-menu-icon-top-inner {
-		transform: translateY(-6px);
 		top: 23px;
+		transform: translateY(-6px);
 	}
 
 	.gh-menu-icon-middle-inner {
+		top: 50%;
 		transform: translateY(0px) scaleX(1);
 		transition: transform 0.25s;
-		top: 50%;
 	}
 
 	.gh-menu-icon-bottom-inner {
-		transform: translateY(6px);
 		bottom: 23px;
+		transform: translateY(6px);
 	}
 
 	/* OPENED */
@@ -102,7 +108,7 @@
 	</style>
 </head>
 <body>
-	<div class="gh-menu-icon">
+	<div class="gh-menu-icon js-gh-menu-icon">
 		<span class="gh-menu-icon-top">
 			<span class="gh-menu-icon-top-inner"></span>
 		</span>
@@ -116,7 +122,7 @@
 </body>
 <!-- middle 表示纵向的中间，center 表示横向的中间 -->
 <script>
-	var ghMenuIcon = document.querySelector(".gh-menu-icon");
+	var ghMenuIcon = document.querySelector(".js-gh-menu-icon");
 	ghMenuIcon.onclick = function () {
 		if (hasClass(ghMenuIcon, "gh-menu-icon--opened")) {
 			removeClass(ghMenuIcon, "gh-menu-icon--opened");
@@ -124,7 +130,7 @@
 			addClass(ghMenuIcon, "gh-menu-icon--opened");
 		}
 	};
-	// .listing-card--featured 是一个修饰符（modifier），表示这个块与 .listing-card有着不同的状态或者变化。from [Airbnb CSS / Sass 指南](http://zhuanlan.zhihu.com/p/20707030?refer=FrontendMagazine)
+	// 遵循 BEM，也就是 “Block-Element-Modifier”，是一种用于 HTML 和 CSS 类名的命名约定。 `.listing-card--featured` 是一个修饰符（modifier），表示这个块与 .listing-card有着不同的状态或者变化。from [Airbnb CSS / Sass 指南](http://zhuanlan.zhihu.com/p/20707030?refer=FrontendMagazine)
 
 function hasClass(obj, cls) {
 	return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
