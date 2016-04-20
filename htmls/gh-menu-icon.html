@@ -68,34 +68,34 @@
 	/* OPENED */
 
 	/* 第一层 90度旋转 */
-	.gh-menu-icon.opened {
+	.gh-menu-icon.gh-menu-icon--opened {
 		transform: rotate(90deg);
 	}
 
 	/* 第二层 45度旋转 */
-	.opened .gh-menu-icon-top,
-	.opened .gh-menu-icon-middle,
-	.opened .gh-menu-icon-bottom {
+	.gh-menu-icon--opened .gh-menu-icon-top,
+	.gh-menu-icon--opened .gh-menu-icon-middle,
+	.gh-menu-icon--opened .gh-menu-icon-bottom {
 		transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
 	}
 
-	.opened .gh-menu-icon-top {
+	.gh-menu-icon--opened .gh-menu-icon-top {
 		transform: rotate(45deg);
 	}
 
-	.opened .gh-menu-icon-bottom {
+	.gh-menu-icon--opened .gh-menu-icon-bottom {
 		transform: rotate(-45deg);
 	}
 
 	/* 第三层 Y轴合并 */
-	.opened .gh-menu-icon-top-inner,
-	.opened .gh-menu-icon-middle-inner,
-	.opened .gh-menu-icon-bottom-inner {
+	.gh-menu-icon--opened .gh-menu-icon-top-inner,
+	.gh-menu-icon--opened .gh-menu-icon-middle-inner,
+	.gh-menu-icon--opened .gh-menu-icon-bottom-inner {
 		transform: translateY(0);
 		transition: transform 0.2s;
 	}
 
-	 .opened .gh-menu-icon-middle-inner{
+	 .gh-menu-icon--opened .gh-menu-icon-middle-inner{
 		transform: scaleX(0);
 	}
 
@@ -118,12 +118,13 @@
 <script>
 	var ghMenuIcon = document.querySelector(".gh-menu-icon");
 	ghMenuIcon.onclick = function () {
-		if (hasClass(ghMenuIcon, "opened")) {
-			removeClass(ghMenuIcon, "opened");
+		if (hasClass(ghMenuIcon, "gh-menu-icon--opened")) {
+			removeClass(ghMenuIcon, "gh-menu-icon--opened");
 		} else {
-			addClass(ghMenuIcon, "opened");
+			addClass(ghMenuIcon, "gh-menu-icon--opened");
 		}
 	};
+	// .listing-card--featured 是一个修饰符（modifier），表示这个块与 .listing-card有着不同的状态或者变化。from [Airbnb CSS / Sass 指南](http://zhuanlan.zhihu.com/p/20707030?refer=FrontendMagazine)
 
 function hasClass(obj, cls) {
 	return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
