@@ -22,11 +22,14 @@
 		《CSS 揭秘》- Lea Verou
  		*/
  		
- 		transform: rotateX(0);
  		transition: transform 0.25s ease-out;
 	}
 
-	.gh-menu-icon-inner--opened > .gh-menu-icon-inner{
+	.gh-menu-icon--opened > .gh-menu-icon-inner{
+		transition: transform 3s ease-out;
+	}
+
+	.gh-menu-icon--opened > .gh-menu-icon-inner{
 		transform: rotateX(-180deg);
 	}
 	</style>
@@ -39,7 +42,7 @@
 <script>
 	var _ghMenuIcon = document.querySelector(".js-gh-menu-icon");
 	_ghMenuIcon.onclick = function () {
-		this.classList.toggle("gh-menu-icon-inner--opened");
+		this.classList.toggle("gh-menu-icon--opened");
 	};
 </script>
 </html>
