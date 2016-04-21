@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gh-menu-icon-2</title>
+	<style>
+	.gh-menu-icon {
+		position: absolute;
+		background: #ccc;
+		cursor: pointer;
+	}
+
+	.gh-menu-icon-inner {
+		display: block;
+		height: 30px;
+		width: 30px;
+		background: url('menu-down.svg') no-repeat center center / 30px;
+		/* 
+		怪异的简写语法
+		你可能已经注意到前面那个背景属性简写的例子了:在 background 简写属性中指定 background-size 时,需要同时提供一个 background-position 值(哪怕它的值就是其初始值也需要写出来),而且还要使 用一个斜杠(/)作为分隔。为什么有些简写的语法如此怪异?
+		这通常都是为了消除歧义。在这个例子中,top right显然是background-position,而2em 2em是 background-size,不管它们的顺序如何。但是,请设想一下50% 50%这样的值,它到底是background- size 还是 background-position 呢?当你在使用展开式属性时,CSS 解析器明白你的意图;而当你使用 简写属性时,解析器需要在没有属性名提示的情况下弄清楚50% 50%到底指什么。这就是需要引入斜杠的 原因。
+		《CSS 揭秘》- Lea Verou
+ 		*/
+ 		
+ 		transform: rotateX(0);
+ 		transition: transform 0.25s ease-out;
+	}
+
+	.gh-menu-icon-inner--opened > .gh-menu-icon-inner{
+		transform: rotateX(-180deg);
+	}
+	</style>
+</head>
+<body>
+	<div class="gh-menu-icon js-gh-menu-icon">
+		<span class="gh-menu-icon-inner"></span>
+	</div>
+</body>
+<script>
+	var _ghMenuIcon = document.querySelector(".js-gh-menu-icon");
+	_ghMenuIcon.onclick = function () {
+		this.classList.toggle("gh-menu-icon-inner--opened");
+	};
+</script>
+</html>
