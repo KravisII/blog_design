@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>global-header</title>
+	<style>
+	body {
+		font-family: "Myriad Set Pro", sans-serif;
+		-webkit-font-smoothing: antialiased;
+	}
+	.global-header {
+		height: 48px;
+		width: 620px;
+		box-sizing: border-box;
+		padding: 0 20px;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+
+		background: #D8D8D8;
+	}
+
+	.global-header-logo,
+	.global-header-links {
+	}
+
+	.global-header-logo {
+		display: inline-block;
+		height: 25px;
+		width: 135px;
+
+		background: url('full.svg') no-repeat 0 0 / 135px 25px;
+	}
+
+	.global-header-links {
+		flex-basis: 251px;
+	}
+
+	.global-header-links__inner {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.global-header-link {
+		transition: opacity 0.3s ease-out,
+		transform 0.3s ease-out;
+	}
+
+	.global-header-link.types {
+
+	}
+
+	.global-header-link.types > a::after {
+		content: "";
+		display: inline-block;
+		height: 9px;
+		width: 12px;
+		margin-left: 5px;
+		background: url('menu-down.svg') no-repeat 50% 50%;
+	}
+
+
+	.global-header-link > a {
+		color: #000;
+		text-decoration: none;
+	}
+
+	.global-header-links.search .about,
+	.global-header-links.search .demos,
+	.global-header-links.search .types,
+	.global-header-links.search .search  {
+		opacity: 0;
+		/* transform: translateX(-50px); */
+	}
+
+	.global-header-links.search .about {
+		/* aboutLink.offsetLeft = 357 */
+		transform: translateX(-10px); 
+	}
+
+	.global-header-links.search .demos {
+		/* demosLink.offsetLeft = 420 */
+		transform: translateX(-73px);
+		transition-delay: 0.07s;
+	}
+
+	.global-header-links.search .types {
+		/* typesLink.offsetLeft = 488 */
+		transform: translateX(-141px);
+		transition-delay: 0.14s;
+	}
+
+	.global-header-links.search .search {
+		/* searchLink.offsetLeft = 564 */
+		transform: translateX(-217px);
+		transition-delay: 0.21s;
+
+		opacity: 0.3;
+	}
+
+	.global-header-links__inner .search-form {
+		/* width: 0; */
+		/* display: none; */
+		position: absolute;
+		height: 32px;
+		width: 292px;
+		border-radius: 6px;
+		border: 0 none;
+		background: red;
+	}
+
+	.global-header-links__inner .search-form:focus {
+		outline: 0 none;
+	}
+	</style>
+</head>
+<body>
+	<header class="global-header">
+		<span class="global-header-logo">
+			<!-- Kravis Liu's Blog -->
+		</span>
+		<span class="global-header-links">
+			<ul class="global-header-links__inner">
+				<li class="global-header-link about">
+					<a href="#">About</a>
+				</li>
+
+				<li class="global-header-link demos">
+					<a href="#">Demos</a>
+				</li>
+
+				<li class="global-header-link types">
+					<a href="#">Types</a>
+				</li>
+
+				<li class="global-header-link search">
+					<a href="#">Search</a>
+				</li>
+
+				<input class="search-form" type="text" placeholder="Hello">
+			</ul>
+		</span>
+	</header>
+</body>
+<script>
+var searchLink = document.querySelector(".global-header-link.search > a");
+
+var aboutLink = document.querySelector(".global-header-link.about > a");
+var demosLink = document.querySelector(".global-header-link.demos > a");
+var typesLink = document.querySelector(".global-header-link.types > a");
+
+var globalHeaderLinks = document.querySelector(".global-header-links");
+
+searchLink.onclick = function () {
+	globalHeaderLinks.classList.toggle("search");
+};
+</script>
+</html>
