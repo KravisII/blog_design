@@ -24,3 +24,9 @@ short style:
 设计 `menu-icon` 的动画，参（剽）考（窃）于 [Apple](http://www.apple.com)。
 
 <img src="README_files/menu_icon_animation_v1@8x.gif" alt="menu_icon_animation_v1@8x.gif" height="150">
+
+#### 2016.5.3
+
+设计 `search-form` 的动画。
+
+<img src="README_files/search_form_animation_v1.gif" alt="search_form_animation_v1.gif" height="48">
