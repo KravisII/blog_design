@@ -30,3 +30,11 @@ short style:
 设计 `search-form` 的动画。
 
 <img src="README_files/search_form_animation_v1.gif" alt="search_form_animation_v1.gif" height="48">
+
+#### 2016.5.4
+
+初步完成 `global-header` 的代码部分。
+
+##### Task List
+- [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>);` 的值；
+- [ ] 进行代码清理，使 CSS 更加规范化。
