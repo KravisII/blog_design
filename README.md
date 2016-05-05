@@ -36,5 +36,5 @@ short style:
 初步完成 `global-header` 的代码部分。
 
 ##### Task List
-- [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>);` 的值；
+- [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
 - [ ] 进行代码清理，使 CSS 更加规范化。
