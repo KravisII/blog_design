@@ -7,7 +7,6 @@
     body,
     input {
         font-size: 100%;
-        /*font-family: "Myriad Set Pro", sans-serif;*/
         font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
         -webkit-font-smoothing: antialiased;
     }
@@ -24,7 +23,13 @@
         min-width: 320px;
         padding: 0 20px;
 
-        background: #D8D8D8;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid #e7e7e7;
+
+        /*temp*/
+        /*position: fixed;*/
     }
 
     .global-header__inner {
@@ -44,10 +49,10 @@
 
     .global-header-logo {
         display: inline-block;
-        height: 2em;
+        height: 3em;
         width: 153.6558px;
 
-        background: url('long-style.svg') no-repeat left center / cover;
+        background: url('long-style.svg') no-repeat left center / contain;
     }
 
     .global-header-links {
@@ -68,6 +73,110 @@
     .global-header-links__inner {
         height: 100%;
     }
+
+    /* global-header-menu-icon */
+    .global-header-menu-icon,
+    .global-header-menu-icon-top,
+    .global-header-menu-icon-middle,
+    .global-header-menu-icon-bottom,
+    .global-header-menu-icon-top__inner,
+    .global-header-menu-icon-middle__inner,
+    .global-header-menu-icon-bottom__inner {
+        display: block;
+        position: absolute;
+    }
+
+    .global-header-menu-icon-top,
+    .global-header-menu-icon-middle,
+    .global-header-menu-icon-bottom,
+    .global-header-menu-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* 第一层 90度旋转 */
+    .global-header-menu-icon {
+        background: rgb(149, 157, 152);
+        transform: rotate(0);
+        transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+        cursor: pointer;
+    }
+
+    /* 第二层 45度旋转 */
+    .global-header-menu-icon-top,
+    .global-header-menu-icon-middle,
+    .global-header-menu-icon-bottom {
+        top: 0;
+        transform: rotate(0);
+        transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    }
+
+    /* 第三层 Y轴合并 */
+    .global-header-menu-icon-top__inner,
+    .global-header-menu-icon-middle__inner,
+    .global-header-menu-icon-bottom__inner {
+        left: 16px;
+        width: 17px;
+        height: 1px;
+        background: white;
+    }
+
+    .global-header-menu-icon-top__inner,
+    .global-header-menu-icon-bottom__inner {
+        transition: transform 0.25s 0.2s;
+    }
+
+    .global-header-menu-icon-top__inner {
+        top: 23px;
+        transform: translateY(-6px);
+    }
+
+    .global-header-menu-icon-middle__inner {
+        top: 50%;
+        transform: translateY(0px) scaleX(1);
+        transition: transform 0.25s;
+    }
+
+    .global-header-menu-icon-bottom__inner {
+        bottom: 23px;
+        transform: translateY(6px);
+    }
+
+    /* OPENED */
+
+    /* 第一层 90度旋转 */
+    .global-header-menu-icon.global-header-menu-icon--opened {
+        transform: rotate(90deg);
+    }
+
+    /* 第二层 45度旋转 */
+    .global-header-menu-icon--opened .global-header-menu-icon-top,
+    .global-header-menu-icon--opened .global-header-menu-icon-middle,
+    .global-header-menu-icon--opened .global-header-menu-icon-bottom {
+        transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    }
+
+    .global-header-menu-icon--opened .global-header-menu-icon-top {
+        transform: rotate(45deg);
+    }
+
+    .global-header-menu-icon--opened .global-header-menu-icon-bottom {
+        transform: rotate(-45deg);
+    }
+
+    /* 第三层 Y轴合并 */
+    .global-header-menu-icon--opened .global-header-menu-icon-top__inner,
+    .global-header-menu-icon--opened .global-header-menu-icon-middle__inner,
+    .global-header-menu-icon--opened .global-header-menu-icon-bottom__inner {
+        transform: translateY(0);
+        transition: transform 0.2s;
+    }
+
+     .global-header-menu-icon--opened .global-header-menu-icon-middle__inner{
+        transform: scaleX(0);
+    }
+
+    /* global-header-menu-icon DONE*/
 
     .global-header-link {
         transition-property: opacity, transform;
@@ -95,7 +204,8 @@
         height: 3em;
         line-height: 3em;
         will-change: color;
-        transition: color 0.30s;
+        transition: color 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+        /* https://webkit.org/wp-content/themes/webkit/style.css:75 */
     }
 
     .global-header-link > a:hover {
@@ -151,11 +261,11 @@
         top: 0.5em;
         right: 0;
         height: 2em;
-        width: 110%;
+        width: 106%;
         padding: 0;
         box-sizing: border-box;
 
-        border: 0 none;
+        border: 1px solid #e2e2e2;
 
         opacity: 0;
         transform: scaleX(0);
@@ -175,6 +285,10 @@
         outline: 0 none;
     }
 
+    /*
+    内边距为 10px
+    logo 变为 short-style
+    */
     @media screen and (max-width: 768px) {
         .global-header {
             padding: 0 10px;
@@ -185,13 +299,24 @@
             background-image: url('short-style.svg');
         }
     }
+
+    @media screen and (max-width: 413px) {
+        .global-header-links__inner {
+            display: none;
+        }
+    }
     </style>
 </head>
 <body>
     <header class="global-header">
         <div class="global-header__inner">
             <a href="#" class="global-header-logo"></a>
-            <span class="global-header-links">
+            <span class="global-header-links js-global-header-links">
+                <span class="global-header-menu-icon js-global-header-menu-icon">
+                    <span class="global-header-menu-icon-top"><span class="global-header-menu-icon-top__inner"></span></span>
+                    <span class="global-header-menu-icon-middle"><span class="global-header-menu-icon-middle__inner"></span></span>
+                    <span class="global-header-menu-icon-bottom"><span class="global-header-menu-icon-bottom__inner"></span></span>
+                </span>
                 <ul class="global-header-links__inner">
                     <li class="global-header-link about"><a href="#">About</a></li>
                     <li class="global-header-link demos"><a href="#">Demos</a></li>
@@ -202,6 +327,7 @@
             </span>
         </div>
     </header>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam enim vitae, hic culpa alias eum molestias non rem, nemo amet porro debitis at corporis illum quisquam architecto voluptates repudiandae atque error quidem recusandae. Doloribus, quo expedita maxime facilis. Ipsa velit molestiae magnam, dolorum cumque quaerat nesciunt consectetur aliquid voluptas. Debitis consequuntur, vel nobis quis. Eligendi eveniet impedit animi nam deserunt iste totam esse repellendus veniam reprehenderit hic repellat maiores explicabo temporibus consequatur odit nostrum libero corporis porro asperiores provident accusantium ipsam, omnis nisi. Pariatur, possimus voluptatum, amet architecto doloribus totam ipsum, officia laudantium eum laboriosam cumque earum, voluptatibus adipisci blanditiis beatae. Aspernatur architecto iure, optio quia tempore. Amet deserunt ipsam, magni doloremque ratione, quia obcaecati vel iste ad quo dolorem quos libero ea, quae eos voluptatibus voluptatem hic repellat placeat eligendi. Incidunt, sed deleniti nesciunt. Architecto minus, esse molestiae nesciunt similique quisquam quam amet quos facere, blanditiis quaerat atque! Eaque consequatur, alias doloribus velit blanditiis saepe aut harum optio et, ipsa aperiam distinctio cum aspernatur nulla commodi veniam molestiae debitis iusto incidunt magni nihil perspiciatis iure maiores porro! Doloribus molestiae veritatis tempora necessitatibus voluptates possimus labore aperiam fugiat sint adipisci soluta, doloremque nesciunt autem veniam reprehenderit tempore nemo nihil rerum. Quas excepturi facere magnam, aut eos inventore aspernatur, ipsum saepe alias temporibus atque facilis laudantium voluptatum labore quibusdam nesciunt modi, error rem fuga mollitia expedita. Quis obcaecati id architecto ducimus iste rem molestiae. Atque non et sint aperiam fugiat ea, amet accusamus repudiandae nostrum quam numquam provident nam velit deserunt dignissimos ratione inventore temporibus optio voluptas, quo delectus porro officia illo. Cupiditate quasi odio tempore commodi rem sapiente vitae atque molestiae odit non? Perferendis, ad! Quas dolorem temporibus excepturi dolorum, tempore possimus quae blanditiis non soluta nesciunt ducimus, nostrum animi ullam ad ea voluptatum facilis perferendis porro. Velit quam doloribus, delectus animi vitae, sed molestiae iusto itaque voluptatem laborum non dolorem alias, ab tempore provident eaque voluptate? Atque illum similique vero veniam in error, doloremque, amet numquam saepe nostrum, quasi quis repellendus natus, at praesentium excepturi eveniet perferendis sequi magni unde tenetur sit culpa tempore. Officiis tenetur dicta ipsam veniam consequatur facilis mollitia saepe, quisquam dolor! Itaque delectus consequuntur laborum temporibus tenetur corrupti facere, minima odio, dolores, quos, quia repudiandae nostrum fugit aliquid. Quisquam, ab doloribus incidunt in ex saepe rem. Eligendi ipsam sint repudiandae explicabo ullam fugit, quae minima voluptates veniam, asperiores vel eum! Impedit repellendus, nesciunt eos dolores, cumque nam quas voluptatibus beatae ipsum laboriosam iste est quae praesentium illo deleniti placeat ullam voluptates at quia. Facilis quos, delectus pariatur soluta, deleniti quia eaque, quisquam dolorem accusantium corporis id amet eos nisi, ipsum consectetur earum. Repellendus, quia? Numquam eligendi ipsum quibusdam soluta, odit molestiae suscipit necessitatibus assumenda dolorum fugiat omnis consequuntur repellat, corrupti a aliquam adipisci iste aperiam aliquid perferendis molestias incidunt laudantium repudiandae ducimus ex commodi! Quis enim dolorum voluptas tempore ea magni labore modi officia. Quaerat ducimus rerum quisquam, maiores libero quo commodi? Commodi neque, voluptate ab. Maxime voluptatibus dicta ea, vitae vero doloribus, dolor ducimus, amet ipsa quam aspernatur culpa consectetur adipisci. Reiciendis officia voluptate at exercitationem aliquid tempore ipsa totam fuga amet est ex, facilis eius error ducimus assumenda maiores doloribus qui magni sed tenetur minima eaque saepe repellendus quo cupiditate. Quae quasi consectetur quidem possimus corporis, quas quibusdam assumenda accusantium, iusto odio fuga voluptatum, modi iste sequi dignissimos. Quas rerum labore magnam est cupiditate. Repudiandae deleniti saepe eum dolor a asperiores dolores molestiae ab quaerat quam obcaecati natus enim, distinctio nemo accusantium iusto reprehenderit accusamus sequi itaque reiciendis perferendis placeat? At hic soluta placeat, cupiditate nemo molestiae accusantium cumque est, tempora asperiores porro repellat mollitia, repudiandae totam amet quo iure eos molestias dolorum. Maxime at deserunt deleniti hic atque et, accusantium, cumque. Voluptatum molestiae, quam maiores maxime porro iure fugit expedita, et? Quos recusandae optio nobis et fuga tempore, vero ea rem illum suscipit. Non debitis aperiam nisi eius itaque perferendis dolore excepturi numquam. Voluptatum culpa vel eligendi reiciendis maxime, laboriosam quia soluta non aspernatur hic iste voluptate nihil, quod recusandae atque libero ut aliquam esse ipsa ea voluptatem fugiat cupiditate id distinctio! Optio laborum cupiditate, rem animi iusto assumenda! Nesciunt dicta dolorum, similique, nemo laboriosam quasi aspernatur. Provident perspiciatis, illo voluptatum. At ut quis, optio. Facilis doloremque rem iusto, beatae eum, quisquam ratione magnam corrupti mollitia asperiores maxime voluptates odit officiis hic ullam dolore earum, laudantium maiores quas ducimus est nisi tempore! Deleniti et in, neque nulla recusandae eveniet itaque commodi aspernatur alias a voluptatum ullam vel quasi aliquam minima magnam aperiam ipsum! Delectus quidem facilis, expedita ducimus quibusdam eveniet, nisi et quo debitis excepturi laborum libero error. Recusandae unde aspernatur, distinctio doloremque cum. Voluptatum ratione voluptate quasi voluptatibus. Nisi fugiat reiciendis adipisci, laboriosam incidunt illo ipsa facere sapiente, ea, ratione repellat deserunt iure at voluptate inventore asperiores a voluptatum ex minus fuga? Quia dolores ratione magni corporis deleniti, quaerat, doloribus impedit minus autem placeat, architecto harum, et soluta. Obcaecati nesciunt nulla tenetur voluptatem perferendis molestias molestiae quis! Voluptatem laboriosam dignissimos incidunt, minus molestias. Similique maxime suscipit blanditiis libero voluptatum eveniet dolorum quisquam fugit ab reprehenderit perferendis culpa quis, veniam corrupti deserunt ex veritatis quia dolores impedit enim. Totam minus neque necessitatibus amet. In, autem, maiores. Officia fuga velit facilis provident quibusdam voluptates tenetur possimus rerum architecto dolorum aspernatur, rem animi sunt eum necessitatibus laudantium explicabo quod reiciendis est libero soluta veniam nostrum at, dolorem. Est possimus ex non rerum quaerat earum, repudiandae doloremque consequatur fugit perspiciatis et natus neque explicabo, harum quae error sint voluptatum obcaecati accusamus mollitia placeat ducimus amet quod perferendis. Nesciunt ratione tempora officiis cupiditate doloremque veritatis cumque rerum similique, accusantium at perferendis iste fugiat dolore ipsam neque qui illum adipisci, reprehenderit molestiae alias tenetur quam? Sequi, nisi, id. Deserunt eum eius, harum accusamus quos odio corrupti saepe hic dolorem, debitis quia optio libero molestiae nemo accusantium maiores? Laudantium accusantium quod quia voluptatum soluta incidunt corrupti, cupiditate non dolor ullam quaerat consequatur provident velit porro, architecto. Dicta reprehenderit excepturi eos, architecto impedit quia dolorem omnis culpa amet enim.
 </body>
 <script>
 var aboutLink = document.querySelector(".global-header-link.about > a");
@@ -210,7 +336,7 @@ var typesLink = document.querySelector(".global-header-link.types > a");
 var searchLink = document.querySelector(".global-header-link.search > a");
 var searchForm = document.querySelector(".search-form");
 
-var globalHeaderLinks = document.querySelector(".global-header-links");
+var globalHeaderLinks = document.querySelector(".js-global-header-links");
 
 searchLink.onclick = function () {
     globalHeaderLinks.classList.add("global-header-links--searching");
