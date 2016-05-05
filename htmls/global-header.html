@@ -7,7 +7,8 @@
     body,
     input {
         font-size: 100%;
-        font-family: "Myriad Set Pro", sans-serif;
+        /*font-family: "Myriad Set Pro", sans-serif;*/
+        font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
         -webkit-font-smoothing: antialiased;
     }
 
@@ -17,10 +18,10 @@
     }
 
     .global-header {
+        box-sizing: border-box;
         height: 48px;
         width: 100%;
         min-width: 320px;
-        box-sizing: border-box;
         padding: 0 20px;
 
         background: #D8D8D8;
@@ -43,10 +44,10 @@
 
     .global-header-logo {
         display: inline-block;
-        height: 26px;
-        width: 124.8453px;
+        height: 2em;
+        width: 153.6558px;
 
-        background: url('long-style.svg') no-repeat left center / contain;
+        background: url('long-style.svg') no-repeat left center / cover;
     }
 
     .global-header-links {
@@ -54,13 +55,13 @@
     }
 
     .global-header-links__inner {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
         display: flex;
         position: relative;
+        margin: 0;
+        padding: 0;
         justify-content: space-between;
+
+        list-style: none;
     }
 
     .global-header-links,
@@ -69,8 +70,8 @@
     }
 
     .global-header-link {
-        transition: opacity 0.3s ease-out,
-        transform 0.3s ease-out;
+        transition-property: opacity, transform;
+        transition-duration: 0.29s;
     }
 
     .global-header-link.types {
@@ -86,7 +87,6 @@
         background: url('menu-down.svg') no-repeat 50% 50%;
     }
 
-
     .global-header-link > a {
         color: #000;
         text-decoration: none;
@@ -95,23 +95,20 @@
         height: 3em;
         line-height: 3em;
         will-change: color;
-        transition: color 0.3s ease-out;
+        transition: color 0.30s;
     }
 
     .global-header-link > a:hover {
         color: #666;
     }
 
-    .global-header-links--searching .about,
-    .global-header-links--searching .demos,
-    .global-header-links--searching .types,
-    .global-header-links--searching .search  {
+    .global-header-links--searching li {
         opacity: 0;
         /* transform: translateX(-50px); */
     }
 
     .global-header-links .about {
-        transition-delay: 0.21s;
+        transition-delay: 0.3s;
     }
 
     .global-header-links--searching .about {
@@ -120,23 +117,23 @@
     }
 
     .global-header-links .demos {
-        transition-delay: 0.14s;
+        transition-delay: 0.2s;
     }
 
     .global-header-links--searching .demos {
         /* demosLink.offsetLeft = 420 */
         transform: translateX(-63px);
-        transition-delay: 0.07s;
+        transition-delay: 0.1s;
     }
 
     .global-header-links .types {
-        transition-delay: 0.07s;
+        transition-delay: 0.1s;
     }
 
     .global-header-links--searching .types {
         /* typesLink.offsetLeft = 488 */
         transform: translateX(-131px);
-        transition-delay: 0.14s;
+        transition-delay: 0.2s;
     }
 
     .global-header-links .search {
@@ -146,7 +143,7 @@
     .global-header-links--searching .search {
         /* searchLink.offsetLeft = 564 */
         transform: translateX(-191px);
-        transition-delay: 0.21s;
+        transition-delay: 0.3s;
     }
 
     .global-header-links .search-form {
@@ -163,7 +160,7 @@
         opacity: 0;
         transform: scaleX(0);
         transform-origin: right;
-        transition: all 0.3s 0s ease-out;
+        transition: 0.29s;
         will-change: padding, opacity, transform;
     }
 
@@ -171,7 +168,7 @@
         padding: 0 1em;
         opacity: 1;
         transform: scaleX(1);
-        transition: all 0.3s 0.21s ease-out;
+        transition: 0.29s 0.3s;
     }
 
     .global-header-links__inner .search-form:focus {
@@ -179,8 +176,12 @@
     }
 
     @media screen and (max-width: 768px) {
+        .global-header {
+            padding: 0 10px;
+        }
+
         .global-header-logo {
-            width: 56.4202px;
+            width: 69.8px;
             background-image: url('short-style.svg');
         }
     }
