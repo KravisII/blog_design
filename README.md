@@ -36,6 +36,7 @@ short style:
 初步完成 `global-header` 的代码部分。
 
 ##### Task List
+- [ ] 完善 `.global-header-link.has-sub` 的 `menu-down` 动画；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
 - [ ] 移除 iOS Safari 的 outline，优化 `:hover` 伪类；
 - [ ] 优化 iOS Safari 的 `input` 的外观；
