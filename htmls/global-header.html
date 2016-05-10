@@ -564,7 +564,7 @@ searchLink.onclick = function () {
     searchForm.focus();
 };
 
-searchForm.onfocusout = function () {
+searchForm.onblur = function () {
     globalHeaderLinks.classList.remove("global-header-links--searching");
 }
 
