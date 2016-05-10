@@ -20,7 +20,6 @@
     body {
         margin: 0;
         padding: 0;
-        background: #F3F6F8;
     }
 
     .global-header {
@@ -50,16 +49,20 @@
         align-items: center;
     }
 
-    .global-header-logo__inner,
-    .global-header-links {
+    .global-header-logo {
+        display: block;
     }
 
     .global-header-logo__inner {
         display: inline-block;
-        height: 3em;
         width: 153.6558px;
 
         background: url('long-style.svg') no-repeat left center / contain;
+    }
+
+    .global-header-logo,
+    .global-header-logo__inner {
+        height: 3em;
     }
 
     .global-header-links {
@@ -153,32 +156,32 @@
     }
 
     /* OPENED */
-    .global-header-links--opened .global-header-menu-icon {
+    .global-header--opened .global-header-menu-icon {
         transform: rotate(90deg);
     }
 
-    .global-header-links--opened .global-header-menu-icon-top,
-    .global-header-links--opened .global-header-menu-icon-middle,
-    .global-header-links--opened .global-header-menu-icon-bottom {
+    .global-header--opened .global-header-menu-icon-top,
+    .global-header--opened .global-header-menu-icon-middle,
+    .global-header--opened .global-header-menu-icon-bottom {
         transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
     }
 
-    .global-header-links--opened .global-header-menu-icon-top {
+    .global-header--opened .global-header-menu-icon-top {
         transform: rotate(45deg);
     }
 
-    .global-header-links--opened .global-header-menu-icon-bottom {
+    .global-header--opened .global-header-menu-icon-bottom {
         transform: rotate(-45deg);
     }
 
-    .global-header-links--opened .global-header-menu-icon-top__inner,
-    .global-header-links--opened .global-header-menu-icon-middle__inner,
-    .global-header-links--opened .global-header-menu-icon-bottom__inner {
+    .global-header--opened .global-header-menu-icon-top__inner,
+    .global-header--opened .global-header-menu-icon-middle__inner,
+    .global-header--opened .global-header-menu-icon-bottom__inner {
         transform: translateY(0);
         transition: transform 0.2s;
     }
 
-     .global-header-links--opened .global-header-menu-icon-middle__inner{
+     .global-header--opened .global-header-menu-icon-middle__inner{
         transform: scaleX(0);
     }
     /* global-header-menu-icon DONE*/
@@ -230,8 +233,6 @@
 
         will-change: opacity, transform, margin-top;
     }
-
-
 
     .global-header-link.has-sub:hover > .global-header-link-sub-links {
         opacity: 1;
@@ -294,48 +295,23 @@
         line-height: 3em;
     }
 
-    .global-header-links--searching li {
+    .global-header--searching li {
         opacity: 0;
-        /* transform: translateX(-50px); */
     }
 
-    .global-header-links li:nth-child(1) {
-        transition-delay: 0.3s;
-    }
-
-    .global-header-links li:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-
-    .global-header-links li:nth-child(3) {
-        transition-delay: 0.1s;
-    }
-
-    .global-header-links li:nth-child(4) {
-        transition-delay: 0;
-    }
-
-    .global-header-links--searching li:nth-child(1) {
-        /* aboutLink.offsetLeft = 357 */
-        transition-delay: 0;
-    }
-
-    .global-header-links--searching li:nth-child(2) {
+    .global-header--searching li:nth-child(2) {
         /* demosLink.offsetLeft = 420 */
         transform: translateX(-63px);
-        transition-delay: 0.1s;
     }
 
-    .global-header-links--searching li:nth-child(3) {
+    .global-header--searching li:nth-child(3) {
         /* typesLink.offsetLeft = 488 */
         transform: translateX(-131px);
-        transition-delay: 0.2s;
     }
 
-    .global-header-links--searching li:nth-child(4) {
+    .global-header--searching li:nth-child(4) {
         /* searchLink.offsetLeft = 564 */
         transform: translateX(-191px);
-        transition-delay: 0.3s;
     }
 
     .global-header-links .search-form {
@@ -356,11 +332,10 @@
         will-change: padding, opacity, transform;
     }
 
-    .global-header-links--searching .search-form {
+    .global-header--searching .search-form {
         padding: 0 1em;
         opacity: 1;
         transform: scaleX(1);
-        transition: 0.29s 0.15s;
     }
 
     .global-header-links__inner .search-form:focus {
@@ -389,17 +364,29 @@
     @media screen and (max-width: 450px) {
         .global-header {
             padding: 0;
+            height: auto;
+            border-bottom: 0 none;
         }
 
         .global-header__inner {
             flex-direction: column;
         }
+            .global-header-icons,
+            .global-header-links {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
 
             .global-header-icons {
                 width: 100%;
                 display: flex;
+                position: relative;
                 flex-direction: row;
                 justify-content: space-between;
+
+                border-bottom: 1px solid #e7e7e7;
+                z-index: 10;
             }
                 .global-header-logo {
                     margin-left: 15px;
@@ -408,72 +395,82 @@
                 .global-header-menu-icon {
                     display: block;
                 }
-/*  
-        .global-header-links__inner {
-            display: none;
-            position: absolute;
-            flex-direction: column;
-            left: 0;
 
-            width: 100%;
-            height: auto;
+            .global-header-links {
+                position: absolute;
+                width: 100%;
+                flex-basis: auto;
+                height: auto;
 
-            border-bottom: 1px solid #e7e7e7;
-            
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        } */
+                overflow: hidden;
 
-        .global-header-links--opened > .global-header-links__inner {
-            /* display: flex; */
-        }
+                transform: translateY(-120%);
+                transition: 0.5s;
 
-/* Display 的 transition*/
+                box-shadow: 0px 5px 5px rgba(0,0,0,0.20);
+            }
 
-/*         .global-header-link > a {
-            display: inline-block;
-            width: 100%;
-            box-sizing: border-box;
-        }
+            /*.no-backdrop */
+            .global-header-links {
+                background: rgba(240, 240, 240, 0.96);
+            }
 
-        .global-header-link > a,
-        .global-header-link.has-sub > a::after,
-        .global-header-link-sub-link > a {
-        	height: 3em;
-        	line-height: 3em;
-        }
+            .global-header--opened .global-header-links {
+                transform: translateY(0);
+            }
 
-        .global-header-link > a,
-        .global-header-link-sub-link > a{
-            padding-left: 20px;
-        }
+                .global-header-links__inner {
+                    flex-direction: column;
+                    padding: 0.5em 0 0 0;
+                }
 
-        .global-header-link.has-sub {
-            padding: 0;
-        }
+                    .global-header-link {
 
-        .global-header-link-sub-links {
-            position: relative;
-            top: 0;
-            margin: 0;
-            padding: 0;
-            transform: none;
-            opacity: 1;
-            border-radius: 0;
-            box-shadow: none;
-            text-align: left;
+                    }
 
-            border-width: 1px 0 1px 0;
-            width: 100%;
-            padding-left: 20px;
-        }
+                    .global-header-link.has-sub {
+                        padding-right: 0;
+                    }
 
-        .global-header-link-sub-links::before,
-        .global-header-link-sub-links::after {
-            display: none;
-        } */
+                        .global-header-link > a {
+                            width: 100vw;
+                            padding-left: 1.2em;
+                            box-sizing: border-box;
+                        }
 
+                        .global-header-link.has-sub > a::after {
+                            height: 3em;
+                        }
+
+                        .global-header-link-sub-links {
+                            position: relative;
+                            top: 0;
+                            margin: 0;
+                            padding: 0.5em;
+                            transform: none;
+                            opacity: 1;
+                            border-radius: 0;
+                            box-shadow: none;
+                            text-align: left;
+
+                            border-width: 1px 0 1px 0;
+                            width: 100%;
+                        }
+
+                        .global-header-link-sub-links::before,
+                        .global-header-link-sub-links::after {
+                            display: none;
+                        }
+
+                            .global-header-link-sub-link {
+
+                            }
+
+                                .global-header-link-sub-link > a {
+                                    height: 2.5em;
+                                    line-height: 2.5em;
+                                    padding-left: 1.8em;
+                                }
     }
     </style>
 </head>
@@ -516,64 +513,33 @@
 
         </div>
     </nav>
-
-
-<!--     <aside class="global-header-aside js-global-header-aside">
-        <ul class="global-header-links__inner">
-            <li class="global-header-link about "><a href="#">About</a></li>
-            <li class="global-header-link demos has-sub">
-                <a href="#">Demos</a>
-                <ul class="global-header-link-sub-links">
-                <li class="global-header-link-sub-link"><a href="#">Music Player</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Lyric Controller</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Music Controller</a></li>
-                </ul>
-            </li>
-            <li class="global-header-link types has-sub">
-                <a href="#">Types</a>
-                <ul class="global-header-link-sub-links">
-                <li class="global-header-link-sub-link"><a href="#">Ariticle</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Photo</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Others</a></li>
-                </ul>
-            </li>
-            <li class="global-header-link search"><a href="#">Search</a></li>
-            <input class="search-form" type="text" placeholder="Search">
-        </ul>
-    </aside> -->
-
-
-<!--     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
-    </p> -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
+    </p>
 </body>
 <script>
-// var aboutLink = document.querySelector(".global-header-link.about > a");
-// var demosLink = document.querySelector(".global-header-link.demos > a");
-// var typesLink = document.querySelector(".global-header-link.types > a");
+var globalHeader = document.querySelector(".global-header");
+var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
 
-// global-header-search-form
 var searchLink = document.querySelector(".global-header-link.search > a");
 var searchForm = document.querySelector(".search-form");
 
-var globalHeaderLinks = document.querySelector(".js-global-header-links");
-
-var globalHeaderAside = document.querySelector(".js-global-header-aside");
 
 searchLink.onclick = function () {
-    globalHeaderLinks.classList.add("global-header-links--searching");
+    globalHeader.classList.add("global-header--searching");
     searchForm.focus();
 };
 
 searchForm.onblur = function () {
-    globalHeaderLinks.classList.remove("global-header-links--searching");
-}
+    globalHeader.classList.remove("global-header--searching");
+};
 
+globalHeaderMenuIcon.onclick = function () {
+    // globalHeader.classList.toggle("global-header--opened");
+    globalHeader.classList.toggle("global-header--opened");
+}; 
 
 // global-header-menu-icon
 // var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
-// globalHeaderMenuIcon.onclick = function () {
-//     globalHeaderLinks.classList.toggle("global-header-links--opened");
-//     globalHeaderAside.classList.toggle("global-header-aside--opened");
-// }; 
+
 </script>
 </html>

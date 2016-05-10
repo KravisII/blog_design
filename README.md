@@ -41,5 +41,5 @@ short style:
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
 - [ ] 移除 iOS Safari 的 outline，优化 `:hover` 伪类；
 - [ ] 优化 iOS Safari 的 `input` 的外观；
-- [ ] 加入 `gh-links` 在 Mobile 端的动画；
+- [x] 加入 `gh-links` 在 Mobile 端的动画；
 - [ ] 进行代码清理，使 CSS 更加规范化。
