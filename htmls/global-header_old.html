@@ -20,7 +20,6 @@
     body {
         margin: 0;
         padding: 0;
-        background: #F3F6F8;
     }
 
     .global-header {
@@ -50,11 +49,11 @@
         align-items: center;
     }
 
-    .global-header-logo__inner,
+    .global-header-logo,
     .global-header-links {
     }
 
-    .global-header-logo__inner {
+    .global-header-logo {
         display: inline-block;
         height: 3em;
         width: 153.6558px;
@@ -271,7 +270,6 @@
         width: 100%;
         height: 2em;
         line-height: 2em;
-        box-sizing: border-box;
     }
 
     .global-header-links a {
@@ -367,10 +365,6 @@
         outline: 0 none;
     }
 
-    .global-header-aside {
-        display: none;
-    }
-
     /*
     内边距为 10px
     logo 变为 short-style
@@ -380,7 +374,7 @@
             padding: 0 20px;
         }
 
-        .global-header-logo__inner {
+        .global-header-logo {
             width: 69.8px;
             background-image: url('short-style.svg');
         }
@@ -388,32 +382,23 @@
 
     @media screen and (max-width: 450px) {
         .global-header {
-            padding: 0;
+            padding: 0 0 0 10px;
         }
 
-        .global-header__inner {
-            flex-direction: column;
+        .global-header-links {
+            flex-basis: 48px;
         }
 
-            .global-header-icons {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-                .global-header-logo {
-                    margin-left: 15px;
-                }
+        .global-header-menu-icon {
+            display: block;
+        }
 
-                .global-header-menu-icon {
-                    display: block;
-                }
-/*  
         .global-header-links__inner {
-            display: none;
+            /* display: none; */
             position: absolute;
             flex-direction: column;
             left: 0;
+            /* top: 3em; */
 
             width: 100%;
             height: auto;
@@ -423,30 +408,57 @@
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-        } */
 
+            /* temp  */
+            display: flex;
+            /* margin-top: 99em; */
+            opacity: 0;
+            transform: translateY(-1em);
+            transition: opacity 0.5s, transform 0.5s;
+            /* will-change: opacity, transform, margin-top; */
+            /* top: -100%; */
+
+        }
+/* 
+margin-top: -99rem;
+transform: translateY(-1rem);
+transition: opacity 0.5s, transform 0.5s;
+opacity: 0;
+will-change: opacity, transform, margin-top;
+
+opacity: 1;
+transform: translateY(0);
+margin-top: 0;
+ */
         .global-header-links--opened > .global-header-links__inner {
             /* display: flex; */
+            opacity: 1;
+            transform: translateY(0);
+            /* margin-top: 0; */
+            transition: opacity 0.5s, transform 0.5s;
         }
 
 /* Display 的 transition*/
 
-/*         .global-header-link > a {
+
+
+
+
+        .global-header-link > a {
             display: inline-block;
             width: 100%;
             box-sizing: border-box;
+            line-height: 2.5em;
         }
 
         .global-header-link > a,
-        .global-header-link.has-sub > a::after,
-        .global-header-link-sub-link > a {
-        	height: 3em;
-        	line-height: 3em;
+        .global-header-link.has-sub > a::after {
+            height: 2.5em;
         }
 
         .global-header-link > a,
         .global-header-link-sub-link > a{
-            padding-left: 20px;
+            padding-left: 10px;
         }
 
         .global-header-link.has-sub {
@@ -466,31 +478,27 @@
 
             border-width: 1px 0 1px 0;
             width: 100%;
-            padding-left: 20px;
+            padding-left: 10px;
         }
 
         .global-header-link-sub-links::before,
         .global-header-link-sub-links::after {
             display: none;
-        } */
+        }
 
     }
     </style>
 </head>
 <body>
-    <nav class="global-header">
+    <header class="global-header">
         <div class="global-header__inner">
-
-            <div class="global-header-icons">
-                <span class="global-header-icons-item global-header-logo"><a href="#" class="global-header-logo__inner"></a></span>
-                <span class="global-header-icons-item global-header-menu-icon js-global-header-menu-icon">
+            <a href="#" class="global-header-logo"></a>
+            <span class="global-header-links js-global-header-links">
+                <span class="global-header-menu-icon js-global-header-menu-icon">
                     <span class="global-header-menu-icon-top"><span class="global-header-menu-icon-top__inner"></span></span>
                     <span class="global-header-menu-icon-middle"><span class="global-header-menu-icon-middle__inner"></span></span>
                     <span class="global-header-menu-icon-bottom"><span class="global-header-menu-icon-bottom__inner"></span></span>
                 </span>
-            </div>
-
-            <div class="global-header-links js-global-header-links">
                 <ul class="global-header-links__inner">
                     <li class="global-header-link about "><a href="#">About</a></li>
                     <li class="global-header-link demos has-sub">
@@ -512,39 +520,10 @@
                     <li class="global-header-link search"><a href="#">Search</a></li>
                     <input class="search-form" type="text" placeholder="Search">
                 </ul>
-            </div>
-
+            </span>
         </div>
-    </nav>
-
-
-<!--     <aside class="global-header-aside js-global-header-aside">
-        <ul class="global-header-links__inner">
-            <li class="global-header-link about "><a href="#">About</a></li>
-            <li class="global-header-link demos has-sub">
-                <a href="#">Demos</a>
-                <ul class="global-header-link-sub-links">
-                <li class="global-header-link-sub-link"><a href="#">Music Player</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Lyric Controller</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Music Controller</a></li>
-                </ul>
-            </li>
-            <li class="global-header-link types has-sub">
-                <a href="#">Types</a>
-                <ul class="global-header-link-sub-links">
-                <li class="global-header-link-sub-link"><a href="#">Ariticle</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Photo</a></li>
-                <li class="global-header-link-sub-link"><a href="#">Others</a></li>
-                </ul>
-            </li>
-            <li class="global-header-link search"><a href="#">Search</a></li>
-            <input class="search-form" type="text" placeholder="Search">
-        </ul>
-    </aside> -->
-
-
-<!--     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
-    </p> -->
+    </header>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
 </body>
 <script>
 // var aboutLink = document.querySelector(".global-header-link.about > a");
@@ -557,8 +536,6 @@ var searchForm = document.querySelector(".search-form");
 
 var globalHeaderLinks = document.querySelector(".js-global-header-links");
 
-var globalHeaderAside = document.querySelector(".js-global-header-aside");
-
 searchLink.onclick = function () {
     globalHeaderLinks.classList.add("global-header-links--searching");
     searchForm.focus();
@@ -570,10 +547,9 @@ searchForm.onfocusout = function () {
 
 
 // global-header-menu-icon
-// var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
-// globalHeaderMenuIcon.onclick = function () {
-//     globalHeaderLinks.classList.toggle("global-header-links--opened");
-//     globalHeaderAside.classList.toggle("global-header-aside--opened");
-// }; 
+var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
+globalHeaderMenuIcon.onclick = function () {
+    globalHeaderLinks.classList.toggle("global-header-links--opened");
+}; 
 </script>
 </html>
