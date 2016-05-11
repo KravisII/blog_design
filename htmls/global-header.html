@@ -328,7 +328,7 @@
         opacity: 0;
         transform: scaleX(0);
         transform-origin: right;
-        transition: 0.29s;
+        transition: transform 0.29s, opacity 0.29s;
         will-change: padding, opacity, transform;
     }
 
@@ -407,18 +407,20 @@
                 height: auto;
                 overflow: hidden;
                 transform: translateY(-120%);
+                opacity: 0;
                 box-shadow: 0px 5px 5px rgba(0,0,0,0.20);
 
-                transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+                transition: transform 0.6s, opacity 0 0.6s;
+            }
+
+            .global-header--closed .global-header-links {
+                transition: none;
             }
 
             .global-header--opened .global-header-links {
                 transform: translateY(0);
-            }
-
-            .global-header--closed .global-header-links {
-                /* ERROR!!!! */
-                /*transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);*/
+                opacity: 1;
+                transition: transform 0.5s;
             }
 
                 .global-header-links__inner {
@@ -472,6 +474,7 @@
                             border-radius: 0;
                             box-shadow: none;
                             text-align: left;
+                            transition: none;
 
                             border-width: 1px 0 1px 0;
                             width: 100%;
@@ -552,13 +555,9 @@ searchForm.onblur = function () {
 };
 
 globalHeaderMenuIcon.onclick = function () {
-    // globalHeader.classList.toggle("global-header--opened");
-    globalHeader.classList.toggle("global-header--opened");
-
-    // ERROR!!!!!!
-    // if (!globalHeader.classList.contains('global-header--opened')) {
-    //     globalHeader.classList.toggle("global-header--closed");
-    // }
+    if (globalHeader.classList.toggle("global-header--opened")) {
+        globalHeader.classList.remove("global-header--closed");
+    }
 }; 
 
 
@@ -568,13 +567,20 @@ if ('webkitBackdropFilter' in root.style ||
     'backdropFilter' in root.style) {
     root.classList.add('textshadow');
 }
-
 else {
     root.classList.add('no-backdropfilter');
 }
 
-// global-header-menu-icon
-// var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
 
+// 待整理
+window.onresize = function () {
+    if (document.documentElement.offsetWidth <= 450) {
+        globalHeader.classList.add("global-header--closed");
+    } else {
+        globalHeader.classList.remove("global-header--closed");
+        globalHeader.classList.remove("global-header--opened")
+    }
+    globalHeader.classList.remove("global-header--searching");
+};
 </script>
 </html>
