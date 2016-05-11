@@ -328,7 +328,7 @@
         opacity: 0;
         transform: scaleX(0);
         transform-origin: right;
-        transition: transform 0.29s, opacity 0.29s;
+        transition: transform 0.29s, opacity 0.29s, padding 0.29s;
         will-change: padding, opacity, transform;
     }
 
@@ -410,7 +410,7 @@
                 opacity: 0;
                 box-shadow: 0px 5px 5px rgba(0,0,0,0.20);
 
-                transition: transform 0.6s, opacity 0 0.6s;
+                transition: transform 0.6s, opacity 0s 0.6s;
             }
 
             .global-header--closed .global-header-links {
@@ -582,5 +582,6 @@ window.onresize = function () {
     }
     globalHeader.classList.remove("global-header--searching");
 };
+// 05.12 00:24
 </script>
 </html>
