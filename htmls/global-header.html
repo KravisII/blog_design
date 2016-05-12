@@ -233,7 +233,7 @@
 
             text-align: center;
 
-            transform: translateY(-1rem);
+            transform: translateY(-1em);
             transition: opacity 0.6s, transform 0.6s;
 
             opacity: 0;
@@ -244,7 +244,7 @@
 
         .global-header-link.has-sub:hover > .global-header-link-sub-links {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
             margin-top: 0;
         }
 
@@ -478,15 +478,18 @@
             .global-header-link.has-sub > a::after {
                 height: 3em;
                 transition: transform 0.5s;
+                margin-left: 0;
+                right: 1em;
             }
 
+            .global-header-link--opened > a {
+                font-weight: bolder;
+            }
             .global-header-link--opened > a::after {
                 transform: rotateX(-180deg);
-                transform-origin: center 52%;
             }
 
             .global-header-link-sub-links {
-                position: relative;
                 top: 0;
                 margin: 0;
                 padding: 0.5em;
@@ -500,11 +503,12 @@
                 border-width: 1px 0;
                 width: 100%;
 
-                display: none;
+                visibility: hidden;
             }
 
-            .global-header-link--opened > ul {
-                display: inherit;
+            .global-header-link--opened > .global-header-link-sub-links {
+                position: inherit;
+                visibility: visible;
             }
 
             .global-header-link-sub-links::before,
@@ -512,7 +516,17 @@
                 display: none;
             }
 
-            .global-header-link-sub-link {}
+            .global-header-link-sub-link {
+                transform: translateY(-1.2em);
+                opacity: 0;
+                will-change: transform, opacity;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link {
+                transform: none;
+                opacity: 1;
+                transition: opacity 0.6s, transform 0.6s;
+            }
 
             .global-header-link-sub-link > a {
                 height: 2.5em;

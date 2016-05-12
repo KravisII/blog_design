@@ -43,7 +43,8 @@ short style:
 - [x] 页面宽度变化后，媒体查询内的属性更改导致不期望的 `transition` 出现； // 通过添加 `global-header--closed` 类暂时解决，后续需要深入理解。
 - [x] 为 Chrome 适配 `transition` 的 `0s` 和 `0`；
 - [x] 消除不必要的背景高亮 `-webkit-tap-highlight-color`；
-- [ ] 加入二级菜单的过渡效果；
+- [x] 加入二级菜单的过渡效果；
+- [ ] 把 `transform: none;` 加入试试效果；
 - [ ] 修正 `search-form` 的 `transition`；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
