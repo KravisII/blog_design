@@ -5,381 +5,378 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>global-header</title>
     <style>
-    body,
-    input {
-        font-size: 100%;
-        font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    input {
-        -webkit-appearance: none;
-        border-radius: 0;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    .global-header {
-        box-sizing: border-box;
-        height: 48px;
-        width: 100%;
-        min-width: 320px;
-        padding: 0 20px;
-
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.6);
-        border-bottom: 1px solid #e7e7e7;
-    }
-
-    .no-backdropfilter .global-header {
-        background: rgba(255, 255, 255, 0.98);
-    }
-
-    .global-header__inner {
-        width: 100%;
-        max-width: 980px;
-        margin: 0 auto;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .global-header-logo {
-        display: block;
-    }
-
-    .global-header-logo__inner {
-        display: inline-block;
-        width: 153.6558px;
-
-        background: url('long-style.svg') no-repeat left center / contain;
-    }
-
-    .global-header-logo,
-    .global-header-logo__inner {
-        height: 3em;
-    }
-
-    .global-header-links {
-        flex-basis: 18em;
-    }
-
-    .global-header-links ul {
-        list-style: none;
-    }
-
-    .global-header-links__inner {
-        display: flex;
-        position: relative;
-        margin: 0;
-        padding: 0;
-        justify-content: space-between;
-    }
-
-    .global-header-links,
-    .global-header-links__inner {
-        height: 100%;
-    }
-
-    /* global-header-menu-icon */
-    .global-header-menu-icon {
-        display: none;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .global-header-menu-icon-top,
-    .global-header-menu-icon-middle,
-    .global-header-menu-icon-bottom,
-    .global-header-menu-icon-top__inner,
-    .global-header-menu-icon-middle__inner,
-    .global-header-menu-icon-bottom__inner {
-        display: block;
-        position: absolute;
-    }
-
-    .global-header-menu-icon-top,
-    .global-header-menu-icon-middle,
-    .global-header-menu-icon-bottom,
-    .global-header-menu-icon {
-        width: 48px;
-        height: 48px;
-    }
-
-    .global-header-menu-icon {
-        transform: rotate(0);
-        transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-
-    .global-header-menu-icon-top,
-    .global-header-menu-icon-middle,
-    .global-header-menu-icon-bottom {
-        top: 0;
-        transform: rotate(0);
-        transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    }
-
-    .global-header-menu-icon-top__inner,
-    .global-header-menu-icon-middle__inner,
-    .global-header-menu-icon-bottom__inner {
-        left: 16px;
-        width: 17px;
-        height: 1px;
-        background: #000;
-    }
-
-    .global-header-menu-icon-top__inner,
-    .global-header-menu-icon-bottom__inner {
-        transition: transform 0.25s 0.2s;
-    }
-
-    .global-header-menu-icon-top__inner {
-        top: 23px;
-        transform: translateY(-6px);
-    }
-
-    .global-header-menu-icon-middle__inner {
-        top: 50%;
-        transform: translateY(0px) scaleX(1);
-        transition: transform 0.25s;
-    }
-
-    .global-header-menu-icon-bottom__inner {
-        bottom: 23px;
-        transform: translateY(6px);
-    }
-
-    /* OPENED */
-    .global-header--opened .global-header-menu-icon {
-        transform: rotate(90deg);
-    }
-
-    .global-header--opened .global-header-menu-icon-top,
-    .global-header--opened .global-header-menu-icon-middle,
-    .global-header--opened .global-header-menu-icon-bottom {
-        transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    }
-
-    .global-header--opened .global-header-menu-icon-top {
-        transform: rotate(45deg);
-    }
-
-    .global-header--opened .global-header-menu-icon-bottom {
-        transform: rotate(-45deg);
-    }
-
-    .global-header--opened .global-header-menu-icon-top__inner,
-    .global-header--opened .global-header-menu-icon-middle__inner,
-    .global-header--opened .global-header-menu-icon-bottom__inner {
-        transform: translateY(0);
-        transition: transform 0.2s;
-    }
-
-     .global-header--opened .global-header-menu-icon-middle__inner{
-        transform: scaleX(0);
-    }
-    /* global-header-menu-icon DONE*/
-
-    .global-header-link {
-        transition-property: opacity, transform;
-        transition-duration: 0.29s;
-    }
-
-    .global-header-link.has-sub {
-        position: relative;
-        padding-right: calc(15px + 5px);
-    }
-
-    .global-header-link.has-sub > a::after {
-        content: '';
-        position: absolute;
-        display: inline-block;
-
-        height: 100%;
-        width: 12px;
-        margin-left: 5px;
-
-        background: url('menu-down.svg') no-repeat center / contain;
-    }
-
-    .global-header-link-sub-links {
-        position: absolute;
-        top: 2.8em;
-
-        width: 10em;
-        box-sizing: border-box;
-
-        margin-left: -5em;
-        margin-top: -99em;
-        padding: 1em;
-
-        border: 1px solid #e7e7e7;
-        border-radius: 5px;
-        box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.10);
-        
-        text-align: center;
-
-        transform: translateY(-1rem);
-        transition: opacity 0.6s, transform 0.6s;
-
-        opacity: 0;
-        background: rgba(255, 255, 255, 1);
-
-        will-change: opacity, transform, margin-top;
-    }
-
-    .global-header-link.has-sub:hover > .global-header-link-sub-links {
-        opacity: 1;
-        transform: translateY(0);
-        margin-top: 0;
-    }
-
-    .global-header-link-sub-links::before,
-    .global-header-link-sub-links::after {
-        content: " ";
-
-        position: absolute;
-        left: 63%;
-        bottom: 100%;
-
-        height: 0;
-        width: 0;
-
-        border: solid transparent;
-        
-        pointer-events: none;
-    }
-
-    .global-header-link-sub-links::before {
-        margin-left: -11px;
-        border-width: 11px;
-        border-bottom-color: #e7e7e7;
-    }
-
-    .global-header-link-sub-links::after {
-        margin-left: -10px;
-        border-width: 10px;
-        border-bottom-color: rgba(255, 255, 255, 1);
-    }
-
-    .global-header-link-sub-link > a {
-        width: 100%;
-        height: 2em;
-        line-height: 2em;
-        box-sizing: border-box;
-    }
-
-    .global-header-links a {
-        display: inline-block;
-
-        color: #000;
-        text-decoration: none;
-
-        will-change: color;
-        transition: color 0.5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-        /* https://webkit.org/wp-content/themes/webkit/style.css:75 */
-    }
-
-    .global-header-links a:hover {
-        color: #666;
-    }
-
-    .global-header-link > a {
-        height: 3em;
-        line-height: 3em;
-    }
-
-    .global-header--searching li {
-        opacity: 0;
-    }
-
-    .global-header--searching li:nth-child(2) {
-        /* demosLink.offsetLeft = 420 */
-        transform: translateX(-63px);
-    }
-
-    .global-header--searching li:nth-child(3) {
-        /* typesLink.offsetLeft = 488 */
-        transform: translateX(-131px);
-    }
-
-    .global-header--searching li:nth-child(4) {
-        /* searchLink.offsetLeft = 564 */
-        transform: translateX(-191px);
-    }
-
-    .search-form {
-        position: absolute;
-        top: 0.5em;
-        right: 0;
-        height: 2em;
-        width: 106%;
-        padding: 0;
-        box-sizing: border-box;
-
-        border: 1px solid #e2e2e2;
-
-        opacity: 0;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.29s, opacity 0.29s, padding 0.29s;
-        will-change: padding, opacity, transform;
-    }
-
-    .global-header--searching .search-form {
-        padding: 0 1em;
-        opacity: 1;
-        transform: scaleX(1);
-    }
-
-    .global-header-links__inner .search-form:focus {
-        outline: 0 none;
-    }
-
-    .global-header-aside {
-        display: none;
-    }
-
-    /*
-    内边距为 10px
-    logo 变为 short-style
-    */
-    @media screen and (max-width: 580px) {
-        .global-header {
-            padding: 0 20px;
+        body,
+        input {
+            font-size: 100%;
+            font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .global-header-logo__inner {
-            width: 69.8px;
-            background-image: url('short-style.svg');
+        input {
+            -webkit-appearance: none;
+            border-radius: 0;
         }
-    }
 
-    @media screen and (max-width: 470px) {
-        .global-header {
+        body {
+            margin: 0;
             padding: 0;
-            height: auto;
-            border-bottom: 0 none;
         }
 
-        .global-header,
+        .global-header {
+            box-sizing: border-box;
+            height: 48px;
+            width: 100%;
+            min-width: 320px;
+            padding: 0 20px;
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid #e2e2e2;
+        }
+
         .no-backdropfilter .global-header {
-            background: none;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            background: rgba(255, 255, 255, 0.98);
         }
 
         .global-header__inner {
-            flex-direction: column;
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .global-header-logo {
+            display: block;
+        }
+
+        .global-header-logo__inner {
+            display: inline-block;
+            height: 3em;
+            padding: 0 1em;
+            text-decoration: none;
+            color: #FFF;
+            background-color: #333;
+        }
+
+        .global-header-logo__inner::after {
+            content: "Kravis Liu's Blog";
+            line-height: 3em;
+        }
+
+        .global-header-logo,
+        .global-header-logo__inner {
+
+        }
+
+        .global-header-links {
+            flex-basis: 18em;
+        }
+
+        .global-header-links ul {
+            list-style: none;
+        }
+
+        .global-header-links__inner {
+            display: flex;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            justify-content: space-between;
+        }
+
+        .global-header-links,
+        .global-header-links__inner {
+            height: 100%;
+        }
+
+        /* global-header-menu-icon */
+        .global-header-menu-icon {
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .global-header-menu-icon-top,
+        .global-header-menu-icon-middle,
+        .global-header-menu-icon-bottom,
+        .global-header-menu-icon-top__inner,
+        .global-header-menu-icon-middle__inner,
+        .global-header-menu-icon-bottom__inner {
+            display: block;
+            position: absolute;
+        }
+
+        .global-header-menu-icon-top,
+        .global-header-menu-icon-middle,
+        .global-header-menu-icon-bottom,
+        .global-header-menu-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .global-header-menu-icon {
+            transform: rotate(0deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .global-header-menu-icon-top,
+        .global-header-menu-icon-middle,
+        .global-header-menu-icon-bottom {
+            top: 0;
+            transform: rotate(0deg);
+            transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+        }
+
+        .global-header-menu-icon-top__inner,
+        .global-header-menu-icon-middle__inner,
+        .global-header-menu-icon-bottom__inner {
+            left: 16px;
+            width: 17px;
+            height: 1px;
+            background: #000;
+        }
+
+        .global-header-menu-icon-top__inner,
+        .global-header-menu-icon-bottom__inner {
+            transition: transform 0.25s 0.2s;
+        }
+
+        .global-header-menu-icon-top__inner {
+            top: 23px;
+            transform: translateY(-6px);
+        }
+
+        .global-header-menu-icon-middle__inner {
+            top: 50%;
+            transform: translateY(0px) scaleX(1);
+            transition: transform 0.25s;
+        }
+
+        .global-header-menu-icon-bottom__inner {
+            bottom: 23px;
+            transform: translateY(6px);
+        }
+
+        /* OPENED */
+        .global-header--opened .global-header-menu-icon {
+            transform: rotate(90deg);
+        }
+
+        .global-header--opened .global-header-menu-icon-top,
+        .global-header--opened .global-header-menu-icon-middle,
+        .global-header--opened .global-header-menu-icon-bottom {
+            transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+        }
+
+        .global-header--opened .global-header-menu-icon-top {
+            transform: rotate(45deg);
+        }
+
+        .global-header--opened .global-header-menu-icon-bottom {
+            transform: rotate(-45deg);
+        }
+
+        .global-header--opened .global-header-menu-icon-top__inner,
+        .global-header--opened .global-header-menu-icon-middle__inner,
+        .global-header--opened .global-header-menu-icon-bottom__inner {
+            transform: translateY(0);
+            transition: transform 0.2s;
+        }
+
+        .global-header--opened .global-header-menu-icon-middle__inner{
+            transform: scaleX(0);
+        }
+
+        .global-header-link {
+            transition-property: opacity, transform;
+            transition-duration: 0.29s;
+        }
+
+        .global-header-link.has-sub {
+            position: relative;
+            padding-right: calc(15px + 5px);
+        }
+
+        .global-header-link.has-sub > a::after {
+            content: '';
+            position: absolute;
+            display: inline-block;
+
+            height: 100%;
+            width: 12px;
+            margin-left: 5px;
+
+            background: url('menu-down.svg') no-repeat center / contain;
+        }
+
+        .global-header-link-sub-links {
+            position: absolute;
+            top: 2.8em;
+
+            width: 10em;
+            box-sizing: border-box;
+
+            margin-left: -5em;
+            margin-top: -99em;
+            padding: 1em;
+
+            border: 1px solid #e2e2e2;
+            border-radius: 5px;
+            box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.10);
+
+            text-align: center;
+
+            transform: translateY(-1rem);
+            transition: opacity 0.6s, transform 0.6s;
+
+            opacity: 0;
+            background: rgba(255, 255, 255, 1);
+
+            will-change: opacity, transform, margin-top;
+        }
+
+        .global-header-link.has-sub:hover > .global-header-link-sub-links {
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 0;
+        }
+
+        .global-header-link-sub-links::before,
+        .global-header-link-sub-links::after {
+            content: " ";
+
+            position: absolute;
+            left: 63%;
+            bottom: 100%;
+
+            height: 0;
+            width: 0;
+
+            border: solid transparent;
+
+            pointer-events: none;
+        }
+
+        .global-header-link-sub-links::before {
+            margin-left: -11px;
+            border-width: 11px;
+            border-bottom-color: #e2e2e2;
+        }
+
+        .global-header-link-sub-links::after {
+            margin-left: -10px;
+            border-width: 10px;
+            border-bottom-color: rgba(255, 255, 255, 1);
+        }
+
+        .global-header-link-sub-link > a {
+            width: 100%;
+            height: 2em;
+            line-height: 2em;
+            box-sizing: border-box;
+        }
+
+        .global-header-links a {
+            display: inline-block;
+
+            color: #000;
+            text-decoration: none;
+
+            will-change: color;
+            transition: color 0.5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+            /* https://webkit.org/wp-content/themes/webkit/style.css:75 */
+        }
+
+        .global-header-links a:hover {
+            color: #666;
+        }
+
+        .global-header-link > a {
+            height: 3em;
+            line-height: 3em;
+        }
+
+        .global-header--searching li {
+            opacity: 0;
+        }
+
+        .global-header--searching li:nth-child(2) {
+            /* demosLink.offsetLeft = 420 */
+            transform: translateX(-63px);
+        }
+
+        .global-header--searching li:nth-child(3) {
+            /* typesLink.offsetLeft = 488 */
+            transform: translateX(-131px);
+        }
+
+        .global-header--searching li:nth-child(4) {
+            /* searchLink.offsetLeft = 564 */
+            transform: translateX(-191px);
+        }
+
+        .search-form {
+            position: absolute;
+            top: 0.5em;
+            right: 0;
+            height: 2em;
+            width: 106%;
+            padding: 0;
+            box-sizing: border-box;
+
+            border: 1px solid #e2e2e2;
+
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.29s, opacity 0.29s, padding 0.29s;
+            will-change: padding, opacity, transform;
+        }
+
+        .global-header--searching .search-form {
+            padding: 0 1em;
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .global-header-links__inner .search-form:focus {
+            outline: 0 none;
+        }
+
+        @media screen and (max-width: 580px) {
+            .global-header {
+                padding: 0 20px;
+            }
+
+            .global-header-logo__inner::after {
+                content: "Blog";
+            }
+        }
+
+        @media screen and (max-width: 470px) {
+            .global-header {
+                padding: 0;
+                height: auto;
+                border-bottom: 0 none;
+            }
+
+            .global-header,
+            .no-backdropfilter .global-header {
+                background: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            .global-header__inner {
+                flex-direction: column;
+            }
             .global-header-icons,
             .global-header-links {
                 background: rgba(255, 255, 255, 0.6);
@@ -402,16 +399,16 @@
                 flex-direction: row;
                 justify-content: space-between;
 
-                border-bottom: 1px solid #e7e7e7;
+                border-bottom: 1px solid #e2e2e2;
                 z-index: 10;
             }
-                .global-header-logo {
-                    margin-left: 15px;
-                }
+            .global-header-logo {
+                margin-left: 15px;
+            }
 
-                .global-header-menu-icon {
-                    display: block;
-                }
+            .global-header-menu-icon {
+                display: block;
+            }
 
             .global-header-links {
                 position: absolute;
@@ -420,9 +417,9 @@
                 flex-basis: auto;
                 height: auto;
                 overflow: hidden;
-                transform: translateY(-120%);
+                transform: translateY(-150%);
                 opacity: 0;
-                box-shadow: 0px 5px 5px rgba(0,0,0,0.20);
+                box-shadow: 0 5px 5px rgba(0,0,0,0.20);
 
                 transition: transform 0.6s, opacity 0s 0.6s;
             }
@@ -437,183 +434,191 @@
                 transition: transform 0.5s;
             }
 
-                .global-header-links__inner {
-                    flex-direction: column;
-                    padding: 0.5em 0 0 0;
-                }
+            .global-header-links__inner {
+                flex-direction: column;
+                padding: 0.5em 0 1em 0;
+            }
 
-                    .global-header-link {}
+            .global-header-link {}
 
-                    .global-header-link.has-sub {
-                        padding-right: 0;
-                    }
+            .global-header-link.has-sub {
+                padding-right: 0;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
 
-                    .global-header-link.search {
-                        display: none;
-                    }
+            .global-header-link.search {
+                display: none;
+            }
 
-                    .search-form {
-                        position: relative;
-                        opacity: 1;
-                        transform: none;
-                        margin-bottom: 2em;
-                        top: 1em;
-                        border-width: 1px 0;
-                        transition: none;
-                        height: 3em;
-                    }
+            .global-header-link--opened.types {
+                margin-bottom: 1em;
+            }
 
-                    .search-form,
-                    .global-header-link > a {
-                        width: 100vw;
-                        padding-left: 1.2em;
-                    }
+            .search-form {
+                position: relative;
+                opacity: 1;
+                transform: none;
+                top: 0;
+                border-width: 1px 0;
+                transition: none;
+                height: 2.5em;
+            }
+
+            .search-form,
+            .global-header-link > a {
+                width: 100vw;
+                padding-left: 1.2em;
+            }
 
 
-                        .global-header-link > a {
-                            box-sizing: border-box;
-                        }
+            .global-header-link > a {
+                box-sizing: border-box;
+            }
 
-                        .global-header-link.has-sub > a::after {
-                            height: 3em;
-                        }
+            .global-header-link.has-sub > a::after {
+                height: 3em;
+                transition: transform 0.5s;
+            }
 
-                        .global-header-link-sub-links {
-                            position: relative;
-                            top: 0;
-                            margin: 0;
-                            padding: 0.5em;
-                            transform: none;
-                            opacity: 1;
-                            border-radius: 0;
-                            box-shadow: none;
-                            text-align: left;
-                            transition: none;
+            .global-header-link--opened > a::after {
+                transform: rotateX(-180deg);
+                transform-origin: center 52%;
+            }
 
-                            border-width: 1px 0 1px 0;
-                            width: 100%;
+            .global-header-link-sub-links {
+                position: relative;
+                top: 0;
+                margin: 0;
+                padding: 0.5em;
+                transform: none;
+                opacity: 1;
+                border-radius: 0;
+                box-shadow: none;
+                text-align: left;
+                transition: none;
 
-                            display: none;
-                        }
+                border-width: 1px 0;
+                width: 100%;
 
-                        .global-header-link-sub-links--opened {
-                            display: inherit;
-                        }
+                display: none;
+            }
 
-                        .global-header-link-sub-links::before,
-                        .global-header-link-sub-links::after {
-                            display: none;
-                        }
+            .global-header-link--opened > ul {
+                display: inherit;
+            }
 
-                            .global-header-link-sub-link {}
+            .global-header-link-sub-links::before,
+            .global-header-link-sub-links::after {
+                display: none;
+            }
 
-                                .global-header-link-sub-link > a {
-                                    height: 2.5em;
-                                    line-height: 2.5em;
-                                    padding-left: 1.8em;
-                                }
-    }
+            .global-header-link-sub-link {}
+
+            .global-header-link-sub-link > a {
+                height: 2.5em;
+                line-height: 2.5em;
+                padding-left: 1.8em;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="global-header global-header--opened">
-        <div class="global-header__inner">
-
-            <div class="global-header-icons">
-                <span class="global-header-icons-item global-header-logo"><a href="#" class="global-header-logo__inner"></a></span>
+<nav class="global-header">
+    <div class="global-header__inner">
+        <div class="global-header-icons">
+            <span class="global-header-icons-item global-header-logo"><a href="#" class="global-header-logo__inner"></a></span>
                 <span class="global-header-icons-item global-header-menu-icon js-global-header-menu-icon">
                     <span class="global-header-menu-icon-top"><span class="global-header-menu-icon-top__inner"></span></span>
                     <span class="global-header-menu-icon-middle"><span class="global-header-menu-icon-middle__inner"></span></span>
                     <span class="global-header-menu-icon-bottom"><span class="global-header-menu-icon-bottom__inner"></span></span>
                 </span>
-            </div>
-
-            <div class="global-header-links js-global-header-links">
-                <ul class="global-header-links__inner">
-                    <li class="global-header-link about "><a href="#">About</a></li>
-                    <li class="global-header-link demos has-sub">
-                        <a href="#">Demos</a>
-                        <ul class="global-header-link-sub-links">
-                            <li class="global-header-link-sub-link"><a href="#">Music Player</a></li>
-                            <li class="global-header-link-sub-link"><a href="#">Lyric Controller</a></li>
-                            <li class="global-header-link-sub-link"><a href="#">Music Controller</a></li>
-                        </ul>
-                    </li>
-                    <li class="global-header-link types has-sub">
-                        <a href="#">Types</a>
-                        <ul class="global-header-link-sub-links">
-                            <li class="global-header-link-sub-link"><a href="#">Ariticle</a></li>
-                            <li class="global-header-link-sub-link"><a href="#">Photo</a></li>
-                            <li class="global-header-link-sub-link"><a href="#">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="global-header-link search"><a href="#">Search</a></li>
-                    <input class="search-form" type="text" placeholder="Search">
-                </ul>
-            </div>
-
         </div>
-    </nav>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
-    </p>
+        <div class="global-header-links js-global-header-links">
+            <ul class="global-header-links__inner">
+                <li class="global-header-link about "><a href="#">About</a></li>
+                <li class="global-header-link demos has-sub">
+                    <a href="#">Demos</a>
+                    <ul class="global-header-link-sub-links">
+                        <li class="global-header-link-sub-link"><a href="#">Music Player</a></li>
+                        <li class="global-header-link-sub-link"><a href="#">Lyric Controller</a></li>
+                        <li class="global-header-link-sub-link"><a href="#">Music Controller</a></li>
+                    </ul>
+                </li>
+                <li class="global-header-link types has-sub">
+                    <a href="#">Types</a>
+                    <ul class="global-header-link-sub-links">
+                        <li class="global-header-link-sub-link"><a href="#">Ariticle</a></li>
+                        <li class="global-header-link-sub-link"><a href="#">Photo</a></li>
+                        <li class="global-header-link-sub-link"><a href="#">Others</a></li>
+                    </ul>
+                </li>
+                <li class="global-header-link search"><a href="#">Search</a></li>
+                <input class="search-form" type="text" placeholder="Search">
+            </ul>
+        </div>
+    </div>
+</nav>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
+</p>
 </body>
 <script>
-var globalHeader = document.querySelector(".global-header");
-var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
+    var globalHeader = document.querySelector(".global-header");
+    var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
 
-var searchLink = document.querySelector(".global-header-link.search > a");
-var searchForm = document.querySelector(".search-form");
-
-
-searchLink.onclick = function () {
-    globalHeader.classList.add("global-header--searching");
-    searchForm.focus();
-};
-
-searchForm.onblur = function () {
-    globalHeader.classList.remove("global-header--searching");
-};
-
-globalHeaderMenuIcon.onclick = function () {
-    if (globalHeader.classList.toggle("global-header--opened")) {
-        globalHeader.classList.remove("global-header--closed");
-    }
-}; 
+    var searchLink = document.querySelector(".global-header-link.search > a");
+    var searchForm = document.querySelector(".search-form");
 
 
-var root = document.documentElement; // <html>
-
-if ('webkitBackdropFilter' in root.style ||
-    'backdropFilter' in root.style) {
-    root.classList.add('textshadow');
-}
-else {
-    root.classList.add('no-backdropfilter');
-}
-
-// Mobile 下二级菜单展开
-var linkHasSub = document.querySelectorAll(".global-header-link.has-sub");
-var linkHasSubIndex =  linkHasSub.length;
-while (linkHasSubIndex--) {
-    linkHasSub[linkHasSubIndex].onclick = function () {
-        // console.log(this);
-        var list = this.querySelector("ul");
-        list.classList.toggle("global-header-link-sub-links--opened");
+    searchLink.onclick = function () {
+        globalHeader.classList.add("global-header--searching");
+        searchForm.focus();
     };
-}
+
+    searchForm.onblur = function () {
+        globalHeader.classList.remove("global-header--searching");
+    };
+
+    globalHeaderMenuIcon.onclick = function () {
+        if (globalHeader.classList.toggle("global-header--opened")) {
+            globalHeader.classList.remove("global-header--closed");
+        }
+    };
 
 
+    var root = document.documentElement; // <html>
 
-// 待整理
-window.onresize = function () {
-    if (document.documentElement.offsetWidth <= 470) {
-        globalHeader.classList.add("global-header--closed");
-    } else {
-        globalHeader.classList.remove("global-header--closed");
-        globalHeader.classList.remove("global-header--opened")
+    if ('webkitBackdropFilter' in root.style ||
+            'backdropFilter' in root.style) {
+        root.classList.add('textshadow');
     }
-    globalHeader.classList.remove("global-header--searching");
-};
-// 05.12 17:26
+    else {
+        root.classList.add('no-backdropfilter');
+    }
+
+    // Mobile 下二级菜单展开
+    var linkHasSub = document.querySelectorAll(".global-header-link.has-sub");
+    var linkHasSubIndex =  linkHasSub.length;
+    while (linkHasSubIndex--) {
+        linkHasSub[linkHasSubIndex].onclick = function () {
+            // console.log(this);
+            // var list = this.querySelector("ul");
+            // list.classList.toggle("global-header-link-sub-links--opened");
+            this.classList.toggle("global-header-link--opened");
+        };
+    }
+
+
+
+    // 待整理
+    window.onresize = function () {
+        if (document.documentElement.offsetWidth <= 470) {
+            globalHeader.classList.add("global-header--closed");
+        } else {
+            globalHeader.classList.remove("global-header--closed");
+            globalHeader.classList.remove("global-header--opened")
+        }
+        globalHeader.classList.remove("global-header--searching");
+    };
+    // 05.12 17:26
 </script>
 </html>

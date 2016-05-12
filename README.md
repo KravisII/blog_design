@@ -44,6 +44,7 @@ short style:
 - [x] 为 Chrome 适配 `transition` 的 `0s` 和 `0`；
 - [x] 消除不必要的背景高亮 `-webkit-tap-highlight-color`；
 - [ ] 加入二级菜单的过渡效果；
+- [ ] 修正 `search-form` 的 `transition`；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
 - [ ] 移除 iOS Safari 的 outline，优化 `:hover` 伪类；
