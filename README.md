@@ -42,6 +42,8 @@ short style:
 - [x] 加入 `gh-links` 在 Mobile 端的动画；
 - [x] 页面宽度变化后，媒体查询内的属性更改导致不期望的 `transition` 出现； // 通过添加 `global-header--closed` 类暂时解决，后续需要深入理解。
 - [x] 为 Chrome 适配 `transition` 的 `0s` 和 `0`；
+- [ ] 消除不必要的背景高亮 `-webkit-tap-highlight-color`；
+- [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
 - [ ] 移除 iOS Safari 的 outline，优化 `:hover` 伪类；
 - [ ] 进行代码清理，使 CSS 更加规范化。
