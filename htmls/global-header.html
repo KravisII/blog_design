@@ -31,11 +31,15 @@
 
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.6);
         border-bottom: 1px solid #e7e7e7;
 
         /*temp*/
-        /* position: fixed; */
+         /*position: fixed; */
+    }
+
+    .no-backdropfilter .global-header {
+    	background: rgba(255, 255, 255, 0.98);
     }
 
     .global-header__inner {
@@ -350,7 +354,7 @@
     内边距为 10px
     logo 变为 short-style
     */
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 580px) {
         .global-header {
             padding: 0 20px;
         }
@@ -361,11 +365,15 @@
         }
     }
 
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 470px) {
         .global-header {
             padding: 0;
             height: auto;
             border-bottom: 0 none;
+
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         .global-header__inner {
@@ -373,13 +381,13 @@
         }
             .global-header-icons,
             .global-header-links {
-                background: rgba(255, 255, 255, 0.8);
+                background: rgba(255, 255, 255, 0.6);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
             }
 
             .no-backdropfilter .global-header-links {
-                background: rgba(240, 240, 240, 0.96);
+                background: rgba(240, 240, 240, 0.98);
             }
 
             .global-header-icons {
@@ -534,7 +542,7 @@
 
         </div>
     </nav>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
     </p>
 </body>
 <script>
@@ -574,7 +582,7 @@ else {
 
 // 待整理
 window.onresize = function () {
-    if (document.documentElement.offsetWidth <= 450) {
+    if (document.documentElement.offsetWidth <= 470) {
         globalHeader.classList.add("global-header--closed");
     } else {
         globalHeader.classList.remove("global-header--closed");
