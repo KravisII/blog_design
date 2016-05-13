@@ -69,8 +69,9 @@
         .gh-kravis,
         .gh-kravis-content {}
 
+        .gh-icons,
         .gh-menu {
-            flex-basis: 18em;
+            height: 3em;
         }
 
         .gh-menu ul {
@@ -85,7 +86,7 @@
             justify-content: space-between;
         }
 
-        .gh-menu,
+        /*.gh-menu,*/
         .gh-menu-list {
             height: 100%;
         }
@@ -191,14 +192,43 @@
             transform: scaleX(0);
         }
 
+        .gh-menu a {
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+            transition: color 0.5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+            will-change: color;
+        }
+
+        .gh-menu a:hover {
+            color: #666;
+        }
+
         .gh-menu-list-item {
             transition-property: opacity, transform;
             transition-duration: 0.29s;
         }
 
+        .gh-menu-list-item > a {
+            height: 3em;
+            line-height: 3em;
+            padding: 0 1em;
+        }
+
+        .gh-menu-list-item:nth-child(1) > a {
+            padding-left: 0;
+        }
+
+        .gh-menu-list-item:nth-last-child(2) > a {
+            padding-right: 0;
+        }
+
         .gh-menu-list-item.has-sub {
             position: relative;
-            padding-right: calc(15px + 5px);
+        }
+
+        .gh-menu-list-item.has-sub > a {
+            padding-right: 1.4em;
         }
 
         .gh-menu-list-item.has-sub > a::after {
@@ -206,7 +236,7 @@
             position: absolute;
             display: inline-block;
 
-            height: 100%;
+            height: 3em;
             width: 12px;
             margin-left: 5px;
 
@@ -215,10 +245,10 @@
 
         .gh-menu-sub-list {
             position: absolute;
-            top: 2.8em;
+            top: 3.8em;
             width: 10em;
             box-sizing: border-box;
-            margin-left: -5em;
+            margin-left: -3.5em;
             margin-top: -99em;
             padding: 1em;
             border: 1px solid #e2e2e2;
@@ -230,6 +260,10 @@
             will-change: opacity, transform;
             opacity: 0;
             background: rgba(255, 255, 255, 1);
+        }
+
+        .gh-menu-list-item.has-sub:hover {
+            height: 4em;
         }
 
         .gh-menu-list-item.has-sub:hover > .gh-menu-sub-list {
@@ -267,23 +301,6 @@
             height: 2em;
             line-height: 2em;
             box-sizing: border-box;
-        }
-
-        .gh-menu a {
-            display: inline-block;
-            color: #000;
-            text-decoration: none;
-            transition: color 0.5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-            will-change: color;
-        }
-
-        .gh-menu a:hover {
-            color: #666;
-        }
-
-        .gh-menu-list-item > a {
-            height: 3em;
-            line-height: 3em;
         }
 
         .global-header--searching li {
@@ -382,6 +399,7 @@
                 border-bottom: 1px solid #e2e2e2;
                 z-index: 10;
             }
+
             .gh-kravis {
                 margin-left: 15px;
             }
@@ -426,6 +444,10 @@
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             }
 
+            .gh-menu-list-item.has-sub:hover {
+                height: auto;
+            }
+
             .gh-menu-list-item.search {
                 display: none;
             }
@@ -447,7 +469,7 @@
             .gh-search-form,
             .gh-menu-list-item > a {
                 width: 100vw;
-                padding-left: 1.2em;
+                padding-left: 1.2em !important;
             }
 
             .gh-menu-list-item > a {
@@ -459,7 +481,7 @@
                 transition: transform 0.5s;
                 will-change: transform;
                 margin-left: 0;
-                right: 1em;
+                right: 1.2em;
             }
 
             .global-header-link--opened > a::after {
@@ -549,7 +571,7 @@
         </div>
         <div class="gh-menu js-global-header-links">
             <ul class="gh-menu-list">
-                <li class="gh-menu-list-item about "><a href="#">About</a></li>
+                <li class="gh-menu-list-item about"><a href="#">About</a></li>
                 <li class="gh-menu-list-item demos has-sub">
                     <a href="#">Demos</a>
                     <ul class="gh-menu-sub-list">
