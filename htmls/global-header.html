@@ -28,7 +28,6 @@
             width: 100%;
             min-width: 320px;
             padding: 0 20px;
-
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.6);
@@ -43,7 +42,6 @@
             width: 100%;
             max-width: 980px;
             margin: 0 auto;
-
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -69,9 +67,7 @@
         }
 
         .global-header-logo,
-        .global-header-logo__inner {
-
-        }
+        .global-header-logo__inner {}
 
         .global-header-links {
             flex-basis: 18em;
@@ -94,11 +90,11 @@
             height: 100%;
         }
 
-        /* global-header-menu-icon */
         .global-header-menu-icon {
             display: none;
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .global-header-menu-icon-top,
@@ -109,6 +105,7 @@
         .global-header-menu-icon-bottom__inner {
             display: block;
             position: absolute;
+            will-change: transform;
         }
 
         .global-header-menu-icon-top,
@@ -219,48 +216,37 @@
         .global-header-link-sub-links {
             position: absolute;
             top: 2.8em;
-
             width: 10em;
             box-sizing: border-box;
-
             margin-left: -5em;
             margin-top: -99em;
             padding: 1em;
-
             border: 1px solid #e2e2e2;
             border-radius: 5px;
             box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.10);
-
             text-align: center;
-
             transform: translateY(-1em);
             transition: opacity 0.6s, transform 0.6s;
-
+            will-change: opacity, transform;
             opacity: 0;
             background: rgba(255, 255, 255, 1);
-
-            will-change: opacity, transform, margin-top;
         }
 
         .global-header-link.has-sub:hover > .global-header-link-sub-links {
             opacity: 1;
-            transform: none;
+            transform: translateY(0);
             margin-top: 0;
         }
 
         .global-header-link-sub-links::before,
         .global-header-link-sub-links::after {
             content: " ";
-
             position: absolute;
             left: 63%;
             bottom: 100%;
-
             height: 0;
             width: 0;
-
             border: solid transparent;
-
             pointer-events: none;
         }
 
@@ -285,13 +271,10 @@
 
         .global-header-links a {
             display: inline-block;
-
             color: #000;
             text-decoration: none;
-
-            will-change: color;
             transition: color 0.5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-            /* https://webkit.org/wp-content/themes/webkit/style.css:75 */
+            will-change: color;
         }
 
         .global-header-links a:hover {
@@ -330,14 +313,12 @@
             width: 106%;
             padding: 0;
             box-sizing: border-box;
-
             border: 1px solid #e2e2e2;
-
             opacity: 0;
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.29s, opacity 0.29s, padding 0.29s;
-            will-change: padding, opacity, transform;
+            will-change: transform, opacity, padding;
         }
 
         .global-header--searching .search-form {
@@ -398,7 +379,6 @@
                 position: relative;
                 flex-direction: row;
                 justify-content: space-between;
-
                 border-bottom: 1px solid #e2e2e2;
                 z-index: 10;
             }
@@ -420,8 +400,8 @@
                 transform: translateY(-150%);
                 opacity: 0;
                 box-shadow: 0 5px 5px rgba(0,0,0,0.20);
-
                 transition: transform 0.6s, opacity 0s 0.6s;
+                will-change: transform, opacity;
             }
 
             .global-header--closed .global-header-links {
@@ -470,7 +450,6 @@
                 padding-left: 1.2em;
             }
 
-
             .global-header-link > a {
                 box-sizing: border-box;
             }
@@ -478,13 +457,11 @@
             .global-header-link.has-sub > a::after {
                 height: 3em;
                 transition: transform 0.5s;
+                will-change: transform;
                 margin-left: 0;
                 right: 1em;
             }
 
-            .global-header-link--opened > a {
-                font-weight: bolder;
-            }
             .global-header-link--opened > a::after {
                 transform: rotateX(-180deg);
             }
@@ -499,10 +476,8 @@
                 box-shadow: none;
                 text-align: left;
                 transition: none;
-
                 border-width: 1px 0;
                 width: 100%;
-
                 visibility: hidden;
             }
 
@@ -517,15 +492,40 @@
             }
 
             .global-header-link-sub-link {
-                transform: translateY(-1.2em);
+                transform: translateX(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
             }
 
             .global-header-link--opened .global-header-link-sub-link {
-                transform: none;
+                transform: translateX(0);
                 opacity: 1;
-                transition: opacity 0.6s, transform 0.6s;
+                transition: opacity 0.5s, transform 0.5s;
+                will-change: opacity, transform;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(1) {
+                transition-delay: 0s;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(2) {
+                transition-delay: 0.05s;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(3) {
+                transition-delay: 0.10s;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(4) {
+                transition-delay: 0.15s;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(5) {
+                transition-delay: 0.20s;
+            }
+
+            .global-header-link--opened .global-header-link-sub-link:nth-child(6) {
+                transition-delay: 0.25s;
             }
 
             .global-header-link-sub-link > a {

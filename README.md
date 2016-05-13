@@ -44,7 +44,8 @@ short style:
 - [x] 为 Chrome 适配 `transition` 的 `0s` 和 `0`；
 - [x] 消除不必要的背景高亮 `-webkit-tap-highlight-color`；
 - [x] 加入二级菜单的过渡效果；
-- [ ] 把 `transform: none;` 加入试试效果；
+- [x] 把 `transform: none;` 加入试试效果； // 不合适，可能会降低性能
+- [x] 暂时加入了 `will-change`； // 后续进行优化，适当的移除此属性，释放内存
 - [ ] 修正 `search-form` 的 `transition`；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
