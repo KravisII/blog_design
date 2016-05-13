@@ -38,7 +38,7 @@
             background: rgba(255, 255, 255, 0.98);
         }
 
-        .global-header__inner {
+        .gh-wrapper {
             width: 100%;
             max-width: 980px;
             margin: 0 auto;
@@ -48,11 +48,11 @@
             align-items: center;
         }
 
-        .global-header-logo {
+        .gh-kravis {
             display: block;
         }
 
-        .global-header-logo__inner {
+        .gh-kravis-content {
             display: inline-block;
             height: 3em;
             padding: 0 1em;
@@ -61,23 +61,23 @@
             background-color: #333;
         }
 
-        .global-header-logo__inner::after {
+        .gh-kravis-content::after {
             content: "Kravis Liu's Blog";
             line-height: 3em;
         }
 
-        .global-header-logo,
-        .global-header-logo__inner {}
+        .gh-kravis,
+        .gh-kravis-content {}
 
-        .global-header-links {
+        .gh-menu {
             flex-basis: 18em;
         }
 
-        .global-header-links ul {
+        .gh-menu ul {
             list-style: none;
         }
 
-        .global-header-links__inner {
+        .gh-menu-list {
             display: flex;
             position: relative;
             margin: 0;
@@ -85,123 +85,123 @@
             justify-content: space-between;
         }
 
-        .global-header-links,
-        .global-header-links__inner {
+        .gh-menu,
+        .gh-menu-list {
             height: 100%;
         }
 
-        .global-header-menu-icon {
+        .gh-menu-icon {
             display: none;
             position: relative;
             overflow: hidden;
             will-change: transform;
         }
 
-        .global-header-menu-icon-top,
-        .global-header-menu-icon-middle,
-        .global-header-menu-icon-bottom,
-        .global-header-menu-icon-top__inner,
-        .global-header-menu-icon-middle__inner,
-        .global-header-menu-icon-bottom__inner {
+        .gh-menu-icon--top,
+        .gh-menu-icon--middle,
+        .gh-menu-icon--bottom,
+        .gh-menu-icon--top-content,
+        .gh-menu-icon--middle-content,
+        .gh-menu-icon--bottom-content {
             display: block;
             position: absolute;
             will-change: transform;
         }
 
-        .global-header-menu-icon-top,
-        .global-header-menu-icon-middle,
-        .global-header-menu-icon-bottom,
-        .global-header-menu-icon {
+        .gh-menu-icon,
+        .gh-menu-icon--top,
+        .gh-menu-icon--middle,
+        .gh-menu-icon--bottom {
             width: 48px;
             height: 48px;
         }
 
-        .global-header-menu-icon {
+        .gh-menu-icon {
             transform: rotate(0deg);
             transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
             cursor: pointer;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
-        .global-header-menu-icon-top,
-        .global-header-menu-icon-middle,
-        .global-header-menu-icon-bottom {
+        .gh-menu-icon--top,
+        .gh-menu-icon--middle,
+        .gh-menu-icon--bottom {
             top: 0;
             transform: rotate(0deg);
             transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         }
 
-        .global-header-menu-icon-top__inner,
-        .global-header-menu-icon-middle__inner,
-        .global-header-menu-icon-bottom__inner {
+        .gh-menu-icon--top-content,
+        .gh-menu-icon--middle-content,
+        .gh-menu-icon--bottom-content {
             left: 16px;
             width: 17px;
             height: 1px;
             background: #000;
         }
 
-        .global-header-menu-icon-top__inner,
-        .global-header-menu-icon-bottom__inner {
+        .gh-menu-icon--top-content,
+        .gh-menu-icon--bottom-content {
             transition: transform 0.25s 0.2s;
         }
 
-        .global-header-menu-icon-top__inner {
+        .gh-menu-icon--top-content {
             top: 23px;
             transform: translateY(-6px);
         }
 
-        .global-header-menu-icon-middle__inner {
+        .gh-menu-icon--middle-content {
             top: 50%;
             transform: translateY(0px) scaleX(1);
             transition: transform 0.25s;
         }
 
-        .global-header-menu-icon-bottom__inner {
+        .gh-menu-icon--bottom-content {
             bottom: 23px;
             transform: translateY(6px);
         }
 
         /* OPENED */
-        .global-header--opened .global-header-menu-icon {
+        .global-header--opened .gh-menu-icon {
             transform: rotate(90deg);
         }
 
-        .global-header--opened .global-header-menu-icon-top,
-        .global-header--opened .global-header-menu-icon-middle,
-        .global-header--opened .global-header-menu-icon-bottom {
+        .global-header--opened .gh-menu-icon--top,
+        .global-header--opened .gh-menu-icon--middle,
+        .global-header--opened .gh-menu-icon--bottom {
             transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         }
 
-        .global-header--opened .global-header-menu-icon-top {
+        .global-header--opened .gh-menu-icon--top {
             transform: rotate(45deg);
         }
 
-        .global-header--opened .global-header-menu-icon-bottom {
+        .global-header--opened .gh-menu-icon--bottom {
             transform: rotate(-45deg);
         }
 
-        .global-header--opened .global-header-menu-icon-top__inner,
-        .global-header--opened .global-header-menu-icon-middle__inner,
-        .global-header--opened .global-header-menu-icon-bottom__inner {
+        .global-header--opened .gh-menu-icon--top-content,
+        .global-header--opened .gh-menu-icon--middle-content,
+        .global-header--opened .gh-menu-icon--bottom-content {
             transform: translateY(0);
             transition: transform 0.2s;
         }
 
-        .global-header--opened .global-header-menu-icon-middle__inner{
+        .global-header--opened .gh-menu-icon--middle-content {
             transform: scaleX(0);
         }
 
-        .global-header-link {
+        .gh-menu-list-item {
             transition-property: opacity, transform;
             transition-duration: 0.29s;
         }
 
-        .global-header-link.has-sub {
+        .gh-menu-list-item.has-sub {
             position: relative;
             padding-right: calc(15px + 5px);
         }
 
-        .global-header-link.has-sub > a::after {
+        .gh-menu-list-item.has-sub > a::after {
             content: '';
             position: absolute;
             display: inline-block;
@@ -213,7 +213,7 @@
             background: url('menu-down.svg') no-repeat center / contain;
         }
 
-        .global-header-link-sub-links {
+        .gh-menu-sub-list {
             position: absolute;
             top: 2.8em;
             width: 10em;
@@ -232,14 +232,14 @@
             background: rgba(255, 255, 255, 1);
         }
 
-        .global-header-link.has-sub:hover > .global-header-link-sub-links {
+        .gh-menu-list-item.has-sub:hover > .gh-menu-sub-list {
             opacity: 1;
             transform: translateY(0);
             margin-top: 0;
         }
 
-        .global-header-link-sub-links::before,
-        .global-header-link-sub-links::after {
+        .gh-menu-sub-list::before,
+        .gh-menu-sub-list::after {
             content: " ";
             position: absolute;
             left: 63%;
@@ -250,26 +250,26 @@
             pointer-events: none;
         }
 
-        .global-header-link-sub-links::before {
+        .gh-menu-sub-list::before {
             margin-left: -11px;
             border-width: 11px;
             border-bottom-color: #e2e2e2;
         }
 
-        .global-header-link-sub-links::after {
+        .gh-menu-sub-list::after {
             margin-left: -10px;
             border-width: 10px;
             border-bottom-color: rgba(255, 255, 255, 1);
         }
 
-        .global-header-link-sub-link > a {
+        .gh-menu-sub-list-item > a {
             width: 100%;
             height: 2em;
             line-height: 2em;
             box-sizing: border-box;
         }
 
-        .global-header-links a {
+        .gh-menu a {
             display: inline-block;
             color: #000;
             text-decoration: none;
@@ -277,11 +277,11 @@
             will-change: color;
         }
 
-        .global-header-links a:hover {
+        .gh-menu a:hover {
             color: #666;
         }
 
-        .global-header-link > a {
+        .gh-menu-list-item > a {
             height: 3em;
             line-height: 3em;
         }
@@ -305,7 +305,7 @@
             transform: translateX(-191px);
         }
 
-        .search-form {
+        .gh-search-form {
             position: absolute;
             top: 0.5em;
             right: 0;
@@ -321,13 +321,13 @@
             will-change: transform, opacity, padding;
         }
 
-        .global-header--searching .search-form {
+        .global-header--searching .gh-search-form {
             padding: 0 1em;
             opacity: 1;
             transform: scaleX(1);
         }
 
-        .global-header-links__inner .search-form:focus {
+        .gh-menu-list .gh-search-form:focus {
             outline: 0 none;
         }
 
@@ -336,7 +336,7 @@
                 padding: 0 20px;
             }
 
-            .global-header-logo__inner::after {
+            .gh-kravis-content::after {
                 content: "Blog";
             }
         }
@@ -355,25 +355,25 @@
                 -webkit-backdrop-filter: none;
             }
 
-            .global-header__inner {
+            .gh-wrapper {
                 flex-direction: column;
             }
-            .global-header-icons,
-            .global-header-links {
+            .gh-icons,
+            .gh-menu {
                 background: rgba(255, 255, 255, 0.6);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
             }
 
-            .no-backdropfilter .global-header-icons {
+            .no-backdropfilter .gh-icons {
                 background: rgba(255, 255, 255, 0.98);
             }
 
-            .no-backdropfilter .global-header-links {
+            .no-backdropfilter .gh-menu {
                 background: rgba(240, 240, 240, 0.98);
             }
 
-            .global-header-icons {
+            .gh-icons {
                 width: 100%;
                 display: flex;
                 position: relative;
@@ -382,15 +382,15 @@
                 border-bottom: 1px solid #e2e2e2;
                 z-index: 10;
             }
-            .global-header-logo {
+            .gh-kravis {
                 margin-left: 15px;
             }
 
-            .global-header-menu-icon {
+            .gh-menu-icon {
                 display: block;
             }
 
-            .global-header-links {
+            .gh-menu {
                 position: absolute;
                 left: 0;
                 width: 100%;
@@ -404,29 +404,29 @@
                 will-change: transform, opacity;
             }
 
-            .global-header--closed .global-header-links {
+            .global-header--closed .gh-menu {
                 transition: none;
             }
 
-            .global-header--opened .global-header-links {
+            .global-header--opened .gh-menu {
                 transform: translateY(0);
                 opacity: 1;
                 transition: transform 0.5s;
             }
 
-            .global-header-links__inner {
+            .gh-menu-list {
                 flex-direction: column;
                 padding: 0.5em 0 1em 0;
             }
 
-            .global-header-link {}
+            .gh-menu-list-item {}
 
-            .global-header-link.has-sub {
+            .gh-menu-list-item.has-sub {
                 padding-right: 0;
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             }
 
-            .global-header-link.search {
+            .gh-menu-list-item.search {
                 display: none;
             }
 
@@ -434,7 +434,7 @@
                 margin-bottom: 1em;
             }
 
-            .search-form {
+            .gh-search-form {
                 position: relative;
                 opacity: 1;
                 transform: none;
@@ -444,17 +444,17 @@
                 height: 2.5em;
             }
 
-            .search-form,
-            .global-header-link > a {
+            .gh-search-form,
+            .gh-menu-list-item > a {
                 width: 100vw;
                 padding-left: 1.2em;
             }
 
-            .global-header-link > a {
+            .gh-menu-list-item > a {
                 box-sizing: border-box;
             }
 
-            .global-header-link.has-sub > a::after {
+            .gh-menu-list-item.has-sub > a::after {
                 height: 3em;
                 transition: transform 0.5s;
                 will-change: transform;
@@ -466,7 +466,7 @@
                 transform: rotateX(-180deg);
             }
 
-            .global-header-link-sub-links {
+            .gh-menu-sub-list {
                 top: 0;
                 margin: 0;
                 padding: 0.5em;
@@ -481,54 +481,54 @@
                 visibility: hidden;
             }
 
-            .global-header-link--opened > .global-header-link-sub-links {
+            .global-header-link--opened > .gh-menu-sub-list {
                 position: inherit;
                 visibility: visible;
             }
 
-            .global-header-link-sub-links::before,
-            .global-header-link-sub-links::after {
+            .gh-menu-sub-list::before,
+            .gh-menu-sub-list::after {
                 display: none;
             }
 
-            .global-header-link-sub-link {
+            .gh-menu-sub-list-item {
                 transform: translateX(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
             }
 
-            .global-header-link--opened .global-header-link-sub-link {
+            .global-header-link--opened .gh-menu-sub-list-item {
                 transform: translateX(0);
                 opacity: 1;
                 transition: opacity 0.5s, transform 0.5s;
                 will-change: opacity, transform;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(1) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(1) {
                 transition-delay: 0s;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(2) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(2) {
                 transition-delay: 0.05s;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(3) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(3) {
                 transition-delay: 0.10s;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(4) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(4) {
                 transition-delay: 0.15s;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(5) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(5) {
                 transition-delay: 0.20s;
             }
 
-            .global-header-link--opened .global-header-link-sub-link:nth-child(6) {
+            .global-header-link--opened .gh-menu-sub-list-item:nth-child(6) {
                 transition-delay: 0.25s;
             }
 
-            .global-header-link-sub-link > a {
+            .gh-menu-sub-list-item > a {
                 height: 2.5em;
                 line-height: 2.5em;
                 padding-left: 1.8em;
@@ -538,36 +538,36 @@
 </head>
 <body>
 <nav class="global-header">
-    <div class="global-header__inner">
-        <div class="global-header-icons">
-            <span class="global-header-icons-item global-header-logo"><a href="#" class="global-header-logo__inner"></a></span>
-                <span class="global-header-icons-item global-header-menu-icon js-global-header-menu-icon">
-                    <span class="global-header-menu-icon-top"><span class="global-header-menu-icon-top__inner"></span></span>
-                    <span class="global-header-menu-icon-middle"><span class="global-header-menu-icon-middle__inner"></span></span>
-                    <span class="global-header-menu-icon-bottom"><span class="global-header-menu-icon-bottom__inner"></span></span>
-                </span>
+    <div class="gh-wrapper">
+        <div class="gh-icons">
+            <span class="gh-icons-item gh-kravis"><a href="#" class="gh-kravis-content"></a></span>
+            <span class="gh-icons-item gh-menu-icon js-gh-menu-icon">
+                <span class="gh-menu-icon--top"><span class="gh-menu-icon--top-content"></span></span>
+                <span class="gh-menu-icon--middle"><span class="gh-menu-icon--middle-content"></span></span>
+                <span class="gh-menu-icon--bottom"><span class="gh-menu-icon--bottom-content"></span></span>
+            </span>
         </div>
-        <div class="global-header-links js-global-header-links">
-            <ul class="global-header-links__inner">
-                <li class="global-header-link about "><a href="#">About</a></li>
-                <li class="global-header-link demos has-sub">
+        <div class="gh-menu js-global-header-links">
+            <ul class="gh-menu-list">
+                <li class="gh-menu-list-item about "><a href="#">About</a></li>
+                <li class="gh-menu-list-item demos has-sub">
                     <a href="#">Demos</a>
-                    <ul class="global-header-link-sub-links">
-                        <li class="global-header-link-sub-link"><a href="#">Music Player</a></li>
-                        <li class="global-header-link-sub-link"><a href="#">Lyric Controller</a></li>
-                        <li class="global-header-link-sub-link"><a href="#">Music Controller</a></li>
+                    <ul class="gh-menu-sub-list">
+                        <li class="gh-menu-sub-list-item"><a href="#">Music Player</a></li>
+                        <li class="gh-menu-sub-list-item"><a href="#">Lyric Controller</a></li>
+                        <li class="gh-menu-sub-list-item"><a href="#">Music Controller</a></li>
                     </ul>
                 </li>
-                <li class="global-header-link types has-sub">
+                <li class="gh-menu-list-item types has-sub">
                     <a href="#">Types</a>
-                    <ul class="global-header-link-sub-links">
-                        <li class="global-header-link-sub-link"><a href="#">Ariticle</a></li>
-                        <li class="global-header-link-sub-link"><a href="#">Photo</a></li>
-                        <li class="global-header-link-sub-link"><a href="#">Others</a></li>
+                    <ul class="gh-menu-sub-list">
+                        <li class="gh-menu-sub-list-item"><a href="#">Ariticle</a></li>
+                        <li class="gh-menu-sub-list-item"><a href="#">Photo</a></li>
+                        <li class="gh-menu-sub-list-item"><a href="#">Others</a></li>
                     </ul>
                 </li>
-                <li class="global-header-link search"><a href="#">Search</a></li>
-                <input class="search-form" type="text" placeholder="Search">
+                <li class="gh-menu-list-item search"><a href="#">Search</a></li>
+                <input class="gh-search-form" type="text" placeholder="Search">
             </ul>
         </div>
     </div>
@@ -577,10 +577,10 @@
 </body>
 <script>
     var globalHeader = document.querySelector(".global-header");
-    var globalHeaderMenuIcon = document.querySelector(".js-global-header-menu-icon");
+    var globalHeaderMenuIcon = document.querySelector(".js-gh-menu-icon");
 
-    var searchLink = document.querySelector(".global-header-link.search > a");
-    var searchForm = document.querySelector(".search-form");
+    var searchLink = document.querySelector(".gh-menu-list-item.search > a");
+    var searchForm = document.querySelector(".gh-search-form");
 
 
     searchLink.onclick = function () {
@@ -598,7 +598,6 @@
         }
     };
 
-
     var root = document.documentElement; // <html>
 
     if ('webkitBackdropFilter' in root.style ||
@@ -610,18 +609,13 @@
     }
 
     // Mobile 下二级菜单展开
-    var linkHasSub = document.querySelectorAll(".global-header-link.has-sub");
+    var linkHasSub = document.querySelectorAll(".gh-menu-list-item.has-sub");
     var linkHasSubIndex =  linkHasSub.length;
     while (linkHasSubIndex--) {
         linkHasSub[linkHasSubIndex].onclick = function () {
-            // console.log(this);
-            // var list = this.querySelector("ul");
-            // list.classList.toggle("global-header-link-sub-links--opened");
             this.classList.toggle("global-header-link--opened");
         };
     }
-
-
 
     // 待整理
     window.onresize = function () {

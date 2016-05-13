@@ -37,17 +37,19 @@ short style:
 
 ##### Task List
 - [x] 纠正 `sub-links` 在 Mobile 端的显示；
-- [x] 完善 `.global-header-link.has-sub` 的 `menu-down` 动画；  // 已删除
+- [x] 完善 `.global-header-link.has-sub` 的 `menu-down` 动画；
 - [x] 优化 iOS Safari 的 `input` 的外观；
 - [x] 加入 `gh-links` 在 Mobile 端的动画；
 - [x] 页面宽度变化后，媒体查询内的属性更改导致不期望的 `transition` 出现； // 通过添加 `global-header--closed` 类暂时解决，后续需要深入理解。
 - [x] 为 Chrome 适配 `transition` 的 `0s` 和 `0`；
 - [x] 消除不必要的背景高亮 `-webkit-tap-highlight-color`；
-- [x] 加入二级菜单的过渡效果；
 - [x] 把 `transform: none;` 加入试试效果； // 不合适，可能会降低性能
 - [x] 暂时加入了 `will-change`； // 后续进行优化，适当的移除此属性，释放内存
+- [x] 重命名大部分类名，例如 `global-header-links-link` 换为 `gh-menu-list-item`；
+- [x] 优化 `:hover` 伪类；
+- [x] 移除 iOS Safari 的 outline；
 - [ ] 修正 `search-form` 的 `transition`；
+- [ ] 进一步完善 `.gh-menu-list.has-sub` 的动画；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
-- [ ] 移除 iOS Safari 的 outline，优化 `:hover` 伪类；
 - [ ] 进行代码清理，使 CSS 更加规范化。
