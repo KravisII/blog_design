@@ -78,7 +78,7 @@
             list-style: none;
         }
 
-        .gh-menu-list {
+        .gh-menu-items {
             display: flex;
             position: relative;
             margin: 0;
@@ -86,8 +86,7 @@
             justify-content: space-between;
         }
 
-        /*.gh-menu,*/
-        .gh-menu-list {
+        .gh-menu-items {
             height: 100%;
         }
 
@@ -204,34 +203,34 @@
             color: #666;
         }
 
-        .gh-menu-list-item {
+        .gh-menu-item {
             transition-property: opacity, transform;
             transition-duration: 0.29s;
         }
 
-        .gh-menu-list-item > a {
+        .gh-menu-item > a {
             height: 3em;
             line-height: 3em;
             padding: 0 1em;
         }
 
-        .gh-menu-list-item:nth-child(1) > a {
+        .gh-menu-item:nth-child(1) > a {
             padding-left: 0;
         }
 
-        .gh-menu-list-item:nth-last-child(2) > a {
+        .gh-menu-item:nth-last-child(2) > a {
             padding-right: 0;
         }
 
-        .gh-menu-list-item.has-sub {
+        .gh-menu-item.has-sub {
             position: relative;
         }
 
-        .gh-menu-list-item.has-sub > a {
-            padding-right: 1.4em;
+        .gh-menu-item.has-sub > a {
+            padding-right: 1.8em;
         }
 
-        .gh-menu-list-item.has-sub > a::after {
+        .gh-menu-item.has-sub > a::after {
             content: '';
             position: absolute;
             display: inline-block;
@@ -243,7 +242,7 @@
             background: url('menu-down.svg') no-repeat center / contain;
         }
 
-        .gh-menu-sub-list {
+        .gh-menu-sub-items {
             position: absolute;
             top: 3.8em;
             width: 10em;
@@ -262,18 +261,18 @@
             background: rgba(255, 255, 255, 1);
         }
 
-        .gh-menu-list-item.has-sub:hover {
+        .gh-menu-item.has-sub:hover {
             height: 4em;
         }
 
-        .gh-menu-list-item.has-sub:hover > .gh-menu-sub-list {
+        .gh-menu-item.has-sub:hover > .gh-menu-sub-items {
             opacity: 1;
             transform: translateY(0);
             margin-top: 0;
         }
 
-        .gh-menu-sub-list::before,
-        .gh-menu-sub-list::after {
+        .gh-menu-sub-items::before,
+        .gh-menu-sub-items::after {
             content: " ";
             position: absolute;
             left: 63%;
@@ -284,50 +283,35 @@
             pointer-events: none;
         }
 
-        .gh-menu-sub-list::before {
+        .gh-menu-sub-items::before {
             margin-left: -11px;
             border-width: 11px;
             border-bottom-color: #e2e2e2;
         }
 
-        .gh-menu-sub-list::after {
+        .gh-menu-sub-items::after {
             margin-left: -10px;
             border-width: 10px;
             border-bottom-color: rgba(255, 255, 255, 1);
         }
 
-        .gh-menu-sub-list-item > a {
+        .gh-menu-sub-item > a {
             width: 100%;
             height: 2em;
             line-height: 2em;
             box-sizing: border-box;
         }
 
-        .global-header--searching li {
+        .global-header--searching .gh-menu-item {
             opacity: 0;
         }
 
-        .global-header--searching li:nth-child(2) {
-            /* demosLink.offsetLeft = 420 */
-            transform: translateX(-63px);
-        }
-
-        .global-header--searching li:nth-child(3) {
-            /* typesLink.offsetLeft = 488 */
-            transform: translateX(-131px);
-        }
-
-        .global-header--searching li:nth-child(4) {
-            /* searchLink.offsetLeft = 564 */
-            transform: translateX(-191px);
-        }
-
-        .gh-search-form {
+        .gh-searchform-input {
             position: absolute;
             top: 0.5em;
             right: 0;
             height: 2em;
-            width: 106%;
+            width: 100%;
             padding: 0;
             box-sizing: border-box;
             border: 1px solid #e2e2e2;
@@ -338,13 +322,13 @@
             will-change: transform, opacity, padding;
         }
 
-        .global-header--searching .gh-search-form {
+        .global-header--searching .gh-searchform-input {
             padding: 0 1em;
             opacity: 1;
             transform: scaleX(1);
         }
 
-        .gh-menu-list .gh-search-form:focus {
+        .gh-menu-items .gh-searchform-input:focus {
             outline: 0 none;
         }
 
@@ -432,23 +416,23 @@
                 transition: transform 0.5s;
             }
 
-            .gh-menu-list {
+            .gh-menu-items {
                 flex-direction: column;
                 padding: 0.5em 0 1em 0;
             }
 
-            .gh-menu-list-item {}
+            .gh-menu-item {}
 
-            .gh-menu-list-item.has-sub {
+            .gh-menu-item.has-sub {
                 padding-right: 0;
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             }
 
-            .gh-menu-list-item.has-sub:hover {
+            .gh-menu-item.has-sub:hover {
                 height: auto;
             }
 
-            .gh-menu-list-item.search {
+            .gh-menu-item.search {
                 display: none;
             }
 
@@ -456,7 +440,7 @@
                 margin-bottom: 1em;
             }
 
-            .gh-search-form {
+            .gh-searchform-input {
                 position: relative;
                 opacity: 1;
                 transform: none;
@@ -466,17 +450,18 @@
                 height: 2.5em;
             }
 
-            .gh-search-form,
-            .gh-menu-list-item > a {
-                width: 100vw;
-                padding-left: 1.2em !important;
+            .gh-searchform-input,
+            .gh-menu-item > a,
+            .gh-menu-item:nth-child(1) > a {
+                width: 100%;
+                padding: 0 1.2em !important;
             }
 
-            .gh-menu-list-item > a {
+            .gh-menu-item > a {
                 box-sizing: border-box;
             }
 
-            .gh-menu-list-item.has-sub > a::after {
+            .gh-menu-item.has-sub > a::after {
                 height: 3em;
                 transition: transform 0.5s;
                 will-change: transform;
@@ -488,7 +473,7 @@
                 transform: rotateX(-180deg);
             }
 
-            .gh-menu-sub-list {
+            .gh-menu-sub-items {
                 top: 0;
                 margin: 0;
                 padding: 0.5em;
@@ -503,57 +488,57 @@
                 visibility: hidden;
             }
 
-            .global-header-link--opened > .gh-menu-sub-list {
+            .global-header-link--opened > .gh-menu-sub-items {
                 position: inherit;
                 visibility: visible;
             }
 
-            .gh-menu-sub-list::before,
-            .gh-menu-sub-list::after {
+            .gh-menu-sub-items::before,
+            .gh-menu-sub-items::after {
                 display: none;
             }
 
-            .gh-menu-sub-list-item {
+            .gh-menu-sub-item {
                 transform: translateX(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item {
+            .global-header-link--opened .gh-menu-sub-item {
                 transform: translateX(0);
                 opacity: 1;
                 transition: opacity 0.5s, transform 0.5s;
                 will-change: opacity, transform;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(1) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(1) {
                 transition-delay: 0s;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(2) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(2) {
                 transition-delay: 0.05s;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(3) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(3) {
                 transition-delay: 0.10s;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(4) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(4) {
                 transition-delay: 0.15s;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(5) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(5) {
                 transition-delay: 0.20s;
             }
 
-            .global-header-link--opened .gh-menu-sub-list-item:nth-child(6) {
+            .global-header-link--opened .gh-menu-sub-item:nth-child(6) {
                 transition-delay: 0.25s;
             }
 
-            .gh-menu-sub-list-item > a {
+            .gh-menu-sub-item > a {
                 height: 2.5em;
                 line-height: 2.5em;
-                padding-left: 1.8em;
+                padding-left: 2.4em;
             }
         }
     </style>
@@ -561,37 +546,45 @@
 <body>
 <nav class="global-header">
     <div class="gh-wrapper">
+
         <div class="gh-icons">
             <span class="gh-icons-item gh-kravis"><a href="#" class="gh-kravis-content"></a></span>
-            <span class="gh-icons-item gh-menu-icon js-gh-menu-icon">
+            <span class="gh-icons-item gh-menu-icon js">
                 <span class="gh-menu-icon--top"><span class="gh-menu-icon--top-content"></span></span>
                 <span class="gh-menu-icon--middle"><span class="gh-menu-icon--middle-content"></span></span>
                 <span class="gh-menu-icon--bottom"><span class="gh-menu-icon--bottom-content"></span></span>
             </span>
         </div>
-        <div class="gh-menu js-global-header-links">
-            <ul class="gh-menu-list">
-                <li class="gh-menu-list-item about"><a href="#">About</a></li>
-                <li class="gh-menu-list-item demos has-sub">
+
+        <div class="gh-menu js">
+            <ul class="gh-menu-items">
+                <li class="gh-menu-item about">
+                    <a href="#">About</a>
+                </li>
+
+                <li class="gh-menu-item demos has-sub">
                     <a href="#">Demos</a>
-                    <ul class="gh-menu-sub-list">
-                        <li class="gh-menu-sub-list-item"><a href="#">Music Player</a></li>
-                        <li class="gh-menu-sub-list-item"><a href="#">Lyric Controller</a></li>
-                        <li class="gh-menu-sub-list-item"><a href="#">Music Controller</a></li>
+                    <ul class="gh-menu-sub-items">
+                        <li class="gh-menu-sub-item"><a href="#">Music Player</a></li>
+                        <li class="gh-menu-sub-item"><a href="#">Lyric Controller</a></li>
+                        <li class="gh-menu-sub-item"><a href="#">Music Controller</a></li>
                     </ul>
                 </li>
-                <li class="gh-menu-list-item types has-sub">
+
+                <li class="gh-menu-item types has-sub">
                     <a href="#">Types</a>
-                    <ul class="gh-menu-sub-list">
-                        <li class="gh-menu-sub-list-item"><a href="#">Ariticle</a></li>
-                        <li class="gh-menu-sub-list-item"><a href="#">Photo</a></li>
-                        <li class="gh-menu-sub-list-item"><a href="#">Others</a></li>
+                    <ul class="gh-menu-sub-items">
+                        <li class="gh-menu-sub-item"><a href="#">Ariticle</a></li>
+                        <li class="gh-menu-sub-item"><a href="#">Photo</a></li>
+                        <li class="gh-menu-sub-item"><a href="#">Others</a></li>
                     </ul>
                 </li>
-                <li class="gh-menu-list-item search"><a href="#">Search</a></li>
-                <input class="gh-search-form" type="text" placeholder="Search">
+
+                <li class="gh-menu-item search"><a href="#">Search</a></li>
+                <input class="gh-searchform-input" type="text" placeholder="Search">
             </ul>
         </div>
+
     </div>
 </nav>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
@@ -599,19 +592,37 @@
 </body>
 <script>
     var globalHeader = document.querySelector(".global-header");
-    var globalHeaderMenuIcon = document.querySelector(".js-gh-menu-icon");
+    var globalHeaderMenuIcon = document.querySelector(".js.gh-menu-icon");
 
-    var searchLink = document.querySelector(".gh-menu-list-item.search > a");
-    var searchForm = document.querySelector(".gh-search-form");
+    var searchLink = document.querySelector(".gh-menu-item.search > a");
+    var searchForm = document.querySelector(".gh-searchform-input");
 
 
     searchLink.onclick = function () {
         globalHeader.classList.add("global-header--searching");
         searchForm.focus();
+        addTranslateX();
     };
+
+    function addTranslateX () {
+        var items = document.querySelectorAll(".gh-menu-item > a");
+        var left = (items[0].getBoundingClientRect()).left;
+        for (var i = 0; i < items.length; i++) {
+            var offset = parseInt((window.getComputedStyle(items[i], null)).paddingLeft) + ((items[i].getBoundingClientRect()).left - left);
+            items[i].parentNode.style.transform = "translateX(-" + offset + "px)";
+        }
+    }
+
+    function removeTranslateX() {
+        var items = document.querySelectorAll(".gh-menu-item");
+        for (var i = 0; i < items.length; i++) {
+            items[i].removeAttribute("style");
+        }
+    }
 
     searchForm.onblur = function () {
         globalHeader.classList.remove("global-header--searching");
+        removeTranslateX();
     };
 
     globalHeaderMenuIcon.onclick = function () {
@@ -631,7 +642,7 @@
     }
 
     // Mobile 下二级菜单展开
-    var linkHasSub = document.querySelectorAll(".gh-menu-list-item.has-sub");
+    var linkHasSub = document.querySelectorAll(".gh-menu-item.has-sub");
     var linkHasSubIndex =  linkHasSub.length;
     while (linkHasSubIndex--) {
         linkHasSub[linkHasSubIndex].onclick = function () {
@@ -648,6 +659,7 @@
             globalHeader.classList.remove("global-header--opened")
         }
         globalHeader.classList.remove("global-header--searching");
+        removeTranslateX();
     };
     // 05.12 17:26
 </script>
