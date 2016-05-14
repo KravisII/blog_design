@@ -203,11 +203,6 @@
             color: #666;
         }
 
-        .gh-menu-item {
-            transition-property: opacity, transform;
-            transition-duration: 0.29s;
-        }
-
         .gh-menu-item > a {
             height: 3em;
             line-height: 3em;
@@ -302,8 +297,14 @@
             box-sizing: border-box;
         }
 
+        .gh-menu-item {
+            transition-property: opacity, transform;
+            transition-duration: 250ms, 250ms;
+        }
+
         .global-header--searching .gh-menu-item {
             opacity: 0;
+            transition-duration: 250ms, 250ms;
         }
 
         .gh-searchform-input {
@@ -318,7 +319,7 @@
             opacity: 0;
             transform: scaleX(0);
             transform-origin: right;
-            transition: transform 0.29s, opacity 0.29s, padding 0.29s;
+            transition: transform 400ms, opacity 400ms, padding 400ms;
             will-change: transform, opacity, padding;
         }
 
@@ -326,6 +327,26 @@
             padding: 0 1em;
             opacity: 1;
             transform: scaleX(1);
+        }
+
+        .gh-menu-item:nth-child(1),
+        .global-header--searching .gh-menu-item:nth-child(4) {
+            transition-delay: 0ms, 0ms;
+        }
+
+        .gh-menu-item:nth-child(2),
+        .global-header--searching .gh-menu-item:nth-child(3) {
+            transition-delay: 50ms, 50ms;
+        }
+
+        .gh-menu-item:nth-child(3),
+        .global-header--searching .gh-menu-item:nth-child(2) {
+            transition-delay: 100ms, 100ms;
+        }
+
+        .gh-menu-item:nth-child(4),
+        .global-header--searching .gh-menu-item:nth-child(1) {
+            transition-delay: 150ms, 150ms;
         }
 
         .gh-menu-items .gh-searchform-input:focus {
@@ -413,7 +434,8 @@
             .global-header--opened .gh-menu {
                 transform: translateY(0);
                 opacity: 1;
-                transition: transform 0.5s;
+                transition: transform 500ms cubic-bezier(0.28, 0.11, 0.32, 1);
+
             }
 
             .gh-menu-items {
@@ -499,15 +521,15 @@
             }
 
             .gh-menu-sub-item {
-                transform: translateX(-1.2em);
+                transform: translateY(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
             }
 
             .global-header-link--opened .gh-menu-sub-item {
-                transform: translateX(0);
+                transform: translateY(0);
                 opacity: 1;
-                transition: opacity 0.5s, transform 0.5s;
+                transition: opacity 500ms ease, transform 500ms ease;
                 will-change: opacity, transform;
             }
 
@@ -516,19 +538,19 @@
             }
 
             .global-header-link--opened .gh-menu-sub-item:nth-child(2) {
-                transition-delay: 0.05s;
+                transition-delay: 0.07s;
             }
 
             .global-header-link--opened .gh-menu-sub-item:nth-child(3) {
-                transition-delay: 0.10s;
+                transition-delay: 0.14s;
             }
 
             .global-header-link--opened .gh-menu-sub-item:nth-child(4) {
-                transition-delay: 0.15s;
+                transition-delay: 0.21s;
             }
 
             .global-header-link--opened .gh-menu-sub-item:nth-child(5) {
-                transition-delay: 0.20s;
+                transition-delay: 0.28s;
             }
 
             .global-header-link--opened .gh-menu-sub-item:nth-child(6) {
