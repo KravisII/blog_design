@@ -47,9 +47,10 @@ short style:
 - [x] 暂时加入了 `will-change`； // 后续进行优化，适当的移除此属性，释放内存
 - [x] 重命名大部分类名，例如 `global-header-links-link` 换为 `gh-menu-list-item`；
 - [x] 移除 iOS Safari 的 outline；
+- [x] 将部分单位修改为 em；
 - [x] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
-- [ ] 参考 Github，优化 `:hover` 伪类；
-- [ ] 修正 `search-form` 的 `transition`；
+- [ ] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
 - [ ] 进一步完善 `.gh-menu-list.has-sub` 的动画；
+- [ ] 参考 Github，优化 `:hover` 伪类；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 进行代码清理，使 CSS 和 JavaScript 更加规范化。

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>global-header</title>
+    <title>global-nav</title>
     <style>
         body,
         input {
             font-size: 100%;
-            font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+            font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft Jhengnei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -22,9 +22,9 @@
             padding: 0;
         }
 
-        .global-header {
+        .global-nav {
             box-sizing: border-box;
-            height: 48px;
+            height: 3em;
             width: 100%;
             min-width: 320px;
             padding: 0 20px;
@@ -34,11 +34,11 @@
             border-bottom: 1px solid #e2e2e2;
         }
 
-        .no-backdropfilter .global-header {
+        .no-backdropfilter .global-nav {
             background: rgba(255, 255, 255, 0.98);
         }
 
-        .gh-wrapper {
+        .gn-wrapper {
             width: 100%;
             max-width: 980px;
             margin: 0 auto;
@@ -48,11 +48,11 @@
             align-items: center;
         }
 
-        .gh-kravis {
+        .gn-kravis {
             display: block;
         }
 
-        .gh-kravis-content {
+        .gn-kravis-content {
             display: inline-block;
             height: 3em;
             padding: 0 1em;
@@ -61,24 +61,24 @@
             background-color: #333;
         }
 
-        .gh-kravis-content::after {
+        .gn-kravis-content::after {
             content: "Kravis Liu's Blog";
             line-height: 3em;
         }
 
-        .gh-kravis,
-        .gh-kravis-content {}
+        .gn-kravis,
+        .gn-kravis-content {}
 
-        .gh-icons,
-        .gh-menu {
+        .gn-icons,
+        .gn-menu {
             height: 3em;
         }
 
-        .gh-menu ul {
+        .gn-menu ul {
             list-style: none;
         }
 
-        .gh-menu-items {
+        .gn-menu-items {
             display: flex;
             position: relative;
             margin: 0;
@@ -86,112 +86,112 @@
             justify-content: space-between;
         }
 
-        .gh-menu-items {
+        .gn-menu-items {
             height: 100%;
         }
 
-        .gh-menu-icon {
+        .gn-menu-icon {
             display: none;
             position: relative;
             overflow: hidden;
             will-change: transform;
         }
 
-        .gh-menu-icon--top,
-        .gh-menu-icon--middle,
-        .gh-menu-icon--bottom,
-        .gh-menu-icon--top-content,
-        .gh-menu-icon--middle-content,
-        .gh-menu-icon--bottom-content {
+        .gn-menu-icon--top,
+        .gn-menu-icon--middle,
+        .gn-menu-icon--bottom,
+        .gn-menu-icon--top-content,
+        .gn-menu-icon--middle-content,
+        .gn-menu-icon--bottom-content {
             display: block;
             position: absolute;
             will-change: transform;
         }
 
-        .gh-menu-icon,
-        .gh-menu-icon--top,
-        .gh-menu-icon--middle,
-        .gh-menu-icon--bottom {
+        .gn-menu-icon,
+        .gn-menu-icon--top,
+        .gn-menu-icon--middle,
+        .gn-menu-icon--bottom {
             width: 48px;
             height: 48px;
         }
 
-        .gh-menu-icon {
+        .gn-menu-icon {
             transform: rotate(0deg);
             transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
             cursor: pointer;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-hignlignt-color: rgba(0, 0, 0, 0);
         }
 
-        .gh-menu-icon--top,
-        .gh-menu-icon--middle,
-        .gh-menu-icon--bottom {
+        .gn-menu-icon--top,
+        .gn-menu-icon--middle,
+        .gn-menu-icon--bottom {
             top: 0;
             transform: rotate(0deg);
             transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         }
 
-        .gh-menu-icon--top-content,
-        .gh-menu-icon--middle-content,
-        .gh-menu-icon--bottom-content {
+        .gn-menu-icon--top-content,
+        .gn-menu-icon--middle-content,
+        .gn-menu-icon--bottom-content {
             left: 16px;
             width: 17px;
             height: 1px;
             background: #000;
         }
 
-        .gh-menu-icon--top-content,
-        .gh-menu-icon--bottom-content {
+        .gn-menu-icon--top-content,
+        .gn-menu-icon--bottom-content {
             transition: transform 0.25s 0.2s;
         }
 
-        .gh-menu-icon--top-content {
+        .gn-menu-icon--top-content {
             top: 23px;
             transform: translateY(-6px);
         }
 
-        .gh-menu-icon--middle-content {
+        .gn-menu-icon--middle-content {
             top: 50%;
             transform: translateY(0px) scaleX(1);
             transition: transform 0.25s;
         }
 
-        .gh-menu-icon--bottom-content {
+        .gn-menu-icon--bottom-content {
             bottom: 23px;
             transform: translateY(6px);
         }
 
         /* OPENED */
-        .global-header--opened .gh-menu-icon {
+        .global-nav--opened .gn-menu-icon {
             transform: rotate(90deg);
         }
 
-        .global-header--opened .gh-menu-icon--top,
-        .global-header--opened .gh-menu-icon--middle,
-        .global-header--opened .gh-menu-icon--bottom {
+        .global-nav--opened .gn-menu-icon--top,
+        .global-nav--opened .gn-menu-icon--middle,
+        .global-nav--opened .gn-menu-icon--bottom {
             transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         }
 
-        .global-header--opened .gh-menu-icon--top {
+        .global-nav--opened .gn-menu-icon--top {
             transform: rotate(45deg);
         }
 
-        .global-header--opened .gh-menu-icon--bottom {
+        .global-nav--opened .gn-menu-icon--bottom {
             transform: rotate(-45deg);
         }
 
-        .global-header--opened .gh-menu-icon--top-content,
-        .global-header--opened .gh-menu-icon--middle-content,
-        .global-header--opened .gh-menu-icon--bottom-content {
+        .global-nav--opened .gn-menu-icon--top-content,
+        .global-nav--opened .gn-menu-icon--middle-content,
+        .global-nav--opened .gn-menu-icon--bottom-content {
             transform: translateY(0);
             transition: transform 0.2s;
         }
 
-        .global-header--opened .gh-menu-icon--middle-content {
+        .global-nav--opened .gn-menu-icon--middle-content {
             transform: scaleX(0);
         }
 
-        .gh-menu a {
+        .gn-menu a {
             display: inline-block;
             color: #000;
             text-decoration: none;
@@ -199,33 +199,33 @@
             will-change: color;
         }
 
-        .gh-menu a:hover {
+        .gn-menu a:hover {
             color: #666;
         }
 
-        .gh-menu-item > a {
+        .gn-menu-link {
             height: 3em;
             line-height: 3em;
             padding: 0 1em;
         }
 
-        .gh-menu-item:nth-child(1) > a {
+        .gn-menu-item:nth-child(1) > .gn-menu-link {
             padding-left: 0;
         }
 
-        .gh-menu-item:nth-last-child(2) > a {
+        .gn-menu-item:nth-last-child(2) > .gn-menu-link {
             padding-right: 0;
         }
 
-        .gh-menu-item.has-sub {
+        .gn-menu-item.has-sub {
             position: relative;
         }
 
-        .gh-menu-item.has-sub > a {
+        .gn-menu-item.has-sub > .gn-menu-link {
             padding-right: 1.8em;
         }
 
-        .gh-menu-item.has-sub > a::after {
+        .gn-menu-item.has-sub > .gn-menu-link::after {
             content: '';
             position: absolute;
             display: inline-block;
@@ -237,7 +237,7 @@
             background: url('menu-down.svg') no-repeat center / contain;
         }
 
-        .gh-menu-sub-items {
+        .gn-menu-sub-items {
             position: absolute;
             top: 3.8em;
             width: 10em;
@@ -256,18 +256,18 @@
             background: rgba(255, 255, 255, 1);
         }
 
-        .gh-menu-item.has-sub:hover {
+        .gn-menu-item.has-sub:hover {
             height: 4em;
         }
 
-        .gh-menu-item.has-sub:hover > .gh-menu-sub-items {
+        .gn-menu-item.has-sub:hover > .gn-menu-sub-items {
             opacity: 1;
             transform: translateY(0);
             margin-top: 0;
         }
 
-        .gh-menu-sub-items::before,
-        .gh-menu-sub-items::after {
+        .gn-menu-sub-items::before,
+        .gn-menu-sub-items::after {
             content: " ";
             position: absolute;
             left: 63%;
@@ -278,36 +278,36 @@
             pointer-events: none;
         }
 
-        .gh-menu-sub-items::before {
+        .gn-menu-sub-items::before {
             margin-left: -11px;
             border-width: 11px;
             border-bottom-color: #e2e2e2;
         }
 
-        .gh-menu-sub-items::after {
+        .gn-menu-sub-items::after {
             margin-left: -10px;
             border-width: 10px;
             border-bottom-color: rgba(255, 255, 255, 1);
         }
 
-        .gh-menu-sub-item > a {
+        .gn-menu-sub-link {
             width: 100%;
             height: 2em;
             line-height: 2em;
             box-sizing: border-box;
         }
 
-        .gh-menu-item {
+        .gn-menu-item {
             transition-property: opacity, transform;
             transition-duration: 250ms, 250ms;
         }
 
-        .global-header--searching .gh-menu-item {
+        .global-nav--searching .gn-menu-item {
             opacity: 0;
             transition-duration: 250ms, 250ms;
         }
 
-        .gh-searchform-input {
+        .gn-searchform-input {
             position: absolute;
             top: 0.5em;
             right: 0;
@@ -319,83 +319,87 @@
             opacity: 0;
             transform: scaleX(0);
             transform-origin: right;
-            transition: transform 400ms, opacity 400ms, padding 400ms;
+            transition: transform 4000ms, opacity 4000ms, padding 4000ms;
             will-change: transform, opacity, padding;
         }
 
-        .global-header--searching .gh-searchform-input {
+        .global-nav--searching .gn-searchform-input {
             padding: 0 1em;
             opacity: 1;
             transform: scaleX(1);
         }
 
-        .gh-menu-item:nth-child(1),
-        .global-header--searching .gh-menu-item:nth-child(4) {
+        .gn-menu-item:nth-child(1),
+        .global-nav--searching .gn-menu-item:nth-child(4) {
             transition-delay: 0ms, 0ms;
         }
 
-        .gh-menu-item:nth-child(2),
-        .global-header--searching .gh-menu-item:nth-child(3) {
+        .gn-menu-item:nth-child(2),
+        .global-nav--searching .gn-menu-item:nth-child(3) {
             transition-delay: 50ms, 50ms;
         }
 
-        .gh-menu-item:nth-child(3),
-        .global-header--searching .gh-menu-item:nth-child(2) {
+        .gn-menu-item:nth-child(3),
+        .global-nav--searching .gn-menu-item:nth-child(2) {
             transition-delay: 100ms, 100ms;
         }
 
-        .gh-menu-item:nth-child(4),
-        .global-header--searching .gh-menu-item:nth-child(1) {
+        .gn-menu-item:nth-child(4),
+        .global-nav--searching .gn-menu-item:nth-child(1) {
             transition-delay: 150ms, 150ms;
         }
 
-        .gh-menu-items .gh-searchform-input:focus {
+        .gn-menu-items .gn-searchform-input:focus {
             outline: 0 none;
         }
 
         @media screen and (max-width: 580px) {
-            .global-header {
+            .global-nav {
                 padding: 0 20px;
             }
 
-            .gh-kravis-content::after {
+            .gn-kravis-content::after {
                 content: "Blog";
             }
         }
 
         @media screen and (max-width: 470px) {
-            .global-header {
+            .global-nav {
                 padding: 0;
                 height: auto;
                 border-bottom: 0 none;
             }
 
-            .global-header,
-            .no-backdropfilter .global-header {
+            .global-nav,
+            .no-backdropfilter .global-nav {
                 background: none;
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
             }
 
-            .gh-wrapper {
+            .gn-wrapper {
                 flex-direction: column;
             }
-            .gh-icons,
-            .gh-menu {
+            .gn-icons,
+            .gn-menu {
                 background: rgba(255, 255, 255, 0.6);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
             }
 
-            .no-backdropfilter .gh-icons {
+            .gn-menu {
+                min-width: 320px;
+            }
+
+            .no-backdropfilter .gn-icons {
                 background: rgba(255, 255, 255, 0.98);
             }
 
-            .no-backdropfilter .gh-menu {
+            .no-backdropfilter .gn-menu {
                 background: rgba(240, 240, 240, 0.98);
             }
 
-            .gh-icons {
+            .gn-icons {
                 width: 100%;
                 display: flex;
                 position: relative;
@@ -405,15 +409,15 @@
                 z-index: 10;
             }
 
-            .gh-kravis {
+            .gn-kravis {
                 margin-left: 15px;
             }
 
-            .gh-menu-icon {
+            .gn-menu-icon {
                 display: block;
             }
 
-            .gh-menu {
+            .gn-menu {
                 position: absolute;
                 left: 0;
                 width: 100%;
@@ -427,42 +431,42 @@
                 will-change: transform, opacity;
             }
 
-            .global-header--closed .gh-menu {
+            .global-nav--closed .gn-menu {
                 transition: none;
             }
 
-            .global-header--opened .gh-menu {
+            .global-nav--opened .gn-menu {
                 transform: translateY(0);
                 opacity: 1;
                 transition: transform 500ms cubic-bezier(0.28, 0.11, 0.32, 1);
 
             }
 
-            .gh-menu-items {
+            .gn-menu-items {
                 flex-direction: column;
                 padding: 0.5em 0 1em 0;
             }
 
-            .gh-menu-item {}
+            .gn-menu-item {}
 
-            .gh-menu-item.has-sub {
+            .gn-menu-item.has-sub {
                 padding-right: 0;
-                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-hignlignt-color: rgba(0, 0, 0, 0);
             }
 
-            .gh-menu-item.has-sub:hover {
+            .gn-menu-item.has-sub:hover {
                 height: auto;
             }
 
-            .gh-menu-item.search {
+            .gn-menu-item.search {
                 display: none;
             }
 
-            .global-header-link--opened.types {
+            .global-nav-link--opened.types {
                 margin-bottom: 1em;
             }
 
-            .gh-searchform-input {
+            .gn-searchform-input {
                 position: relative;
                 opacity: 1;
                 transform: none;
@@ -472,18 +476,18 @@
                 height: 2.5em;
             }
 
-            .gh-searchform-input,
-            .gh-menu-item > a,
-            .gh-menu-item:nth-child(1) > a {
+            .gn-searchform-input,
+            .gn-menu-item > .gn-menu-link,
+            .gn-menu-item:nth-child(1) > .gn-menu-link {
                 width: 100%;
-                padding: 0 1.2em !important;
+                padding: 0 1.2em;
             }
 
-            .gh-menu-item > a {
+            .gn-menu-item > .gn-menu-link {
                 box-sizing: border-box;
             }
 
-            .gh-menu-item.has-sub > a::after {
+            .gn-menu-item.has-sub > .gn-menu-link::after {
                 height: 3em;
                 transition: transform 0.5s;
                 will-change: transform;
@@ -491,11 +495,11 @@
                 right: 1.2em;
             }
 
-            .global-header-link--opened > a::after {
+            .global-nav-link--opened > .gn-menu-link::after {
                 transform: rotateX(-180deg);
             }
 
-            .gh-menu-sub-items {
+            .gn-menu-sub-items {
                 top: 0;
                 margin: 0;
                 padding: 0.5em;
@@ -510,54 +514,54 @@
                 visibility: hidden;
             }
 
-            .global-header-link--opened > .gh-menu-sub-items {
+            .global-nav-link--opened > .gn-menu-sub-items {
                 position: inherit;
                 visibility: visible;
             }
 
-            .gh-menu-sub-items::before,
-            .gh-menu-sub-items::after {
+            .gn-menu-sub-items::before,
+            .gn-menu-sub-items::after {
                 display: none;
             }
 
-            .gh-menu-sub-item {
+            .gn-menu-sub-item {
                 transform: translateY(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
             }
 
-            .global-header-link--opened .gh-menu-sub-item {
+            .global-nav-link--opened .gn-menu-sub-item {
                 transform: translateY(0);
                 opacity: 1;
                 transition: opacity 500ms ease, transform 500ms ease;
                 will-change: opacity, transform;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(1) {
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(1) {
                 transition-delay: 0s;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(2) {
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(2) {
                 transition-delay: 0.07s;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(3) {
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(3) {
                 transition-delay: 0.14s;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(4) {
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(4) {
                 transition-delay: 0.21s;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(5) {
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(5) {
                 transition-delay: 0.28s;
             }
 
-            .global-header-link--opened .gh-menu-sub-item:nth-child(6) {
-                transition-delay: 0.25s;
+            .global-nav-link--opened .gn-menu-sub-item:nth-child(6) {
+                transition-delay: 0.35s;
             }
 
-            .gh-menu-sub-item > a {
+            .gn-menu-sub-link {
                 height: 2.5em;
                 line-height: 2.5em;
                 padding-left: 2.4em;
@@ -566,68 +570,69 @@
     </style>
 </head>
 <body>
-<nav class="global-header">
-    <div class="gh-wrapper">
+<nav class="global-nav">
+    <div class="gn-wrapper">
 
-        <div class="gh-icons">
-            <span class="gh-icons-item gh-kravis"><a href="#" class="gh-kravis-content"></a></span>
-            <span class="gh-icons-item gh-menu-icon js">
-                <span class="gh-menu-icon--top"><span class="gh-menu-icon--top-content"></span></span>
-                <span class="gh-menu-icon--middle"><span class="gh-menu-icon--middle-content"></span></span>
-                <span class="gh-menu-icon--bottom"><span class="gh-menu-icon--bottom-content"></span></span>
+        <div class="gn-icons">
+            <span class="gn-icons-item gn-kravis"><a href="#" class="gn-kravis-content"></a></span>
+            <span class="gn-icons-item gn-menu-icon js">
+                <span class="gn-menu-icon--top"><span class="gn-menu-icon--top-content"></span></span>
+                <span class="gn-menu-icon--middle"><span class="gn-menu-icon--middle-content"></span></span>
+                <span class="gn-menu-icon--bottom"><span class="gn-menu-icon--bottom-content"></span></span>
             </span>
         </div>
 
-        <div class="gh-menu js">
-            <ul class="gh-menu-items">
-                <li class="gh-menu-item about">
-                    <a href="#">About</a>
+        <div class="gn-menu js">
+            <ul class="gn-menu-items">
+                <li class="gn-menu-item about">
+                    <a class="gn-menu-link" href="#">About</a>
                 </li>
 
-                <li class="gh-menu-item demos has-sub">
-                    <a href="#">Demos</a>
-                    <ul class="gh-menu-sub-items">
-                        <li class="gh-menu-sub-item"><a href="#">Music Player</a></li>
-                        <li class="gh-menu-sub-item"><a href="#">Lyric Controller</a></li>
-                        <li class="gh-menu-sub-item"><a href="#">Music Controller</a></li>
+                <li class="gn-menu-item demos has-sub">
+                    <a class="gn-menu-link" href="#">Demos</a>
+                    <ul class="gn-menu-sub-items">
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Music Player</a></li>
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Lyric Controller</a></li>
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Music Controller</a></li>
                     </ul>
                 </li>
 
-                <li class="gh-menu-item types has-sub">
-                    <a href="#">Types</a>
-                    <ul class="gh-menu-sub-items">
-                        <li class="gh-menu-sub-item"><a href="#">Ariticle</a></li>
-                        <li class="gh-menu-sub-item"><a href="#">Photo</a></li>
-                        <li class="gh-menu-sub-item"><a href="#">Others</a></li>
+                <li class="gn-menu-item types has-sub">
+                    <a class="gn-menu-link" href="#">Types</a>
+                    <ul class="gn-menu-sub-items">
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Ariticle</a></li>
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Photo</a></li>
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Others</a></li>
                     </ul>
                 </li>
 
-                <li class="gh-menu-item search"><a href="#">Search</a></li>
-                <input class="gh-searchform-input" type="text" placeholder="Search">
+                <li class="gn-menu-item search"><a class="gn-menu-link" href="#">Search</a></li>
+                <input class="gn-searchform-input" type="text" placeholder="Search">
             </ul>
         </div>
 
     </div>
 </nav>
+<div id="gn-viewport-emitter"></div>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
 </p>
 </body>
 <script>
-    var globalHeader = document.querySelector(".global-header");
-    var globalHeaderMenuIcon = document.querySelector(".js.gh-menu-icon");
+    var globalHeader = document.querySelector(".global-nav");
+    var globalHeaderMenuIcon = document.querySelector(".js.gn-menu-icon");
 
-    var searchLink = document.querySelector(".gh-menu-item.search > a");
-    var searchForm = document.querySelector(".gh-searchform-input");
+    var searchLink = document.querySelector(".gn-menu-item.search > a");
+    var searchForm = document.querySelector(".gn-searchform-input");
 
 
     searchLink.onclick = function () {
-        globalHeader.classList.add("global-header--searching");
+        globalHeader.classList.add("global-nav--searching");
         searchForm.focus();
         addTranslateX();
     };
 
     function addTranslateX () {
-        var items = document.querySelectorAll(".gh-menu-item > a");
+        var items = document.querySelectorAll(".gn-menu-link");
         var left = (items[0].getBoundingClientRect()).left;
         for (var i = 0; i < items.length; i++) {
             var offset = parseInt((window.getComputedStyle(items[i], null)).paddingLeft) + ((items[i].getBoundingClientRect()).left - left);
@@ -636,20 +641,20 @@
     }
 
     function removeTranslateX() {
-        var items = document.querySelectorAll(".gh-menu-item");
+        var items = document.querySelectorAll(".gn-menu-item");
         for (var i = 0; i < items.length; i++) {
             items[i].removeAttribute("style");
         }
     }
 
     searchForm.onblur = function () {
-        globalHeader.classList.remove("global-header--searching");
+        globalHeader.classList.remove("global-nav--searching");
         removeTranslateX();
     };
 
     globalHeaderMenuIcon.onclick = function () {
-        if (globalHeader.classList.toggle("global-header--opened")) {
-            globalHeader.classList.remove("global-header--closed");
+        if (globalHeader.classList.toggle("global-nav--opened")) {
+            globalHeader.classList.remove("global-nav--closed");
         }
     };
 
@@ -664,25 +669,24 @@
     }
 
     // Mobile 下二级菜单展开
-    var linkHasSub = document.querySelectorAll(".gh-menu-item.has-sub");
+    var linkHasSub = document.querySelectorAll(".gn-menu-item.has-sub");
     var linkHasSubIndex =  linkHasSub.length;
     while (linkHasSubIndex--) {
         linkHasSub[linkHasSubIndex].onclick = function () {
-            this.classList.toggle("global-header-link--opened");
+            this.classList.toggle("global-nav-link--opened");
         };
     }
 
     // 待整理
     window.onresize = function () {
         if (document.documentElement.offsetWidth <= 470) {
-            globalHeader.classList.add("global-header--closed");
+            globalHeader.classList.add("global-nav--closed");
         } else {
-            globalHeader.classList.remove("global-header--closed");
-            globalHeader.classList.remove("global-header--opened")
+            globalHeader.classList.remove("global-nav--closed");
+            globalHeader.classList.remove("global-nav--opened")
         }
-        globalHeader.classList.remove("global-header--searching");
+        globalHeader.classList.remove("global-nav--searching");
         removeTranslateX();
     };
-    // 05.12 17:26
 </script>
 </html>
