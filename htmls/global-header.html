@@ -24,7 +24,7 @@
 
         .global-nav {
             box-sizing: border-box;
-            height: 3em;
+            height: 49px;
             width: 100%;
             min-width: 320px;
             padding: 0 20px;
@@ -299,15 +299,6 @@
             box-sizing: border-box;
         }
 
-        .gn-menu-item {
-            transition-property: opacity, transform;
-            transition-duration: 250ms, 250ms;
-        }
-
-        .global-nav--searching .gn-menu-item {
-            opacity: 0;
-            transition-duration: 250ms, 250ms;
-        }
 
         .gn-searchform-input {
             position: absolute;
@@ -321,7 +312,7 @@
             opacity: 0;
             transform: scaleX(0);
             transform-origin: right;
-            transition: transform 4000ms, opacity 4000ms, padding 4000ms;
+            transition: transform 400ms, opacity 400ms, padding 400ms;
             will-change: transform, opacity, padding;
         }
 
@@ -331,22 +322,47 @@
             transform: scaleX(1);
         }
 
-        .gn-menu-item:nth-child(1),
+        .gn-menu-item {
+            opacity: 1;
+            visibility: visible;
+            transition-property: transform, opacity, visibility;
+            transition-duration: 250ms, 250ms;
+        }
+
+        .gn-menu-item:nth-child(4) {
+            transition-delay: 150ms, 230ms;
+        }
+
+        .gn-menu-item:nth-child(3) {
+            transition-delay: 100ms, 170ms;
+        }
+
+        .gn-menu-item:nth-child(2) {
+            transition-delay: 50ms, 110ms;
+        }
+
+        .gn-menu-item:nth-child(1) {
+            transition-delay: 0ms, 0ms;
+        }
+
+        .global-nav--searching .gn-menu-item {
+            opacity: 0;
+            visibility: hidden;
+            transition-duration: 250ms, 100ms;
+        }
+
         .global-nav--searching .gn-menu-item:nth-child(4) {
             transition-delay: 0ms, 0ms;
         }
 
-        .gn-menu-item:nth-child(2),
         .global-nav--searching .gn-menu-item:nth-child(3) {
             transition-delay: 50ms, 50ms;
         }
-
-        .gn-menu-item:nth-child(3),
+        
         .global-nav--searching .gn-menu-item:nth-child(2) {
             transition-delay: 100ms, 100ms;
         }
 
-        .gn-menu-item:nth-child(4),
         .global-nav--searching .gn-menu-item:nth-child(1) {
             transition-delay: 150ms, 150ms;
         }
@@ -631,26 +647,28 @@
 <script>
 var GlobalNavigationController = {
     create: function () {
-        var obj = {};
+        var o = {};
 
-        obj.name = "GlobalNavigationController";
+        o.name = "GlobalNavigationController";
 
-        obj.initialize = function () {
+        o.initialize = function () {
             this.setNodeReferences();
             this.featureDetection();
             this.setNodeEvents();
         };
 
-        obj.setNodeReferences = function () {
+        o.setNodeReferences = function () {
             this.globalNav = document.querySelector(".global-nav");
             this.globalNavMenuIcon = document.querySelector(".js.gn-menu-icon");
             this.searchLink = document.querySelector(".gn-menu-item.search > a");
             this.searchForm = document.querySelector(".gn-searchform-input");
             this.viewportEmitter = document.querySelector("#gn-viewport-emitter");
+            this.menuLinks = document.querySelectorAll(".gn-menu-link");
+            this.menuItems = document.querySelectorAll(".gn-menu-item");
             this.root = document.documentElement; // <html>
         };
 
-        obj.featureDetection = function () {
+        o.featureDetection = function () {
             // Detect back-drop-filter
             this.hasBackdropFilter = ('webkitBackdropFilter' in this.root.style || 'backdropFilter' in this.root.style);
             // Set back-drop-filter
@@ -659,26 +677,51 @@ var GlobalNavigationController = {
             }
         };
 
-        obj.setNodeEvents = function () {
+        o.setNodeEvents = function () {
             this.searchLink.addEventListener("click", this.onSearchLinkClick, false);
             this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick, false);
+            this.searchForm.addEventListener("blur", this.onSearchFormBlur, false);
         };
 
-        obj.onSearchLinkClick = function () {
-            obj.globalNav.classList.add("global-nav--searching");
+        o.onSearchLinkClick = function () {
+            o.globalNav.classList.add("global-nav--searching");
+            o.addTranslateX();
+            // 以上两行不能颠倒位置
             // 判断 searchForm 的动画完成，完成后 focus 到 searchForm
+            o.searchForm.focus();
+
         };
 
-        obj.onMenuIconClick = function () {
-            if (obj.globalNav.classList.toggle("global-nav--opened")) {
-                obj.globalNav.classList.remove("global-nav--closed");
+        o.addTranslateX = function () {
+            var _left = (this.menuLinks[0].getBoundingClientRect()).left;
+            for (var i = 0; i < this.menuLinks.length; i++) {
+                var offset = parseInt((window.getComputedStyle(this.menuLinks[i], null)).paddingLeft) + ((this.menuLinks[i].getBoundingClientRect()).left - _left);
+                this.menuLinks[i].parentNode.style.transform = "translateX(-" + offset + "px)";
+            }
+        }
+
+        o.onSearchFormBlur = function () {
+            o.globalNav.classList.remove("global-nav--searching");
+            o.removeTranslateX();
+        }
+
+        // 加入 onblur 事件
+        o.removeTranslateX = function () {
+            for (var i = 0; i < this.menuItems.length; i++) {
+                this.menuItems[i].removeAttribute("style");
+            }
+        }
+
+        o.onMenuIconClick = function () {
+            if (o.globalNav.classList.toggle("global-nav--opened")) {
+                o.globalNav.classList.remove("global-nav--closed");
             } else {
-                obj.globalNav.classList.add("global-nav--closed");
+                o.globalNav.classList.add("global-nav--closed");
             }
         };
 
-        obj.initialize();
-        return obj;
+        o.initialize();
+        return o;
     }
 };
 
