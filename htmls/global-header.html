@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-backdropfilter">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -99,7 +99,7 @@
         .gn-button,
         .gn-menu-item.has-sub > .gn-menu-link {
             cursor: pointer;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .gn-menu-icon--top,
@@ -355,6 +355,14 @@
             outline: 0 none;
         }
 
+        #gn-viewport-emitter {
+            display: none;
+        }
+
+        #gn-viewport-emitter::after {
+            content: "medium"
+        }
+
         @media screen and (max-width: 580px) {
             .global-nav {
                 padding: 0 20px;
@@ -429,13 +437,14 @@
                 transform: translateY(-150%);
                 opacity: 0;
                 box-shadow: 0 5px 5px rgba(0,0,0,0.20);
-                transition: transform 0.6s, opacity 0s 0.6s;
                 will-change: transform, opacity;
             }
 
             .global-nav--closed .gn-menu {
-                transition: none;
+                transition: transform 0.6s, opacity 0s 0.6s;
             }
+
+            /*ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR*/
 
             .global-nav--opened .gn-menu {
                 transform: translateY(0);
@@ -564,6 +573,10 @@
                 line-height: 2.5em;
                 padding-left: 2.4em;
             }
+
+            #gn-viewport-emitter::after {
+                content: "small"
+            }
         }
     </style>
 </head>
@@ -616,75 +629,59 @@
 </p>
 </body>
 <script>
-    var globalHeader = document.querySelector(".global-nav");
-    var globalHeaderMenuIcon = document.querySelector(".js.gn-menu-icon");
+var GlobalNavigationController = {
+    create: function () {
+        var obj = {};
 
-    var searchLink = document.querySelector(".gn-menu-item.search > a");
-    var searchForm = document.querySelector(".gn-searchform-input");
+        obj.name = "GlobalNavigationController";
 
-
-    searchLink.onclick = function () {
-        globalHeader.classList.add("global-nav--searching");
-        searchForm.focus();
-        addTranslateX();
-    };
-
-    function addTranslateX () {
-        var items = document.querySelectorAll(".gn-menu-link");
-        var left = (items[0].getBoundingClientRect()).left;
-        for (var i = 0; i < items.length; i++) {
-            var offset = parseInt((window.getComputedStyle(items[i], null)).paddingLeft) + ((items[i].getBoundingClientRect()).left - left);
-            items[i].parentNode.style.transform = "translateX(-" + offset + "px)";
-        }
-    }
-
-    function removeTranslateX() {
-        var items = document.querySelectorAll(".gn-menu-item");
-        for (var i = 0; i < items.length; i++) {
-            items[i].removeAttribute("style");
-        }
-    }
-
-    searchForm.onblur = function () {
-        globalHeader.classList.remove("global-nav--searching");
-        removeTranslateX();
-    };
-
-    globalHeaderMenuIcon.onclick = function () {
-        if (globalHeader.classList.toggle("global-nav--opened")) {
-            globalHeader.classList.remove("global-nav--closed");
-        }
-    };
-
-    var root = document.documentElement; // <html>
-
-    if ('webkitBackdropFilter' in root.style ||
-            'backdropFilter' in root.style) {
-        root.classList.add('textshadow');
-    }
-    else {
-        root.classList.add('no-backdropfilter');
-    }
-
-    // Mobile 下二级菜单展开
-    var linkHasSub = document.querySelectorAll(".gn-menu-item.has-sub");
-    var linkHasSubIndex =  linkHasSub.length;
-    while (linkHasSubIndex--) {
-        linkHasSub[linkHasSubIndex].onclick = function () {
-            this.classList.toggle("global-nav-link--opened");
+        obj.initialize = function () {
+            this.setNodeReferences();
+            this.featureDetection();
+            this.setNodeEvents();
         };
-    }
 
-    // 待整理
-    window.onresize = function () {
-        if (document.documentElement.offsetWidth <= 470) {
-            globalHeader.classList.add("global-nav--closed");
-        } else {
-            globalHeader.classList.remove("global-nav--closed");
-            globalHeader.classList.remove("global-nav--opened")
-        }
-        globalHeader.classList.remove("global-nav--searching");
-        removeTranslateX();
-    };
+        obj.setNodeReferences = function () {
+            this.globalNav = document.querySelector(".global-nav");
+            this.globalNavMenuIcon = document.querySelector(".js.gn-menu-icon");
+            this.searchLink = document.querySelector(".gn-menu-item.search > a");
+            this.searchForm = document.querySelector(".gn-searchform-input");
+            this.viewportEmitter = document.querySelector("#gn-viewport-emitter");
+            this.root = document.documentElement; // <html>
+        };
+
+        obj.featureDetection = function () {
+            // Detect back-drop-filter
+            this.hasBackdropFilter = ('webkitBackdropFilter' in this.root.style || 'backdropFilter' in this.root.style);
+            // Set back-drop-filter
+            if (this.hasBackdropFilter) {
+                this.root.classList.remove('no-backdropfilter');
+            }
+        };
+
+        obj.setNodeEvents = function () {
+            this.searchLink.addEventListener("click", this.onSearchLinkClick, false);
+            this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick, false);
+        };
+
+        obj.onSearchLinkClick = function () {
+            obj.globalNav.classList.add("global-nav--searching");
+            // 判断 searchForm 的动画完成，完成后 focus 到 searchForm
+        };
+
+        obj.onMenuIconClick = function () {
+            if (obj.globalNav.classList.toggle("global-nav--opened")) {
+                obj.globalNav.classList.remove("global-nav--closed");
+            } else {
+                obj.globalNav.classList.add("global-nav--closed");
+            }
+        };
+
+        obj.initialize();
+        return obj;
+    }
+};
+
+var GNC = GlobalNavigationController.create();
 </script>
 </html>
