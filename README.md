@@ -49,6 +49,8 @@ short style:
 - [x] 移除 iOS Safari 的 outline；
 - [x] 将部分单位修改为 em；
 - [x] 加入 JavaScript 用以自动计算 `transform: translateX(<value>)` 的值；
+- [x] 更合理的消除 `-webkit-tap-highlight-color`；
+- [x] 完善 `gn-menu-icon` 的动画，调整 `gn-menu-icon--middle-content` 的位置；
 - [ ] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
 - [ ] 进一步完善 `.gh-menu-list.has-sub` 的动画；
 - [ ] 参考 Github，优化 `:hover` 伪类；

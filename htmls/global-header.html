@@ -8,7 +8,7 @@
         body,
         input {
             font-size: 100%;
-            font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft Jhengnei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+            font-family: "Myriad Set Pro", -apple-system, -apple-system-font, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -66,9 +66,6 @@
             line-height: 3em;
         }
 
-        .gn-kravis,
-        .gn-kravis-content {}
-
         .gn-icons,
         .gn-menu {
             height: 3em;
@@ -95,6 +92,14 @@
             position: relative;
             overflow: hidden;
             will-change: transform;
+            transform: rotate(0deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+        }
+
+        .gn-button,
+        .gn-menu-item.has-sub > .gn-menu-link {
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
         .gn-menu-icon--top,
@@ -116,13 +121,6 @@
             height: 48px;
         }
 
-        .gn-menu-icon {
-            transform: rotate(0deg);
-            transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-            cursor: pointer;
-            -webkit-tap-hignlignt-color: rgba(0, 0, 0, 0);
-        }
-
         .gn-menu-icon--top,
         .gn-menu-icon--middle,
         .gn-menu-icon--bottom {
@@ -140,11 +138,6 @@
             background: #000;
         }
 
-        .gn-menu-icon--top-content,
-        .gn-menu-icon--bottom-content {
-            transition: transform 0.25s 0.2s;
-        }
-
         .gn-menu-icon--top-content {
             top: 23px;
             transform: translateY(-6px);
@@ -152,8 +145,8 @@
 
         .gn-menu-icon--middle-content {
             top: 50%;
-            transform: translateY(0px) scaleX(1);
-            transition: transform 0.25s;
+            transform: translateY(-0.5px);
+            opacity: 1;
         }
 
         .gn-menu-icon--bottom-content {
@@ -161,9 +154,29 @@
             transform: translateY(6px);
         }
 
-        /* OPENED */
+        .gn-menu-icon--top-content,
+        .gn-menu-icon--bottom-content {
+            transition: transform 0.25s 0.2s;
+        }
+
+        .gn-menu-icon--middle-content {
+            transition: opacity 0s 0.2s;
+        }
+
         .global-nav--opened .gn-menu-icon {
             transform: rotate(90deg);
+        }
+
+        .global-nav--opened .gn-menu-icon--top {
+            transform: rotate(45deg);
+        }
+
+        .global-nav--opened .gn-menu-icon--middle {
+            transform: rotate(0deg);
+        }
+
+        .global-nav--opened .gn-menu-icon--bottom {
+            transform: rotate(-45deg);
         }
 
         .global-nav--opened .gn-menu-icon--top,
@@ -172,23 +185,14 @@
             transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         }
 
-        .global-nav--opened .gn-menu-icon--top {
-            transform: rotate(45deg);
-        }
-
-        .global-nav--opened .gn-menu-icon--bottom {
-            transform: rotate(-45deg);
-        }
-
         .global-nav--opened .gn-menu-icon--top-content,
-        .global-nav--opened .gn-menu-icon--middle-content,
         .global-nav--opened .gn-menu-icon--bottom-content {
             transform: translateY(0);
             transition: transform 0.2s;
         }
 
         .global-nav--opened .gn-menu-icon--middle-content {
-            transform: scaleX(0);
+            opacity: 0;
         }
 
         .gn-menu a {
@@ -229,11 +233,9 @@
             content: '';
             position: absolute;
             display: inline-block;
-
             height: 3em;
             width: 12px;
             margin-left: 5px;
-
             background: url('menu-down.svg') no-repeat center / contain;
         }
 
@@ -439,7 +441,6 @@
                 transform: translateY(0);
                 opacity: 1;
                 transition: transform 500ms cubic-bezier(0.28, 0.11, 0.32, 1);
-
             }
 
             .gn-menu-items {
@@ -447,11 +448,8 @@
                 padding: 0.5em 0 1em 0;
             }
 
-            .gn-menu-item {}
-
             .gn-menu-item.has-sub {
                 padding-right: 0;
-                -webkit-tap-hignlignt-color: rgba(0, 0, 0, 0);
             }
 
             .gn-menu-item.has-sub:hover {
@@ -575,7 +573,7 @@
 
         <div class="gn-icons">
             <span class="gn-icons-item gn-kravis"><a href="#" class="gn-kravis-content"></a></span>
-            <span class="gn-icons-item gn-menu-icon js">
+            <span class="gn-icons-item gn-menu-icon js gn-button">
                 <span class="gn-menu-icon--top"><span class="gn-menu-icon--top-content"></span></span>
                 <span class="gn-menu-icon--middle"><span class="gn-menu-icon--middle-content"></span></span>
                 <span class="gn-menu-icon--bottom"><span class="gn-menu-icon--bottom-content"></span></span>
