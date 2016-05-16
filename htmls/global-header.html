@@ -679,8 +679,9 @@ var GlobalNavigationController = {
 
         o.setNodeEvents = function () {
             this.searchLink.addEventListener("click", this.onSearchLinkClick, false);
-            this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick, false);
             this.searchForm.addEventListener("blur", this.onSearchFormBlur, false);
+            this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick, false);
+            window.addEventListener("resize", o.queryViewport, false);
         };
 
         o.onSearchLinkClick = function () {
@@ -700,12 +701,12 @@ var GlobalNavigationController = {
             }
         }
 
+        // 加入 onblur 事件
         o.onSearchFormBlur = function () {
             o.globalNav.classList.remove("global-nav--searching");
             o.removeTranslateX();
         }
-
-        // 加入 onblur 事件
+        
         o.removeTranslateX = function () {
             for (var i = 0; i < this.menuItems.length; i++) {
                 this.menuItems[i].removeAttribute("style");
@@ -718,6 +719,22 @@ var GlobalNavigationController = {
             } else {
                 o.globalNav.classList.add("global-nav--closed");
             }
+        };
+
+        o.queryViewport = function () {
+            o.setViewport(window.getComputedStyle(o.viewportEmitter, "::after").content);
+        };
+
+        o.setViewport = function (_viewport) {
+            if (_viewport != this.viewport) {
+                this.onViewportChange(this.viewport, _viewport);
+                this.viewport = _viewport;
+            }
+        };
+
+        o.onViewportChange = function (_old, _new) {
+            var _flag = 0;
+            // console.log("onViewportChange: " + "old -- " + _old + "/new -- " + _new);
         };
 
         o.initialize();
