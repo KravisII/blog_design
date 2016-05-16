@@ -372,7 +372,13 @@
         }
 
         #gn-viewport-emitter {
-            display: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            z-index: -1;
         }
 
         #gn-viewport-emitter::after {
@@ -634,7 +640,7 @@
                 </li>
 
                 <li class="gn-menu-item search"><a class="gn-menu-link" href="#">Search</a></li>
-                <input class="gn-searchform-input" type="text" placeholder="Search">
+                <input class="gn-searchform-input js" type="text" placeholder="Search">
             </ul>
         </div>
 
@@ -655,6 +661,7 @@ var GlobalNavigationController = {
             this.setNodeReferences();
             this.featureDetection();
             this.setNodeEvents();
+            this.queryViewport();
         };
 
         o.setNodeReferences = function () {
@@ -723,6 +730,7 @@ var GlobalNavigationController = {
 
         o.queryViewport = function () {
             o.setViewport(window.getComputedStyle(o.viewportEmitter, "::after").content);
+            // 这里需要去除引号
         };
 
         o.setViewport = function (_viewport) {
@@ -733,9 +741,44 @@ var GlobalNavigationController = {
         };
 
         o.onViewportChange = function (_old, _new) {
+            if (_old === undefined) {
+                return;
+            }
+            console.log("OLD:" + _old);
+            console.log("NEW:" + _new);
+            // 可以用数组把这里变好看
             var _flag = 0;
-            // console.log("onViewportChange: " + "old -- " + _old + "/new -- " + _new);
+            switch (_old) {
+                case "small"  : _flag += 10; break;
+                case "medium" : _flag += 20; break;
+                case "large"  : _flag += 30; break;
+                default       : break;
+            }
+            switch (_new) {
+                case "small"  : _flag += 1; break;
+                case "medium" : _flag += 2; break;
+                case "large"  : _flag += 3; break;
+                default       : break;
+            }
+
+            switch (_flag) {
+                case 21: this.no_21(); break; // 消除 .global-nav--closed
+                case 12: this.no_12(); break; // 暂时消除 .gn-searchform-input 的 transition
+                default: break;
+            }
+            console.log(_flag);
         };
+
+        o.no_21 = function () {
+            // 消除 .global-nav--closed
+            o.globalNav.classList.remove("global-nav--closed");
+        };
+
+        o.no_12 = function () {
+            o.globalNav.classList.remove("global-nav--opened");
+            // 暂时消除 .gn-searchform-input 的 transition
+        };
+
 
         o.initialize();
         return o;
