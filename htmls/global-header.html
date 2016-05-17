@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-backdropfilter">
+<html lang="en" class="no-backdropfilter no-touch">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -686,6 +686,8 @@ var GlobalNavigationController = {
         var o = {};
 
         o.name = "GlobalNavigationController";
+        o.hasBackdropFilter = false;
+        o.touchAvailable = false;
 
         o.initialize = function () {
             this.setNodeReferences();
@@ -708,26 +710,32 @@ var GlobalNavigationController = {
 
         o.featureDetection = function () {
             // Detect back-drop-filter
-            this.hasBackdropFilter = ('webkitBackdropFilter' in this.root.style || 'backdropFilter' in this.root.style);
+            this.hasBackdropFilter = !!('webkitBackdropFilter' in this.root.style || 'backdropFilter' in this.root.style);
+            // Detect device screen can be touched
+            this.touchAvailable = !!(("ontouchstart" in window) || (window.DocumentTouch && document instanceof window.DocumentTouch) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
             // Set back-drop-filter
             if (this.hasBackdropFilter) {
                 this.root.classList.remove('no-backdropfilter');
             }
+            // Set touch
+            if (this.touchAvailable) {
+                this.root.classList.remove('no-touch');
+            }
         };
 
         o.setNodeEvents = function () {
-            this.searchLink.addEventListener("click", this.onSearchLinkClick, false);
-            this.searchForm.addEventListener("blur", this.onSearchFormBlur, false);
-            this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick, false);
-            window.addEventListener("resize", o.queryViewport, false);
+            this.searchLink.addEventListener("click", this.onSearchLinkClick.bind(this), false);
+            this.searchForm.addEventListener("blur", this.onSearchFormBlur.bind(this), false);
+            this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick.bind(this), false);
+            window.addEventListener("resize", o.queryViewport.bind(this), false);
         };
 
         o.onSearchLinkClick = function () {
-            o.globalNav.classList.add("global-nav--searching");
-            o.addTranslateX();
+            this.globalNav.classList.add("global-nav--searching");
+            this.addTranslateX();
             // 以上两行不能颠倒位置
             // 判断 searchForm 的动画完成，完成后 focus 到 searchForm
-            o.searchForm.focus();
+            this.searchForm.focus();
 
         };
 
@@ -741,8 +749,8 @@ var GlobalNavigationController = {
 
         // 加入 onblur 事件
         o.onSearchFormBlur = function () {
-            o.globalNav.classList.remove("global-nav--searching");
-            o.removeTranslateX();
+            this.globalNav.classList.remove("global-nav--searching");
+            this.removeTranslateX();
         }
         
         o.removeTranslateX = function () {
@@ -759,17 +767,17 @@ var GlobalNavigationController = {
         };
 
         o.onMenuIconClick = function () {
-            if (o.globalNav.classList.toggle("global-nav--opened")) {
-                o.globalNav.classList.remove("global-nav--closed");
+            if (this.globalNav.classList.toggle("global-nav--opened")) {
+                this.globalNav.classList.remove("global-nav--closed");
             } else {
-                o.globalNav.classList.add("global-nav--closed");
+                this.globalNav.classList.add("global-nav--closed");
             }
         };
 
         o.queryViewport = function () {
-            var _str = window.getComputedStyle(o.viewportEmitter, "::after").content;
+            var _str = window.getComputedStyle(this.viewportEmitter, "::after").content;
             var _reg = /"/g;
-            o.setViewport(_str.replace(_reg, ''));
+            this.setViewport(_str.replace(_reg, ''));
         };
 
         o.setViewport = function (_viewport) {
@@ -777,6 +785,7 @@ var GlobalNavigationController = {
                 this.onViewportChange(this.viewport, _viewport);
                 this.viewport = _viewport;
             }
+            console.log(this);
         };
 
         o.onViewportChange = function (_old, _new) {
