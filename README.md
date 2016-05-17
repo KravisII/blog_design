@@ -52,8 +52,9 @@ short style:
 - [x] 更合理的消除 `-webkit-tap-highlight-color`；
 - [x] 完善 `gn-menu-icon` 的动画，调整 `gn-menu-icon--middle-content` 的位置；
 - [x] Safari 中，若一个元素 `display: none`，则它的伪元素的值不能通过 `window.getComputedStyle(node, "::after")` 获取；
-- [ ] 使用 `getComputedStyle()` 函数获取 CSS 属性值时，应该注意「清洗」字符串，例如 `" "` 等；
-- [ ] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
+- [x] 使用 `getComputedStyle()` 函数获取 CSS 属性值时，应该注意「清洗」字符串，例如 `" "` 等；
+- [x] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
+- [x] 加入 `div.gn-curtain` 用于在 Mobile 端显示 Menu 时背景颜色加深；
 - [ ] 进一步完善 `.gh-menu-list.has-sub` 的动画；
 - [ ] 参考 Github，优化 `:hover` 伪类；
 - [ ] Android Chrome 的 `onblur` 事件异常；

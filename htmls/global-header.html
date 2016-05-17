@@ -24,13 +24,14 @@
 
         .global-nav {
             box-sizing: border-box;
+            position: relative;
             height: 49px;
             width: 100%;
             min-width: 320px;
             padding: 0 20px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             border-bottom: 1px solid #e2e2e2;
         }
 
@@ -371,6 +372,10 @@
             outline: 0 none;
         }
 
+        .no-transition {
+            transition: none !important;
+        }
+
         #gn-viewport-emitter {
             position: absolute;
             width: 0;
@@ -385,8 +390,15 @@
             content: "medium";
         }
 
-        .no-transition {
-            transition: none !important;
+        .gn-curtain {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.2);
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease, width 0.001s ease 1.2s, height 0.001s ease 1.2s;
         }
 
         @media screen and (max-width: 580px) {
@@ -418,13 +430,15 @@
             }
             .gn-icons,
             .gn-menu {
-                background: rgba(255, 255, 255, 0.6);
+                position: relative;
+                background: rgba(255, 255, 255, 0.8);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
             }
 
             .gn-menu {
                 min-width: 320px;
+                z-index: 9;
             }
 
             .no-backdropfilter .gn-icons {
@@ -438,7 +452,6 @@
             .gn-icons {
                 width: 100%;
                 display: flex;
-                position: relative;
                 flex-direction: row;
                 justify-content: space-between;
                 border-bottom: 1px solid #e2e2e2;
@@ -469,8 +482,6 @@
             .global-nav--closed .gn-menu {
                 transition: transform 0.6s, opacity 0s 0.6s;
             }
-
-            /*ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR*/
 
             .global-nav--opened .gn-menu {
                 transform: translateY(0);
@@ -603,6 +614,13 @@
             #gn-viewport-emitter::after {
                 content: "small";
             }
+
+            .global-nav--opened ~ .gn-curtain {
+                opacity: 1;
+                width: 100%;
+                height: 100%;
+                transition: opacity 1s ease;
+            }
         }
     </style>
 </head>
@@ -651,6 +669,7 @@
     </div>
 </nav>
 <div id="gn-viewport-emitter"></div>
+<div class="gn-curtain"></div>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium optio totam quis eaque, assumenda quidem quibusdam expedita veniam facilis amet, natus eos, nostrum autem aut obcaecati consequatur! Voluptas, quidem! ipsum dolor sit amet, consectetur adipisicing elit. Id, adipisci. Numquam, eaque. Ducimus quisquam accusantium, a hic adipisci dolor repellendus consequuntur tempore ullam nisi commodi, labore aliquam consequatur obcaecati possimus. ipsum dolor sit amet, consectetur adipisicing elit. Commodi, atque, unde? Sed optio reiciendis voluptate similique aperiam ratione suscipit quidem at, ex? Vitae a molestiae sint nulla totam obcaecati accusantium? ipsum dolor sit amet, consectetur adipisicing elit. Unde dolore harum iste veniam voluptas qui expedita ratione neque similique molestias quod, cumque explicabo error facilis voluptates cupiditate, quia, provident nihil. ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolorem nemo debitis suscipit ipsum error reprehenderit cupiditate obcaecati iste sunt? Deserunt quis quam fuga autem odit dicta maiores voluptatum laudantium. ipsum dolor sit amet, consectetur adipisicing elit. Ut esse ab quia reiciendis eius quidem, aut. Accusamus ad adipisci beatae consequatur officia quidem facere quia, eos dignissimos, corporis quae nobis! ipsum dolor sit amet, consectetur adipisicing elit. Debitis, officiis animi adipisci tempora nam dolorum obcaecati impedit, mollitia reiciendis dicta dolorem maxime voluptates optio tenetur sapiente soluta nulla sunt ad? ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam numquam, illum a. Officiis qui deserunt possimus placeat quasi, quas error! Porro quaerat culpa ipsum enim, amet asperiores voluptatum provident? ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus dolore aliquam ratione alias iste quos possimus sed fugiat temporibus quae libero in exercitationem, ipsam excepturi tenetur. Quia ea, suscipit. ipsum dolor sit amet, consectetur adipisicing elit. Autem, odio. Laborum sit mollitia saepe numquam asperiores quisquam, fuga placeat fugiat aliquam itaque suscipit maxime pariatur debitis, natus. Harum in, beatae? ipsum dolor sit amet, consectetur adipisicing elit. Ratione quod similique exercitationem nemo odio quos quibusdam modi alias consectetur veritatis ullam minima cupiditate iure, vel. Eaque soluta itaque, sapiente iure? ipsum dolor sit amet, consectetur adipisicing elit. Quam laudantium quo, cumque explicabo consequatur, nostrum ipsa magnam. Soluta dolorem illo tempora id blanditiis ut nihil nam. Minus aliquid vitae commodi? ipsum dolor sit amet, consectetur adipisicing elit. Eius vero perferendis veritatis at iste molestias earum accusamus vel asperiores ipsa aperiam aliquam dolorum aut dolore, animi saepe pariatur, corrupti, eum. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio perspiciatis, rerum hic ut cum nihil, deleniti odit voluptatum rem eum, fuga accusantium magnam laudantium. Nam sapiente, cum natus error consequuntur. ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, optio architecto beatae repellendus molestiae eum hic rem dicta, suscipit commodi dolores, mollitia expedita repudiandae qui sit excepturi reiciendis quidem quam. ipsum dolor sit amet, consectetur adipisicing elit. Eaque assumenda reprehenderit odit praesentium sint, quae hic repudiandae. Optio, dignissimos temporibus, soluta eveniet, laudantium magnam consequatur minima omnis iste maiores iure.
 </p>
 </body>
@@ -786,8 +805,8 @@ var GlobalNavigationController = {
         };
 
         o.no_12 = function () {
-            // resize 时触发
-            // o.globalNav.classList.remove("global-nav--opened");
+            // resize, 点击别处时触发
+            o.globalNav.classList.remove("global-nav--opened");
 
             // 暂时消除 `.gn-searchform-input` 的 `transition`
             this.searchForm.classList.add("no-transition");
@@ -821,6 +840,48 @@ var GlobalNavigationController = {
         return o;
     }
 };
+
+// Apple.com JS Code: 
+
+        // u._blockTransitions = function() {
+        //     f.add(this.el, v);
+        //     window.requestAnimationFrame(this._unblockTransitions.bind(this))
+        // };
+        // u._unblockTransitions = function() {
+        //     f.remove(this.el, v)
+        // };
+
+        //     g._updateViewport = function() {
+        //     var m = this.viewport;
+        //     var n;
+        //     var o;
+        //     this.viewport = this._getElementContent();
+        //     if (this.viewport) {
+        //         this.viewport = this.viewport.split(":").pop()
+        //     }
+        //     if (m && this.viewport !== m) {
+        //         o = {
+        //             from: m,
+        //             to: this.viewport
+        //         };
+        //         this.trigger("change", o);
+        //         this.trigger("from:" + m, o);
+        //         this.trigger("to:" + this.viewport, o)
+        //     }
+        // };
+
+        //     d.trigger = function(g, j) {
+        //     if (!this.has(g)) {
+        //         return
+        //     }
+        //     for (var h = this._events[g].length - 1; h >= 0; h--) {
+        //         if (j !== undefined) {
+        //             this._events[g][h](j)
+        //         } else {
+        //             this._events[g][h]()
+        //         }
+        //     }
+        // }
 
 var GNC = GlobalNavigationController.create();
 </script>
