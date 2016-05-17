@@ -372,8 +372,15 @@
             outline: 0 none;
         }
 
-        .no-transition {
+        .no-transition,
+        .no-transition ~ *,
+        .no-transition::before,
+        .no-transition::after,
+        .no-transition *,
+        .no-transition * ::before,
+        .no-transition * ::after {
             transition: none !important;
+            will-change: auto !important;
         }
 
         #gn-viewport-emitter {
@@ -446,7 +453,7 @@
             }
 
             .no-backdropfilter .gn-menu {
-                background: rgba(240, 240, 240, 0.98);
+                background: rgba(250, 250, 250, 0.98);
             }
 
             .gn-icons {
@@ -773,116 +780,30 @@ var GlobalNavigationController = {
         };
 
         o.onViewportChange = function (_old, _new) {
-            // 要不全加一个 `.global-nav--viewport-changing` ?
             if (_old === undefined) {
                 return;
             }
-            // 可以用数组把这里变好看
             var _flag = 0;
-            switch (_old) {
-                case "small"  : _flag += 10; break;
-                case "medium" : _flag += 20; break;
-                // case "large"  : _flag += 30; break;
-                default       : break;
-            }
-            switch (_new) {
-                case "small"  : _flag += 1; break;
-                case "medium" : _flag += 2; break;
-                // case "large"  : _flag += 3; break;
-                default       : break;
-            }
-
-            switch (_flag) {
-                case 21: this.no_21(); break; // 消除 `.global-nav--closed`
-                case 12: this.no_12(); break; // 暂时消除 `.gn-searchform-input` 的 `transition`
-                default: break;
-            }
+            this.blockTransitions();
         };
 
-        o.no_21 = function () {
-            // 消除 `.global-nav--closed`
-            o.globalNav.classList.remove("global-nav--closed");
+        o.blockTransitions = function () {
+            this.globalNav.classList.add("no-transition");
+            // Safari 下删除 will-change 后有效。
+            // Chrome 下不起作用。
+            // window.requestAnimationFrame(this.unblockTransitions.bind(this));
+            // 临时使用 setTimeout
+            window.setTimeout(this.unblockTransitions.bind(this), 1);
         };
 
-        o.no_12 = function () {
-            // resize, 点击别处时触发
-            o.globalNav.classList.remove("global-nav--opened");
-
-            // 暂时消除 `.gn-searchform-input` 的 `transition`
-            this.searchForm.classList.add("no-transition");
-            o.classNameOperating(o.menuSubItems, "no-transition", "add");            
-            setTimeout(function () {
-                o.searchForm.classList.remove("no-transition");
-                o.classNameOperating(o.menuSubItems, "no-transition", "remove");
-            }, 500);
-        };
-
-
-        o.classNameOperating = function (_obj, _className, _operating) {
-            if (typeof(_className) != "string" || (_operating != "remove" && _operating != "add")) {
-                return;
-            }
-            if (_obj == '[object NodeList]') {
-                var _length = _obj.length;
-                if (_operating === "remove") {
-                    for (var i = 0; i < _length; i++) {
-                        _obj[i].classList.remove(_className);
-                    }
-                } else {
-                    for (var i = 0; i < _length; i++) {
-                        _obj[i].classList.add(_className);
-                    }
-                }
-            }
+        o.unblockTransitions = function () {
+            this.globalNav.classList.remove("no-transition");
         };
 
         o.initialize();
         return o;
     }
 };
-
-// Apple.com JS Code: 
-
-        // u._blockTransitions = function() {
-        //     f.add(this.el, v);
-        //     window.requestAnimationFrame(this._unblockTransitions.bind(this))
-        // };
-        // u._unblockTransitions = function() {
-        //     f.remove(this.el, v)
-        // };
-
-        //     g._updateViewport = function() {
-        //     var m = this.viewport;
-        //     var n;
-        //     var o;
-        //     this.viewport = this._getElementContent();
-        //     if (this.viewport) {
-        //         this.viewport = this.viewport.split(":").pop()
-        //     }
-        //     if (m && this.viewport !== m) {
-        //         o = {
-        //             from: m,
-        //             to: this.viewport
-        //         };
-        //         this.trigger("change", o);
-        //         this.trigger("from:" + m, o);
-        //         this.trigger("to:" + this.viewport, o)
-        //     }
-        // };
-
-        //     d.trigger = function(g, j) {
-        //     if (!this.has(g)) {
-        //         return
-        //     }
-        //     for (var h = this._events[g].length - 1; h >= 0; h--) {
-        //         if (j !== undefined) {
-        //             this._events[g][h](j)
-        //         } else {
-        //             this._events[g][h]()
-        //         }
-        //     }
-        // }
-
 var GNC = GlobalNavigationController.create();
 </script>
 </html>
