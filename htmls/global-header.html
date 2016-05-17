@@ -382,7 +382,11 @@
         }
 
         #gn-viewport-emitter::after {
-            content: "medium"
+            content: "medium";
+        }
+
+        .no-transition {
+            transition: none !important;
         }
 
         @media screen and (max-width: 580px) {
@@ -597,7 +601,7 @@
             }
 
             #gn-viewport-emitter::after {
-                content: "small"
+                content: "small";
             }
         }
     </style>
@@ -672,6 +676,7 @@ var GlobalNavigationController = {
             this.viewportEmitter = document.querySelector("#gn-viewport-emitter");
             this.menuLinks = document.querySelectorAll(".gn-menu-link");
             this.menuItems = document.querySelectorAll(".gn-menu-item");
+            this.menuSubItems = document.querySelectorAll(".gn-menu-sub-items");
             this.root = document.documentElement; // <html>
         };
 
@@ -715,10 +720,17 @@ var GlobalNavigationController = {
         }
         
         o.removeTranslateX = function () {
-            for (var i = 0; i < this.menuItems.length; i++) {
-                this.menuItems[i].removeAttribute("style");
-            }
+            this.removeStyle(this.menuItems);
         }
+
+        o.removeStyle = function (_obj) {
+            if (_obj == '[object NodeList]') {
+                var _length = _obj.length;
+                for (var i = 0; i < _length; i++) {
+                    _obj[i].removeAttribute("style");
+                }
+            }
+        };
 
         o.onMenuIconClick = function () {
             if (o.globalNav.classList.toggle("global-nav--opened")) {
@@ -729,8 +741,9 @@ var GlobalNavigationController = {
         };
 
         o.queryViewport = function () {
-            o.setViewport(window.getComputedStyle(o.viewportEmitter, "::after").content);
-            // 这里需要去除引号
+            var _str = window.getComputedStyle(o.viewportEmitter, "::after").content;
+            var _reg = /"/g;
+            o.setViewport(_str.replace(_reg, ''));
         };
 
         o.setViewport = function (_viewport) {
@@ -745,20 +758,18 @@ var GlobalNavigationController = {
             if (_old === undefined) {
                 return;
             }
-            console.log("OLD:" + _old);
-            console.log("NEW:" + _new);
             // 可以用数组把这里变好看
             var _flag = 0;
             switch (_old) {
                 case "small"  : _flag += 10; break;
                 case "medium" : _flag += 20; break;
-                case "large"  : _flag += 30; break;
+                // case "large"  : _flag += 30; break;
                 default       : break;
             }
             switch (_new) {
                 case "small"  : _flag += 1; break;
                 case "medium" : _flag += 2; break;
-                case "large"  : _flag += 3; break;
+                // case "large"  : _flag += 3; break;
                 default       : break;
             }
 
@@ -767,7 +778,6 @@ var GlobalNavigationController = {
                 case 12: this.no_12(); break; // 暂时消除 `.gn-searchform-input` 的 `transition`
                 default: break;
             }
-            console.log(_flag);
         };
 
         o.no_21 = function () {
@@ -776,10 +786,36 @@ var GlobalNavigationController = {
         };
 
         o.no_12 = function () {
-            o.globalNav.classList.remove("global-nav--opened");
+            // resize 时触发
+            // o.globalNav.classList.remove("global-nav--opened");
+
             // 暂时消除 `.gn-searchform-input` 的 `transition`
+            this.searchForm.classList.add("no-transition");
+            o.classNameOperating(o.menuSubItems, "no-transition", "add");            
+            setTimeout(function () {
+                o.searchForm.classList.remove("no-transition");
+                o.classNameOperating(o.menuSubItems, "no-transition", "remove");
+            }, 500);
         };
 
+
+        o.classNameOperating = function (_obj, _className, _operating) {
+            if (typeof(_className) != "string" || (_operating != "remove" && _operating != "add")) {
+                return;
+            }
+            if (_obj == '[object NodeList]') {
+                var _length = _obj.length;
+                if (_operating === "remove") {
+                    for (var i = 0; i < _length; i++) {
+                        _obj[i].classList.remove(_className);
+                    }
+                } else {
+                    for (var i = 0; i < _length; i++) {
+                        _obj[i].classList.add(_className);
+                    }
+                }
+            }
+        };
 
         o.initialize();
         return o;
