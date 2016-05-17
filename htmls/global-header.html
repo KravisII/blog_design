@@ -741,6 +741,7 @@ var GlobalNavigationController = {
         };
 
         o.onViewportChange = function (_old, _new) {
+            // 要不全加一个 `.global-nav--viewport-changing` ?
             if (_old === undefined) {
                 return;
             }
@@ -762,21 +763,21 @@ var GlobalNavigationController = {
             }
 
             switch (_flag) {
-                case 21: this.no_21(); break; // 消除 .global-nav--closed
-                case 12: this.no_12(); break; // 暂时消除 .gn-searchform-input 的 transition
+                case 21: this.no_21(); break; // 消除 `.global-nav--closed`
+                case 12: this.no_12(); break; // 暂时消除 `.gn-searchform-input` 的 `transition`
                 default: break;
             }
             console.log(_flag);
         };
 
         o.no_21 = function () {
-            // 消除 .global-nav--closed
+            // 消除 `.global-nav--closed`
             o.globalNav.classList.remove("global-nav--closed");
         };
 
         o.no_12 = function () {
             o.globalNav.classList.remove("global-nav--opened");
-            // 暂时消除 .gn-searchform-input 的 transition
+            // 暂时消除 `.gn-searchform-input` 的 `transition`
         };
 
 
