@@ -55,8 +55,10 @@ short style:
 - [x] 使用 `getComputedStyle()` 函数获取 CSS 属性值时，应该注意「清洗」字符串，例如 `" "` 等；
 - [x] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
 - [x] 加入 `div.gn-curtain` 用于在 Mobile 端显示 Menu 时背景颜色加深；
+- [x] 进一步完善 `.gh-menu-list.has-sub` 的动画；
+- [x] 优化 `.gh-menu-list.has-sub` 动画在 iOS 端的效果；
+- [ ] `.gh-menu-list.has-sub` 打开时，点按其他区域触发其关闭；
 - [ ] 探究 `window.requestAnimationFrame(this.unblockTransitions.bind(this))` 在 Chrome 执行时的问题；
-- [ ] 进一步完善 `.gh-menu-list.has-sub` 的动画；
 - [ ] 参考 Github，优化 `:hover` 伪类；
 - [ ] Android Chrome 的 `onblur` 事件异常；
 - [ ] 进行代码清理，使 CSS 和 JavaScript 更加规范化。

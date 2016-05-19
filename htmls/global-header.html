@@ -544,13 +544,13 @@
             }
 
             .gn-menu-item.opened > .gn-menu-link::after {
-            	transform: rotateX(-180deg);
+                transform: rotateX(-180deg);
             }
 
             .gn-menu-sub-items {
                 top: 0;
                 margin: 0;
-                padding: 0.5em 0;
+                padding: 0;
                 transform: none;
                 opacity: 1;
                 border-radius: 0;
@@ -561,6 +561,7 @@
                 width: 100%;
                 box-sizing: content-box;
                 visibility: hidden;
+                overflow-y: hidden;
             }
 
             .gn-menu-sub-items::before,
@@ -577,6 +578,7 @@
                 transform: translateY(-1.2em);
                 opacity: 0;
                 will-change: transform, opacity;
+                transition: opacity 200ms ease, transform 200ms ease;
             }
 
             .gn-menu-item.opened .gn-menu-sub-item {
@@ -586,17 +588,13 @@
                 will-change: opacity, transform;
             }
 
-            /* TEST */
-            .gn-menu-sub-items {
-            	overflow-y: hidden;
-            	/* height: 0; */
+            .gn-menu-sub-item:nth-child(1) {
+                margin-top: 0.5em;
             }
 
-            .gn-menu-item.opened .gn-menu-sub-items {
-            	/* height: 120px; */
+            .gn-menu-sub-item:nth-last-child(1) {
+                margin-bottom: 0.5em;
             }
-
-            /* TEST END */
 
             .gn-menu-item.opened .gn-menu-sub-item:nth-child(1) {
                 transition-delay: 0s;
@@ -743,7 +741,7 @@ var GlobalNavigationController = {
 
             var _length = this.menuItemsHasSub.length;
             for (var i = 0; i < _length; i++) {
-            	this.menuItemsHasSub[i].addEventListener("click", this.onMenuItemHasSubClick, false);
+                this.menuItemsHasSub[i].addEventListener("click", this.onMenuItemHasSubClick, false);
             }
             window.addEventListener("resize", o.queryViewport.bind(this), false);
 
@@ -794,30 +792,67 @@ var GlobalNavigationController = {
         };
 
         o.onMenuItemHasSubClick = function () {
-        	window.getComputedStyle(o.menuItemList)
-        	if(o.viewport === "small") {
-        		this.classList.toggle("opened")
-        	}
-        	if (this.classList.contains("opened")) {
-        		var _subList = this.querySelector(".gn-menu-sub-items")
-        		var _height = parseInt(window.getComputedStyle(_subList).getPropertyValue("height"));
-        		_subList.style.height = "0";
-        		var _start = 0, _end = _height;
-        		function _temp() {
-        			_start++;
-        			_subList.style.height = _start + "px";
-        			if (_start < _end) {
-        				requestAnimationFrame(_temp);
-        			}
-        		}
-        		_temp();
-        		// this:
-            	// this.menuItemsHasSub = document.querySelectorAll(".gn-menu-item.has-sub");
+            var _subList = this.querySelector(".gn-menu-sub-items")
 
-            	// this.menuSubItems = document.querySelectorAll(".gn-menu-sub-items");
-
-        	}
+            window.getComputedStyle(o.menuItemList)
+            if(o.viewport === "small") {
+                this.classList.toggle("opened")
+                if (this.classList.contains("opened")) {
+                    // Javascript Open transition
+                    var _startTime = Date.now();
+                    var _height = parseInt(window.getComputedStyle(_subList).getPropertyValue("height"));
+                    var _duration = 200;
+                    function _open() {
+                        var __now = Date.now();
+                        var __currentTime = __now - _startTime;
+                        var __height = o.easeIn(__currentTime, 0, _height, _duration);
+                        // var __opacity = Math.min(o.easeIn(__currentTime, 0, 1, 50), 1);
+                        if (__currentTime >= _duration) {
+                            _subList.removeAttribute("style");
+                            return;
+                        }
+                        _subList.style.height = __height + "px";
+                        // _subList.style.opacity = __opacity;
+                        window.requestAnimationFrame(_open);
+                    }
+                    _open();
+                } else {
+                    // Javascript Close transition
+                    _subList.style.visibility = "visible";
+                    _subList.style.position = "inherit";
+                    var _startTime = Date.now();
+                    var _height = parseInt(window.getComputedStyle(_subList).getPropertyValue("height"));
+                    var _duration = 200;
+                    function _close() {
+                        var __now = Date.now();
+                        var __currentTime = __now - _startTime;
+                        var __height = o.easeIn(__currentTime, _height, (0-_height), _duration);
+                        // var __opacity = Math.min(o.easeIn(__currentTime, 1, -1, 200), 1);
+                        if (__currentTime >= _duration) {
+                            _subList.removeAttribute("style");
+                            return;
+                        }
+                        _subList.style.height = __height + "px";
+                        // _subList.style.opacity = __opacity;
+                        window.requestAnimationFrame(_close);
+                    }
+                    _close();
+                }
+            }
         };
+
+        o.easeIn = function (t, b, c, d) {
+            // t: current time（当前时间）
+            // b: beginning value（初始值）
+            // c: change in value（变化量）
+            // d: duration（持续时间
+            return c * (t /= d) * t + b;
+        };
+
+        o.easeInOutCirc = function (t, b, c, d) {
+            if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+            return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+        },
 
         o.queryViewport = function () {
             var _str = window.getComputedStyle(this.viewportEmitter, "::after").content;
