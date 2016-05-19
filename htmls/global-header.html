@@ -513,10 +513,6 @@
                 display: none;
             }
 
-            .global-nav-link--opened.types {
-                margin-bottom: 1em;
-            }
-
             .gn-searchform-input {
                 position: relative;
                 opacity: 1;
@@ -525,6 +521,7 @@
                 border-width: 1px 0;
                 transition: none;
                 height: 2.5em;
+                margin-top: 1em;
             }
 
             .gn-searchform-input,
@@ -546,14 +543,14 @@
                 right: 1.2em;
             }
 
-            .global-nav-link--opened > .gn-menu-link::after {
-                transform: rotateX(-180deg);
+            .gn-menu-item.opened > .gn-menu-link::after {
+            	transform: rotateX(-180deg);
             }
 
             .gn-menu-sub-items {
                 top: 0;
                 margin: 0;
-                padding: 0.5em;
+                padding: 0.5em 0;
                 transform: none;
                 opacity: 1;
                 border-radius: 0;
@@ -562,17 +559,18 @@
                 transition: none;
                 border-width: 1px 0;
                 width: 100%;
+                box-sizing: content-box;
                 visibility: hidden;
-            }
-
-            .global-nav-link--opened > .gn-menu-sub-items {
-                position: inherit;
-                visibility: visible;
             }
 
             .gn-menu-sub-items::before,
             .gn-menu-sub-items::after {
                 display: none;
+            }
+
+            .gn-menu-item.opened > .gn-menu-sub-items {
+                position: inherit;
+                visibility: visible;
             }
 
             .gn-menu-sub-item {
@@ -581,36 +579,48 @@
                 will-change: transform, opacity;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item {
+            .gn-menu-item.opened .gn-menu-sub-item {
                 transform: translateY(0);
                 opacity: 1;
                 transition: opacity 500ms ease, transform 500ms ease;
                 will-change: opacity, transform;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(1) {
+            /* TEST */
+            .gn-menu-sub-items {
+            	overflow-y: hidden;
+            	/* height: 0; */
+            }
+
+            .gn-menu-item.opened .gn-menu-sub-items {
+            	/* height: 120px; */
+            }
+
+            /* TEST END */
+
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(1) {
                 transition-delay: 0s;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(2) {
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(2) {
                 transition-delay: 0.07s;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(3) {
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(3) {
                 transition-delay: 0.14s;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(4) {
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(4) {
                 transition-delay: 0.21s;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(5) {
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(5) {
                 transition-delay: 0.28s;
             }
 
-            .global-nav-link--opened .gn-menu-sub-item:nth-child(6) {
+            .gn-menu-item.opened .gn-menu-sub-item:nth-child(6) {
                 transition-delay: 0.35s;
-            }
+            } 
 
             .gn-menu-sub-link {
                 height: 2.5em;
@@ -656,6 +666,7 @@
                         <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Music Player</a></li>
                         <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Lyric Controller</a></li>
                         <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Music Controller</a></li>
+                        <li class="gn-menu-sub-item"><a class="gn-menu-sub-link" href="#">Lexical Analyser</a></li>
                     </ul>
                 </li>
 
@@ -703,7 +714,9 @@ var GlobalNavigationController = {
             this.searchForm = document.querySelector(".gn-searchform-input");
             this.viewportEmitter = document.querySelector("#gn-viewport-emitter");
             this.menuLinks = document.querySelectorAll(".gn-menu-link");
-            this.menuItems = document.querySelectorAll(".gn-menu-item");
+            this.menuItemList = document.querySelector("ul.gn-menu-items");
+            this.menuItems = document.querySelectorAll("li.gn-menu-item");
+            this.menuItemsHasSub = document.querySelectorAll(".gn-menu-item.has-sub");
             this.menuSubItems = document.querySelectorAll(".gn-menu-sub-items");
             this.root = document.documentElement; // <html>
         };
@@ -727,7 +740,13 @@ var GlobalNavigationController = {
             this.searchLink.addEventListener("click", this.onSearchLinkClick.bind(this), false);
             this.searchForm.addEventListener("blur", this.onSearchFormBlur.bind(this), false);
             this.globalNavMenuIcon.addEventListener("click", this.onMenuIconClick.bind(this), false);
+
+            var _length = this.menuItemsHasSub.length;
+            for (var i = 0; i < _length; i++) {
+            	this.menuItemsHasSub[i].addEventListener("click", this.onMenuItemHasSubClick, false);
+            }
             window.addEventListener("resize", o.queryViewport.bind(this), false);
+
         };
 
         o.onSearchLinkClick = function () {
@@ -774,6 +793,32 @@ var GlobalNavigationController = {
             }
         };
 
+        o.onMenuItemHasSubClick = function () {
+        	window.getComputedStyle(o.menuItemList)
+        	if(o.viewport === "small") {
+        		this.classList.toggle("opened")
+        	}
+        	if (this.classList.contains("opened")) {
+        		var _subList = this.querySelector(".gn-menu-sub-items")
+        		var _height = parseInt(window.getComputedStyle(_subList).getPropertyValue("height"));
+        		_subList.style.height = "0";
+        		var _start = 0, _end = _height;
+        		function _temp() {
+        			_start++;
+        			_subList.style.height = _start + "px";
+        			if (_start < _end) {
+        				requestAnimationFrame(_temp);
+        			}
+        		}
+        		_temp();
+        		// this:
+            	// this.menuItemsHasSub = document.querySelectorAll(".gn-menu-item.has-sub");
+
+            	// this.menuSubItems = document.querySelectorAll(".gn-menu-sub-items");
+
+        	}
+        };
+
         o.queryViewport = function () {
             var _str = window.getComputedStyle(this.viewportEmitter, "::after").content;
             var _reg = /"/g;
@@ -785,7 +830,6 @@ var GlobalNavigationController = {
                 this.onViewportChange(this.viewport, _viewport);
                 this.viewport = _viewport;
             }
-            console.log(this);
         };
 
         o.onViewportChange = function (_old, _new) {
@@ -802,7 +846,7 @@ var GlobalNavigationController = {
             // Chrome 下不起作用。
             // window.requestAnimationFrame(this.unblockTransitions.bind(this));
             // 临时使用 setTimeout
-            window.setTimeout(this.unblockTransitions.bind(this), 1);
+            window.setTimeout(this.unblockTransitions.bind(this), 20);
         };
 
         o.unblockTransitions = function () {
