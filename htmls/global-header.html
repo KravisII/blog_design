@@ -22,6 +22,10 @@
             padding: 0;
         }
 
+        body.disable-scroll {
+            overflow: hidden;
+        }
+
         .global-nav {
             box-sizing: border-box;
             position: relative;
@@ -621,7 +625,7 @@
             .global-nav--opened ~ .gn-curtain {
                 opacity: 1;
                 width: 100%;
-                height: 100%;
+                height: 200%;
                 transition: opacity 1s ease;
             }
         }
@@ -732,7 +736,6 @@ var GlobalNavigationController = {
                 this.menuItemsHasSub[i].addEventListener("click", this.onMenuItemHasSubClick, false);
             }
             window.addEventListener("resize", o.queryViewport.bind(this), false);
-
         };
 
         o.onSearchLinkClick = function () {
@@ -772,11 +775,44 @@ var GlobalNavigationController = {
         };
 
         o.onMenuIconClick = function () {
+            // console.log(this);
             if (this.globalNav.classList.toggle("global-nav--opened")) {
                 this.globalNav.classList.remove("global-nav--closed");
+                this.addOtherAreaClickEvent();
+                this.disableScroll()
             } else {
                 this.globalNav.classList.add("global-nav--closed");
+                this.removeOtherAreaClickEvent();
+                this.enableScroll()
             }
+        };
+
+        o.addOtherAreaClickEvent = function () {
+            this.root.addEventListener("click", this.hideMenu, true);
+            this.root.addEventListener("touchstart", this.hideMenu, true);
+        };
+
+        o.removeOtherAreaClickEvent = function () {
+            this.root.removeEventListener("click", this.hideMenu, true);
+            this.root.removeEventListener("touchstart", this.hideMenu, true);
+        };
+
+        o.hideMenu = function (e) {
+            if (e.target.classList[0] === "gn-curtain") {
+                o.onMenuIconClick();
+            }
+        };
+
+        o.disableScroll = function () {
+            document.body.classList.add("disable-scroll");
+            document.ontouchmove = function (event) {
+                event.preventDefault();
+            };
+        };
+
+        o.enableScroll = function () {
+            document.body.classList.remove("disable-scroll");
+            document.ontouchmove = null;
         };
 
         o.onMenuItemHasSubClick = function () {

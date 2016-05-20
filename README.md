@@ -35,6 +35,10 @@ short style:
 
 初步完成 `global-header` 的代码部分。
 
+#### 2016.5.20
+
+完成度达到 98%，剩余目标是尽可能适配低版本的浏览器，优化动画显示效果。
+
 ##### Task List
 - [x] 纠正 `sub-links` 在 Mobile 端的显示；
 - [x] 完善 `.global-header-link.has-sub` 的 `menu-down` 动画；
@@ -54,10 +58,10 @@ short style:
 - [x] Safari 中，若一个元素 `display: none`，则它的伪元素的值不能通过 `window.getComputedStyle(node, "::after")` 获取；
 - [x] 使用 `getComputedStyle()` 函数获取 CSS 属性值时，应该注意「清洗」字符串，例如 `" "` 等；
 - [x] 加入 `div#gn-viewport-emitter` 用于 CSS 响应布局，改进 `search-form` 的 `transition`；
-- [x] 加入 `div.gn-curtain` 用于在 Mobile 端显示 Menu 时背景颜色加深；
+- [x] 加入 `div.gn-curtain` 用于在 Mobile 端显示 Menu 时背景颜色加深，同时用于判断 `global-nav` 以外的区域；
 - [x] 进一步完善 `.gh-menu-list.has-sub` 的动画；
 - [x] 优化 `.gh-menu-list.has-sub` 动画在 iOS 端的效果；
-- [ ] `.gh-menu-list.has-sub` 打开时，点按其他区域触发其关闭；
+- [x] `.gh-menu-list.has-sub` 打开时，点按其他区域触发其关闭；
 - [ ] 进行代码清理，使 CSS 和 JavaScript 更加规范化。
 
 #### Give Up List
