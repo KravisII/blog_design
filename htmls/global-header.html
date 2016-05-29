@@ -2,7 +2,7 @@
 <html lang="en" class="no-backdropfilter no-touch">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>global-nav</title>
     <style>
         body,
@@ -804,14 +804,14 @@ var GlobalNavigationController = {
         };
 
         o.disableScroll = function () {
-            document.body.classList.add("disable-scroll");
+            // document.body.classList.add("disable-scroll");
             document.ontouchmove = function (event) {
                 event.preventDefault();
             };
         };
 
         o.enableScroll = function () {
-            document.body.classList.remove("disable-scroll");
+            // document.body.classList.remove("disable-scroll");
             document.ontouchmove = null;
         };
 
